@@ -33,10 +33,11 @@
         p { color: var(--gray-dark); margin-bottom: 20px; }
 
         /* Buttons */
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border-radius: 0; cursor: pointer; transition: var(--transition); border: 2px solid transparent; font-family: inherit; font-size: 1rem; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border-radius: 25px; cursor: pointer; transition: var(--transition); border: 2px solid transparent; font-family: inherit; font-size: 1rem; }
         .btn-teal { background-color: var(--teal); color: var(--white); }
         .btn-teal:hover { background-color: var(--navy); color: var(--white); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-        .btn-outline-dark { border-color: var(--navy); color: var(--navy); background: transparent; }
+        .btn-teal:disabled { background-color: var(--gray-medium); cursor: not-allowed; transform: none; box-shadow: none; border-color: var(--gray-medium); }
+        .btn-outline-dark { border-color: var(--navy); color: var(--navy); background: transparent; border-radius: 25px; }
         .btn-outline-dark:hover { background-color: var(--teal); border-color: var(--teal); color: var(--white); }
         .product-card .btn-outline-dark { width: 100%; margin-top: auto; }
 
@@ -70,68 +71,48 @@
         .hero-image::before { content: ''; position: absolute; top: -20px; right: -20px; width: 100%; height: 100%; border: 4px solid var(--teal); z-index: 0; }
         .hero-image img { max-width: 100%; position: relative; z-index: 1; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
 
-        /* Workflows */
-        .workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .step-card { background: var(--white); padding: 40px; border: 1px solid var(--gray-medium); transition: var(--transition); }
-        .step-card:hover { border-color: var(--teal); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        .step-number { font-size: 4rem; font-weight: 800; color: var(--gray-light); -webkit-text-stroke: 2px var(--teal); margin-bottom: 20px; line-height: 1; }
-
-        /* Departments */
-        .dept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .dept-card { display: block; background: var(--white); padding: 40px 30px; text-align: center; border: 1px solid var(--gray-medium); transition: var(--transition); position: relative; overflow: hidden; }
-        .dept-card::before { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: var(--teal); transform: scaleX(0); transition: var(--transition); transform-origin: left; }
-        .dept-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: transparent; }
-        .dept-card:hover::before { transform: scaleX(1); }
-        .dept-card h3 { color: var(--navy); margin-bottom: 15px; font-size: 1.5rem; }
-
-        /* Product Grid */
+        /* Product Grid & Cards (Updated Layout) */
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; margin-top: 40px; }
-        .product-card { background: var(--white); display: flex; flex-direction: column; border: 1px solid var(--gray-medium); transition: var(--transition); }
+        .product-card { background: var(--white); display: flex; flex-direction: column; border: 1px solid var(--gray-medium); transition: var(--transition); border-radius: 8px; overflow: hidden; padding-bottom: 20px; }
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,135,161,0.15); border-color: var(--teal); }
-        .product-image-container { width: 100%; height: 200px; background-color: var(--gray-light); object-fit: cover; border-bottom: 1px solid var(--gray-medium); cursor: pointer; }
-        .product-info { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
-        .product-meta { display: flex; justify-content: space-between; font-size: 0.75rem; text-transform: uppercase; font-weight: 600; color: var(--gray-dark); margin-bottom: 10px; }
-        .product-brand { color: var(--teal); }
-        .product-name { font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 15px; line-height: 1.3; }
-        .product-price { font-size: 1.5rem; font-weight: 800; color: var(--black); margin-bottom: 20px; }
+        .product-image-container { width: 100%; height: 220px; background-color: var(--white); padding: 20px; object-fit: contain; cursor: pointer; }
+        .product-divider { text-align: center; position: relative; margin: 10px 20px; }
+        .product-divider::before { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: var(--gray-medium); z-index: 1; }
+        .product-category { position: relative; z-index: 2; background: var(--white); padding: 0 10px; font-size: 0.8rem; color: var(--gray-dark); display: inline-block; }
+        .product-info { padding: 0 20px; display: flex; flex-direction: column; align-items: center; text-align: center; flex-grow: 1; }
+        .product-brand { color: #f03e00; font-size: 1.2rem; font-weight: 600; margin-top: 10px; } 
+        .product-name { font-size: 1rem; font-weight: 400; color: var(--black); margin: 10px 0 20px; line-height: 1.3; }
+        .product-price { font-size: 1.5rem; font-weight: 600; color: #f29a00; margin-bottom: 20px; } 
 
-        /* Text Pages */
-        .text-page-content { max-width: 800px; margin: 0 auto; text-align: center; }
-        .text-page-content p { font-size: 1.1rem; margin-bottom: 30px; color: var(--gray-dark); }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px; text-align: left; }
-        .contact-info-box { background: var(--white); padding: 40px; border: 1px solid var(--gray-medium); }
-        .contact-info-box h3 { color: var(--teal); margin-bottom: 20px; }
+        /* Pagination Styles */
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 60px; }
+        .page-btn { padding: 10px 18px; border: 1px solid var(--gray-medium); background: var(--white); color: var(--navy); font-weight: 600; cursor: pointer; transition: var(--transition); border-radius: 4px; }
+        .page-btn:hover:not(:disabled) { border-color: var(--teal); color: var(--teal); }
+        .page-btn.active { background: var(--teal); color: var(--white); border-color: var(--teal); }
+        .page-btn:disabled { color: var(--gray-medium); cursor: not-allowed; opacity: 0.5; }
 
-        /* Forms */
-        .form-group { margin-bottom: 20px; text-align: left; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--navy); font-size: 0.9rem; text-transform: uppercase; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid var(--gray-medium); font-family: inherit; font-size: 1rem; transition: var(--transition); }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,135,161,0.1); }
-        
         /* Modal Styles */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(5px); }
         .modal-overlay.active { display: flex; }
-        .modal-content { background: var(--white); width: 90%; max-width: 900px; max-height: 90vh; overflow-y: auto; position: relative; display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; }
+        .modal-content { background: var(--white); width: 90%; max-width: 900px; max-height: 90vh; overflow-y: auto; position: relative; display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; border-radius: 8px; }
         .close-btn { position: absolute; top: 20px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--gray-dark); z-index: 10; line-height: 1; }
         .close-btn:hover { color: var(--black); }
         .modal-product-pane { background: var(--gray-light); padding: 40px; border-right: 1px solid var(--gray-medium); display: flex; flex-direction: column; }
         .modal-form-pane { padding: 40px; }
-        .modal-product-image { width: 100%; height: 250px; object-fit: cover; margin-bottom: 20px; border: 1px solid var(--gray-medium); }
+        .modal-product-image { width: 100%; height: 250px; object-fit: contain; background: var(--white); padding: 20px; margin-bottom: 20px; border: 1px solid var(--gray-medium); border-radius: 4px; }
+        
+        /* Forms */
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--navy); font-size: 0.9rem; text-transform: uppercase; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid var(--gray-medium); font-family: inherit; font-size: 1rem; transition: var(--transition); border-radius: 4px; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,135,161,0.1); }
         
         @media (max-width: 768px) {
             .modal-content { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr; }
             .hero-inner { flex-direction: column; text-align: center; }
             .hero-features { align-items: center; }
             .hero-buttons { justify-content: center; }
         }
-
-        /* Footer */
-        footer { background-color: var(--black); color: var(--white); padding: 80px 0 40px; border-top: 5px solid var(--teal); }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 60px; }
-        .footer-logo { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
-        .footer-logo span { color: var(--teal); }
-        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #333; font-size: 0.9rem; color: var(--gray-dark); }
     </style>
 </head>
 <body>
@@ -144,8 +125,6 @@
                 <ul class="nav-links">
                     <li><a href="#catalog">Products</a></li>
                     <li><a href="#workflow">How It Works</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -164,36 +143,10 @@
                 </div>
                 <div class="hero-buttons">
                     <a href="#catalog" class="btn btn-teal">View Full Catalog</a>
-                    <a href="#workflow" class="btn btn-outline-dark">How It Works</a>
                 </div>
             </div>
             <div class="hero-image">
                 <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Clinical Supply">
-            </div>
-        </div>
-    </section>
-
-    <!-- Workflow Section -->
-    <section id="workflow" class="bg-white">
-        <div class="container">
-            <h2>Built for Speed: 60-Second Ordering</h2>
-            <p style="text-align: center; max-width: 600px; margin: 0 auto 50px;">Every order bypasses the cart. Select your products, enter your clinic details, and we instantly sync your request with our fulfillment team.</p>
-            <div class="workflow-grid">
-                <div class="step-card">
-                    <div class="step-number">01</div>
-                    <h3 style="color: var(--navy); margin-bottom: 10px;">Select Product</h3>
-                    <p>Click on any item in our extensive, clinically-curated catalog to view details.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">02</div>
-                    <h3 style="color: var(--navy); margin-bottom: 10px;">Add Details</h3>
-                    <p>Fill out a quick form with your clinic name, delivery address, and urgency.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">03</div>
-                    <h3 style="color: var(--navy); margin-bottom: 10px;">Auto-Sync Order</h3>
-                    <p>The system instantly alerts our office while sending you a direct confirmation email.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -205,86 +158,10 @@
             <div class="product-grid" id="productGrid">
                 <!-- Javascript injects products here -->
             </div>
+            <!-- Pagination Controls -->
+            <div id="paginationControls" class="pagination"></div>
         </div>
     </section>
-
-    <!-- About Section -->
-    <section id="about" class="bg-white">
-        <div class="container text-page-content">
-            <h2>About LH Distributor</h2>
-            <h3 style="color: var(--teal); margin-bottom: 20px;">Quality Products. Trusted Partner.</h3>
-            <p>LH Distributor was built specifically for the modern dental team. We understand that clinical professionals don't have time to navigate complicated checkout systems, deal with hidden shipping fees, or wait days for inventory confirmations.</p>
-            <p>Our catalog focuses on the high-demand chairside materials that keep your rooms moving: restoratives, sterilization pouches, burs, and disposables. By utilizing a direct quote-based fulfillment system, we strip away the noise and connect your clinic directly to the supplies you need, allowing owners to personally verify availability and pricing for every single order.</p>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="bg-gray-light">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <div class="contact-grid">
-                <div class="contact-info-box">
-                    <h3>Get In Touch</h3>
-                    <p>Whether you have a question about a specific SKU, need bulk pricing, or want to establish a recurring order list, we are here to help.</p>
-                    <div style="margin-top: 30px; font-size: 1.1rem; line-height: 2;">
-                        <p><strong>Phone:</strong> <a href="tel:5308596003" style="color: var(--teal);">(530) 859-6003</a></p>
-                        <p><strong>Email:</strong> <a href="mailto:manishajain8095@gmail.com" style="color: var(--teal);">manishajain8095@gmail.com</a></p>
-                    </div>
-                </div>
-                <div class="contact-form-box">
-                    <!-- Standard HTML Form for FormSubmit -->
-                    <form action="https://formsubmit.co/manishajain8095@gmail.com" method="POST" target="_blank">
-                        <!-- FormSubmit Configuration -->
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_subject" value="New Contact Message from LH Distributor Website">
-                        <input type="hidden" name="_template" value="table">
-                        
-                        <div class="form-group">
-                            <label>Your Name</label>
-                            <input type="text" name="Name" required placeholder="How can we help?">
-                        </div>
-                        <div class="form-group">
-                            <label>Your Email</label>
-                            <input type="email" name="Email" required placeholder="name@clinic.com">
-                        </div>
-                        <div class="form-group">
-                            <label>Message</label>
-                            <textarea name="Message" rows="5" required placeholder="Type your message here..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-teal" style="width: 100%;">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <div class="footer-logo">LH <span>Distributor</span></div>
-                    <p style="color: var(--gray-medium); max-width: 300px;">Modern dental supply ordering for clinics that prefer quote-based fulfillment and immediate service.</p>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 20px; color: var(--white);">Direct Contact</h4>
-                    <p><strong>Phone:</strong> (530) 859-6003</p>
-                    <p><strong>Email:</strong> manishajain8095@gmail.com</p>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 20px; color: var(--white);">Navigation</h4>
-                    <ul style="line-height: 2;">
-                        <li><a href="#catalog">Full Catalog</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact Support</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                &copy; 2026 LH Distributor. Quality Products. Trusted Partner.
-            </div>
-        </div>
-    </footer>
 
     <!-- ORDER MODAL OVERLAY -->
     <div id="orderModal" class="modal-overlay">
@@ -293,7 +170,7 @@
             
             <div class="modal-product-pane">
                 <h3 style="color: var(--navy); margin-bottom: 20px;">Order Details</h3>
-                <img id="modalImg" src="" alt="Product" class="modal-product-image">
+                <img id="modalImg" src="" alt="Product Image" class="modal-product-image">
                 <div style="font-size: 0.85rem; color: var(--teal); font-weight: 800;" id="modalCat">CATEGORY</div>
                 <h2 id="modalName" style="text-align: left; margin: 10px 0; font-size: 1.5rem; color: var(--black);">Product Name</h2>
                 <div id="modalBrand" style="color: var(--gray-dark); margin-bottom: 15px;">Brand</div>
@@ -303,16 +180,12 @@
             <div class="modal-form-pane">
                 <h3 style="margin-bottom: 25px; color: var(--navy);">Delivery Information</h3>
                 
-                <!-- Standard HTML Form for FormSubmit -->
                 <form id="orderForm" action="https://formsubmit.co/manishajain8095@gmail.com" method="POST" target="_blank">
-                    
-                    <!-- FormSubmit Configurations & Hidden Dynamic Fields -->
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_autoresponse" value="Thank you for your order request. We have received it and will process it shortly. - LH Distributor">
                     <input type="hidden" id="hiddenSubject" name="_subject" value="New Order Request">
                     
-                    <!-- Dynamic product details injected via Javascript -->
                     <input type="hidden" id="hiddenProductName" name="Product_Name" value="">
                     <input type="hidden" id="hiddenBrand" name="Product_Brand" value="">
                     <input type="hidden" id="hiddenCategory" name="Product_Category" value="">
@@ -344,20 +217,6 @@
                         <input type="text" name="Delivery_Address" required placeholder="Street, City, Zip">
                     </div>
 
-                    <div class="form-group">
-                        <label>When Needed?</label>
-                        <select name="Urgency" required>
-                            <option value="Standard (3-5 Days)">Standard (3-5 Days)</option>
-                            <option value="Urgent (1-2 Days)">Urgent (1-2 Days)</option>
-                            <option value="Stock Restock (Next Week)">Stock Restock (Next Week)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Additional Notes</label>
-                        <textarea name="Notes" rows="2" placeholder="Any specific instructions?"></textarea>
-                    </div>
-
                     <button type="submit" class="btn btn-teal" style="width: 100%; margin-top: 10px;" onclick="setTimeout(closeModal, 1500)">Place Order</button>
                 </form>
             </div>
@@ -367,207 +226,290 @@
     <!-- Scripts -->
     <script>
         const products = [
-            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "(FG#330) Pear Shape", price: "$21.15" },
-            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "(FG#557) Straight Flat end", price: "$21.15" },
-            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "RA Round Surgical Length Bur", price: "$18.25" },
-            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "Round Football (379-023)", price: "$19.15" },
-            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "Pointed Football Burs 368-023", price: "$19.15" },
-            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "Flat End Cone 856-014C", price: "$19.15" },
-            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "Flat End Taper 848-014C", price: "$19.15" },
-            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "Needle 859-012SF", price: "$19.15" },
-            { cat: "Disposable Products", brand: "UniPack", name: "Tongue Depressors", price: "$12.15" },
-            { cat: "Disposable Products", brand: "UniPack", name: "DISPOSABLE PATIENT BIBS", price: "$29.99" },
-            { cat: "Disposable Products", brand: "Safedent", name: "2x2 gauze", price: "$32.97" },
-            { cat: "Disposable Products", brand: "Safedent", name: "Cotton Tipped Applicators", price: "$8.15" },
-            { cat: "Disposable Products", brand: "UniPack", name: "COTTON ROLLS", price: "$29.99" },
-            { cat: "Disposable Products", brand: "Safedent", name: "DISPOSABLE PLASTIC CUPS", price: "$29.35" },
-            { cat: "Infection Control", brand: "Safe Dent", name: "PAPER TRAY COVERS", price: "$28.29" },
-            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "(FG 557) Straight Surgical Length", price: "$18.25" },
-            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "FG Round Oral Surgery", price: "$18.25" },
-            { cat: "Composites Filling Materials", brand: "Plasdent", name: "Composite Dispensing Gun", price: "$13.99" },
-            { cat: "Evacuation", brand: "UniPack", name: "Evacuator HVE Tips", price: "$4.99" },
-            { cat: "Evacuation", brand: "Safedent", name: "Saliva Ejectors", price: "$4.99" },
-            { cat: "Evacuation", brand: "Safe Dent", name: "SURGICAL ASPIRATOR TIPS", price: "$7.99" },
-            { cat: "Impression Materials", brand: "UniPack", name: "CAVEX CREAM FAST SET ALGINATE", price: "$12.99" },
-            { cat: "Endodontic Products", brand: "UniPack", name: "Endo Irrigation Combo Kit", price: "$27.29" },
-            { cat: "Disposable Products", brand: "Plasdent", name: "Ortho Boxes - Retainer Box", price: "$10.99" },
-            { cat: "Composites Filling Materials", brand: "UniPack", name: "Pre-Bent Needle Tips", price: "$9.05" },
-            { cat: "Composites Filling Materials", brand: "Mydent", name: "Micro Applicator Tips", price: "$5.26" },
-            { cat: "Impression Materials", brand: "House Brand", name: "Mixing Pads", price: "$1.29" },
-            { cat: "Impression Materials", brand: "Plasdent", name: "CURVED TIP UTILITY SYRINGE", price: "$24.99" },
-            { cat: "Endodontic Products", brand: "UniPack", name: "LUER LOCK IRRIGATION SYRINGE", price: "$10.99" },
-            { cat: "Evacuation", brand: "UniPack", name: "Easy-E-Trap Canisters", price: "$69.99" },
-            { cat: "Acrylic and Reline Materials", brand: "House Brand", name: "Intra Oral Mixing Tips", price: "$9.99" },
-            { cat: "Impression Materials", brand: "Safedent", name: "Disposable Impression Trays", price: "$5.99" },
-            { cat: "Infection Control", brand: "UniPack", name: "ISOLATION GOWN", price: "$15.99" },
-            { cat: "Infection Control", brand: "House Brand", name: "Protective Eyewear - Clear", price: "$3.99" },
-            { cat: "Infection Control", brand: "Safedent", name: "STERILIZATION POUCHES", price: "$6.75" },
-            { cat: "Infection Control", brand: "Plasdent", name: "CHAIR & HEADREST COVERS", price: "$37.92" },
-            { cat: "Infection Control", brand: "Safe Dent", name: "Barrier Film", price: "$15.99" },
-            { cat: "Surgical Products", brand: "Look", name: "Suture - 3/0, 27 - Chromic - C-6", price: "$48.50" },
-            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "Flame 863-012 SF", price: "$19.15" },
-            { cat: "Disposable Products", brand: "UniPack", name: "DENTURE BOX", price: "$10.99" },
-            { cat: "Evacuation", brand: "UniPack", name: "All saliva ejectors Universal fit", price: "$12.99" },
-            { cat: "Surgical Products", brand: "House Brand", name: "Scalpel, Stainless Steel Blade, Size 15", price: "$12.99" },
-            { cat: "Not Specified", brand: "General", name: "Reflective Dry Tips®", price: "$15.99" },
-            { cat: "Infection Control", brand: "Plasdent", name: "Optical PC Mouse", price: "$15.99" },
-            { cat: "Infection Control", brand: "Plasdent", name: "Keyboard Cover", price: "$17.99" },
-            { cat: "Not Specified", brand: "Enzyme Industries", name: "Sani-Treet Plus®", price: "$81.25" },
-            { cat: "Disposable Products", brand: "UniPack", name: "DENTURE BOX", price: "$9.99" },
-            { cat: "Prophy Products", brand: "Mydent", name: "Prophy Paste", price: "$29.85" },
-            { cat: "Disposable Products", brand: "UniPack", name: "Disposable Bib Holders", price: "$12.99" },
-            { cat: "Not Specified", brand: "General", name: "Round End Taper", price: "$19.15" },
-            { cat: "Not Specified", brand: "General", name: "Amalgon Disposable System 1gal", price: "$199.29" },
-            { cat: "Endodontic Products", brand: "Crosstex", name: "CROSSTEX DENTAL DAMS", price: "$34.29" },
-            { cat: "Not Specified", brand: "Crosstex", name: "Articulating Paper", price: "$13.99" },
-            { cat: "Not Specified", brand: "Microbrush", name: "Dry Tips", price: "$12.99" },
-            { cat: "Surgical Products", brand: "Myco Medical", name: "Surgical Blades Stainless Steel", price: "$14.99" },
-            { cat: "Not Specified", brand: "General", name: "CompCore AF Mixing Tips 50/pkt", price: "$15.99" },
-            { cat: "Evacuation", brand: "UniPack", name: "Easy-E-Trap Canisters Model #2300", price: "$69.99" },
-            { cat: "Endodontic Products", brand: "Vista Dental", name: "Vista EDTA Solution 17% 16oz", price: "$54.99" },
-            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "FG 557 Straight Surgical Length", price: "$18.25" },
-            { cat: "Hemostasis and Retraction", brand: "Vista Dental", name: "Quick-Stat FS Gel 30 mL", price: "$38.59" },
-            { cat: "Matrix Materials", brand: "DSC", name: "Matrix Retainer Tofflemire Universal", price: "$14.99" },
-            { cat: "Composites Filling Materials", brand: "Dentsply Sirona", name: "IRM Caps Temporary Filling Material", price: "$169.29" },
-            { cat: "Not Specified", brand: "Miltex", name: "Instrument Cleaning Brush Steel Bristles", price: "$8.99" },
-            { cat: "Not Specified", brand: "Gingi-Pak", name: "MAX Cord / EPINEPHRINE", price: "$15.35" },
-            { cat: "Evacuation", brand: "DCI", name: "Push-On Saliva Ejector Tips", price: "$18.29" },
-            { cat: "Endodontic Products", brand: "KaVo Kerr", name: "Tubli-Seal EWT Root Canal Sealer", price: "$59.99" },
-            { cat: "Articulating", brand: "Crosstex", name: "Crosstex Horseshoe", price: "$15.99" },
-            { cat: "Infection Control", brand: "Plasdent", name: "Plasdent Instrument Sterilization Container", price: "$6.99" },
-            { cat: "Anesthetics", brand: "Mydent", name: "Defend Topical Anesthetic Gel", price: "$6.25" },
-            { cat: "Composites Filling Materials", brand: "Pulpdent", name: "Etch-Rite Jumbo Syringe Refill", price: "$59.29" },
-            { cat: "Evacuation", brand: "UniPack", name: "DISPOSABLE EVACUATION TRAPS", price: "$45.25" },
-            { cat: "Fluorides & Varnish", brand: "Premier", name: "Enamel Pro Fluoride Varnish Bubblegum", price: "$83.86" },
-            { cat: "Impression Materials", brand: "UniPack", name: "BLU-TRAY PERFORATED IMPRESSION TRAYS", price: "$4.99" },
-            { cat: "Not Specified", brand: "US ELITE", name: "CW-TYPE ASPIRATING SYRINGE", price: "$13.99" },
-            { cat: "Burs & Diamonds", brand: "Miltex", name: "2-1/8 Bur", price: "$12.50" },
-            { cat: "Burs & Diamonds", brand: "Plasdent", name: "BUR TUB", price: "$13.99" },
-            { cat: "Cements & Liners", brand: "3M Oral Care", name: "Clinpro Sealant - 1.2 ml Syringe Refill", price: "$28.50" },
-            { cat: "Crown & Bridge", brand: "House Brand", name: "Crown & Bridge T-Mix Tips", price: "$15.99" },
-            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "MULTI USE FLAT END CONE BURS", price: "$19.15" },
-            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "MULTI USE NEEDLE BURS", price: "$19.15" },
-            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "MULTI USE ROUND END TAPER BURS", price: "$19.15" },
-            { cat: "Endodontic Products", brand: "House Brand", name: "28MM GATES GLIDDEN DRILLS", price: "$10.99" },
-            { cat: "Endodontic Products", brand: "House Brand", name: "32MM GATES GLIDDEN DRILLS", price: "$12.99" },
-            { cat: "Endodontic Products", brand: "Pulpdent", name: "Multi-Cal Kit: 4 - 1.2 mL Syringes", price: "$69.29" },
-            { cat: "Infection Control", brand: "Plasdent", name: "Air/Water Syringe Cover 10", price: "$12.71" },
-            { cat: "Maintenance", brand: "J. Morita", name: "Multi Spray for Handpiece Maintenance", price: "$29.00" },
-            { cat: "Infection Control", brand: "Safe Dent", name: "Blue Fluid Resistant Ear-Loop Mask", price: "$6.99" },
-            { cat: "Instruments", brand: "House Brand", name: "STAINLESS STEEL BRISTLE BRUSH", price: "$12.99" },
-            { cat: "Acrylic and Reline Materials", brand: "Blazer Torch", name: "Blazer Triple Refined Butane", price: "$12.99" },
-            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "Inverted Cone (FG#38)", price: "$21.15" },
-            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "Pear (FG#330)", price: "$21.15" },
-            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "Round", price: "$21.15" },
-            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "557 Cross Cut - FGOS", price: "$18.25" },
-            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "Round Surgical", price: "$18.25" },
-            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "Flat End Cone Diamond Burs", price: "$19.15" },
-            { cat: "Core Build-Up Materials", brand: "House Brand", name: "High Performance Mixing Tips", price: "$15.99" },
-            { cat: "Endodontic Products", brand: "Coltene", name: "Hygenic Endo-Ice", price: "$23.75" },
-            { cat: "Endodontic Products", brand: "3D", name: "Absorbent Paper Point", price: "$13.99" },
-            { cat: "Anesthetics", brand: "Plasti Products", name: "5 Qt. Container Clear", price: "$8.89" },
-            { cat: "Rubber Dam and Accessories", brand: "Crosstex", name: "Crosstex 6", price: "$35.29" },
-            { cat: "Hemostasis and Retraction", brand: "Gingi-Pak", name: "MAX Z-Twist Weave - SIZE # 00 ,1,2,3", price: "$15.99" },
-            { cat: "Infection Control", brand: "House Brand", name: "Disposable Air-Water Syringe Tips", price: "$14.99" },
-            { cat: "Evacuation", brand: "UniPack", name: "Easy-E-Trap Canisters", price: "$54.95" },
-            { cat: "Infection Control", brand: "Safe Dent", name: "4\" x 6\" Blue Barrier Film", price: "$15.99" },
-            { cat: "Endodontic Products", brand: "Safe Dent", name: "K-Files", price: "$6.99" },
-            { cat: "Prophy Products", brand: "House Brand", name: "Prophy Angles", price: "$42.99" },
-            { cat: "Impression Materials", brand: "Plasdent", name: "Disposable Bite Trays", price: "$13.99" },
-            { cat: "Impression Materials", brand: "Plasdent", name: "Temporary Crown & Bridge Dispensing Gun", price: "$53.67" },
-            { cat: "Disposable Products", brand: "Plasdent", name: "Cheek Retractors", price: "$9.89" },
-            { cat: "Composites Filling Materials", brand: "Plasdent", name: "Dappen Dishes - Disposable", price: "$14.15" },
-            { cat: "Composites Filling Materials", brand: "Plasdent", name: "Silicone Mouth Props", price: "$15.99" },
-            { cat: "Endodontic Products", brand: "US ELITE", name: "Bicuspids #2A Premolars Winged", price: "$9.99" },
-            { cat: "Endodontic Products", brand: "US ELITE", name: "Clamp #8A Molar Winged", price: "$9.99" },
-            { cat: "Endodontic Products", brand: "US ELITE", name: "Clamp #9 for Labial Caries", price: "$9.99" },
-            { cat: "Endodontic Products", brand: "US ELITE", name: "Clamp #56 Winged Metal", price: "$9.99" },
-            { cat: "Anesthetics", brand: "House Brand", name: "27 Gauge XL Long Dental Needles", price: "$9.99" },
-            { cat: "Anesthetics", brand: "House Brand", name: "30 Gauge Long Disposable Dental Needle", price: "$7.99" },
-            { cat: "Alloy And Accessories", brand: "House Brand", name: "Adult Tofflemire Matrix Band", price: "$12.99" },
-            { cat: "Surgical Products", brand: "Plasdent", name: "EXTND SILICONE MOUTH PROPS", price: "$19.99" },
-            { cat: "Infection Control", brand: "Plasdent", name: "Plasdent Biohazard Can Liner Red", price: "$30.99" },
-            { cat: "Cements & Liners", brand: "Dentsply Sirona", name: "Dycal", price: "$69.99" },
-            { cat: "Anesthetics", brand: "Plasti Products", name: "Locking Wall Cabinet", price: "$45.29" },
-            { cat: "Infection Control", brand: "Richmond Dental", name: "Path-O-Guard Ear-Loop Face Mask", price: "$6.99" },
-            { cat: "Alloy And Accessories", brand: "Solmetex", name: "Solmetex Amalgam Separator", price: "$688.95" },
-            { cat: "Endodontic Products", brand: "Coltene", name: "ParaPost Posts Stainless Steel Refill", price: "$90.00" },
-            { cat: "Endodontic Products", brand: "Coltene", name: "ParaPost XP Posts Introductory Kit", price: "$299.25" },
-            { cat: "Composites Filling Materials", brand: "3M", name: "Clinpro Sealant Syringe Tip Refill", price: "$28.50" },
-            { cat: "Equipment", brand: "Dentsply Professional", name: "Cavitron Slimline SLI inserts", price: "$190.00" },
-            { cat: "X-Ray Products", brand: "Plasdent", name: "Plasdent 15\" x 26\" X-Ray head covers", price: "$39.99" },
-            { cat: "Infection Control", brand: "LH", name: "Fluid Resistant Procedure Mask Level 3", price: "$6.99" },
-            { cat: "Impression Materials", brand: "Plasdent", name: "Ease Cartridge Transfer Connectors", price: "$14.99" },
-            { cat: "X-Ray Products", brand: "Plasdent", name: "Bite Block Cover", price: "$11.99" },
-            { cat: "Alloy And Accessories", brand: "Solmetex", name: "Solmetex NXT Hg5 Collection Container", price: "$380.00" },
-            { cat: "Evacuation", brand: "DCI", name: "Saliva Ejector Autoclavable Rubber Tip", price: "$14.99" },
-            { cat: "Evacuation", brand: "Plasdent", name: "Screen-4-Vac Disposable Traps", price: "$29.18" },
-            { cat: "Evacuation", brand: "UniPack", name: "Dispos-A-Trap #5501", price: "$29.15" },
-            { cat: "Instruments", brand: "US ELITE", name: "Rubber Dam Clamp", price: "$39.99" },
-            { cat: "Crown & Bridge", brand: "3D", name: "Temporary Crown & Bridge Material", price: "$75.29" },
-            { cat: "Impression Materials", brand: "3D", name: "3D - Bite Registration Material", price: "$33.29" },
-            { cat: "Core Build-Up Materials", brand: "Premier", name: "CompCore AF Automix Core Buildup", price: "$165.29" },
-            { cat: "Disposable Products", brand: "Microcopy", name: "NeoDrys", price: "$15.29" },
-            { cat: "Prophy Products", brand: "Sunstar", name: "Eez-Touch Disposable Prophy Angle", price: "$39.29" },
-            { cat: "Cements & Liners", brand: "Plasdent", name: "Mixing Spatulas", price: "$5.99" },
-            { cat: "Gloves", brand: "House Brand", name: "Nitrile glove: 100/Bx. Powder-Free", price: "$5.99" },
-            { cat: "Matrix Materials", brand: "DentAmerica", name: "Dupont clear mylar strip", price: "$14.99" },
-            { cat: "Disposable Products", brand: "Safedent", name: "Safe-Dent Gauze Non-Woven 4\" x 4\"", price: "$38.99" },
-            { cat: "Acrylic and Reline Materials", brand: "Blazer Torch", name: "HOT SHOT MT 3000", price: "$32.99" },
-            { cat: "Instruments", brand: "Premium Plus", name: "Mouth Mirror #5", price: "$26.95" },
-            { cat: "Anesthetics", brand: "Septodont", name: "Septoject XL Dental Needles 27ga", price: "$22.19" },
-            { cat: "Core Build-Up Materials", brand: "Premier", name: "CompCore AF Core Buildup Shade A3", price: "$186.19" },
-            { cat: "Impression Materials", brand: "House Brand", name: "Brown color tip", price: "$15.99" },
-            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "859-012SF", price: "$19.15" },
-            { cat: "Composites Filling Materials", brand: "3M", name: "Sof-Lex Finishing Strips", price: "$55.59" },
-            { cat: "Fluorides & Varnish", brand: "Safedent", name: "Fluoride Trays - Large Hinged", price: "$19.50" },
-            { cat: "Fluorides & Varnish", brand: "Safedent", name: "Fluoride Trays - Small Hinged", price: "$19.50" },
-            { cat: "Composites Filling Materials", brand: "SS WHITE", name: "Jazz Polishers C1S Cup", price: "$60.29" },
-            { cat: "Infection Control", brand: "Key stone", name: "Optimize Autoclave Cleaner", price: "$25.84" },
-            { cat: "Infection Control", brand: "UniPack", name: "Flex Mask Level 1 Ear-Loop Blue", price: "$6.99" },
-            { cat: "Endodontic Products", brand: "DSC", name: "Universal Matrix Retainer Tofflemire-type", price: "$22.58" },
-            { cat: "Endodontic Products", brand: "Premier", name: "RC-Prep Root Canals 18 Gm", price: "$40.10" },
-            { cat: "Composites Filling Materials", brand: "KavoKerr", name: "Optibond", price: "$85.00" },
-            { cat: "Endodontic Products", brand: "UniPack", name: "Endo Irrigation Kit 27ga", price: "$29.99" },
-            { cat: "Cements & Liners", brand: "KaVo Kerr", name: "Kerr Temp-Bond NE automix", price: "$89.99" },
-            { cat: "Cements & Liners", brand: "Voco", name: "Ionoseal Glass Ionomer Composite Liner", price: "$195.00" },
-            { cat: "Hemostasis and Retraction", brand: "Premier", name: "Traxodent Hemodent Paste Retraction System", price: "$97.95" }
+            { brand: "SS WHITE", name: "(FG#330) Pear Shape", price: "$21.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured69.jpg" },
+            { brand: "SS WHITE", name: "(FG#557) Straight Flat end", price: "$21.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured70.jpg" },
+            { brand: "SS WHITE", name: "RA Round Surgical Length Bur", price: "$18.25", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured73.jpg" },
+            { brand: "Strauss Diamonds", name: "Round Football (379-023)", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured82.jpg" },
+            { brand: "Strauss Diamonds", name: "Pointed Football Burs 368-023", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured83.jpg" },
+            { brand: "Strauss Diamonds", name: "Flat End Cone 856-014C", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured84.jpg" },
+            { brand: "Strauss Diamonds", name: "Flat End Taper 848-014C", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured85.jpg" },
+            { brand: "Strauss Diamonds", name: "Needle 859-012SF", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured86.jpg" },
+            { brand: "UniPack", name: "Tongue Depressors", price: "$12.15", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured94.jpg" },
+            { brand: "UniPack", name: "DISPOSABLE PATIENT BIBS", price: "$29.99", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured96.jpg" },
+            { brand: "Safedent", name: "2x2 gauze", price: "$32.97", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured99.jpg" },
+            { brand: "Safedent", name: "Cotton Tipped Applicators", price: "$8.15", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured100.jpg" },
+            { brand: "UniPack", name: "COTTON ROLLS", price: "$29.99", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured101.jpg" },
+            { brand: "Safedent", name: "DISPOSABLE PLASTIC CUPS", price: "$29.35", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured102.jpg" },
+            { brand: "Safe Dent", name: "PAPER TRAY COVERS", price: "$28.29", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured103.jpg" },
+            { brand: "SS WHITE", name: "(FG 557) Straight Surgical Length", price: "$18.25", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured104.jpg" },
+            { brand: "SS WHITE", name: "FG Round Oral Surgery", price: "$18.25", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured105.jpg" },
+            { brand: "Plasdent", name: "Composite Dispensing Gun", price: "$13.99", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured106.jpg" },
+            { brand: "UniPack", name: "Evacuator HVE Tips", price: "$4.99", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured109.jpg" },
+            { brand: "Safedent", name: "Saliva Ejectors", price: "$4.99", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured111.jpg" },
+            { brand: "Safe Dent", name: "SURGICAL ASPIRATOR TIPS", price: "$7.99", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured112.jpg" },
+            { brand: "UniPack", name: "CAVEX CREAM FAST SET ALGINATE", price: "$12.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured121.jpg" },
+            { brand: "UniPack", name: "Endo Irrigation Combo Kit", price: "$27.29", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured131.jpg" },
+            { brand: "Plasdent", name: "Ortho Boxes - Retainer Box", price: "$10.99", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured162.jpg" },
+            { brand: "UniPack", name: "Pre-Bent Needle Tips", price: "$9.05", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured167.jpg" },
+            { brand: "Mydent", name: "Micro Applicator Tips", price: "$5.26", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured168.jpg" },
+            { brand: "House Brand", name: "Mixing Pads", price: "$1.29", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured176.png" },
+            { brand: "Plasdent", name: "CURVED TIP UTILITY SYRINGE", price: "$24.99", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured182.jpg" },
+            { brand: "UniPack", name: "LUER LOCK IRRIGATION SYRINGE", price: "$10.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured184.jpg" },
+            { brand: "UniPack", name: "Easy-E-Trap Canisters", price: "$69.99", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured185.jpg" },
+            { brand: "House Brand", name: "Intra Oral Mixing Tips", price: "$9.99", cat: "Acrylic and Reline Materials", imageUrl: "https://lhdistributors.com/uploads/featured186.jpg" },
+            { brand: "Safedent", name: "Disposable Impression Trays", price: "$5.99", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured188.jpg" },
+            { brand: "UniPack", name: "ISOLATION GOWN", price: "$15.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured192.jpg" },
+            { brand: "House Brand", name: "Protective Eyewear - Clear", price: "$3.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured194.jpg" },
+            { brand: "Safedent", name: "STERILIZATION POUCHES", price: "$6.75", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured199.jpg" },
+            { brand: "Plasdent", name: "CHAIR & HEADREST COVERS", price: "$37.92", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured200.jpg" },
+            { brand: "Safe Dent", name: "Barrier Film", price: "$15.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured201.jpg" },
+            { brand: "Look", name: "Suture - 3/0, 27 - Chromic - C-6", price: "$48.5", cat: "Surgical Products", imageUrl: "https://lhdistributors.com/uploads/featured207.jpg" },
+            { brand: "Strauss Diamonds", name: "Flame 863-012 SF", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured212.jpg" },
+            { brand: "UniPack", name: "DENTURE BOX", price: "$10.99", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured222.jpg" },
+            { brand: "UniPack", name: "All saliva ejectors Universal fit", price: "$12.99", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured233.jpg" },
+            { brand: "House Brand", name: "Scalpel, Stainless Steel Blade, Size 15, 10/bx, 10 bx/cs", price: "$12.99", cat: "Surgical Products", imageUrl: "https://lhdistributors.com/uploads/featured237.jpg" },
+            { brand: "Not Specified", name: "Reflective Dry Tips®", price: "$15.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured241.jpg" },
+            { brand: "Plasdent", name: "Optical PC Mouse", price: "$15.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured242.jpg" },
+            { brand: "Plasdent", name: "Keyboard Cover", price: "$17.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured243.jpg" },
+            { brand: "Not Specified", name: "Sani-Treet Plus® Enzyme Industries", price: "$81.25", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured244.jpg" },
+            { brand: "UniPack", name: "DENTURE BOX", price: "$9.99", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured245.jpg" },
+            { brand: "Mydent", name: "Prophy Paste", price: "$29.85", cat: "Prophy Products", imageUrl: "https://lhdistributors.com/uploads/featured254.jpg" },
+            { brand: "UniPack", name: "Disposable Bib Holders", price: "$12.99", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured269.jpg" },
+            { brand: "Not Specified", name: "Round End Taper", price: "$19.15", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured271.jpg" },
+            { brand: "Not Specified", name: "Amalgon Disposable System 1gal", price: "$199.29", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured273.jpg" },
+            { brand: "Not Specified", name: "Sani-Treet Plus® Enzyme Industries", price: "$81.25", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured285.jpg" },
+            { brand: "Crosstex", name: "CROSSTEX DENTAL DAMS", price: "$34.29", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured290.jpg" },
+            { brand: "Not Specified", name: "Articulating Paper By Crosstex", price: "$13.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured294.jpg" },
+            { brand: "Not Specified", name: "Dry Tips - Microbrush", price: "$12.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured295.jpg" },
+            { brand: "Myco Medical", name: "Surgical Blades Stainless Steel", price: "$14.99", cat: "Surgical Products", imageUrl: "https://lhdistributors.com/uploads/featured296.jpg" },
+            { brand: "Not Specified", name: "CompCore AF Mixing Tips 50/pkt", price: "$15.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured297.jpg" },
+            { brand: "UniPack", name: "Easy-E-Trap Canisters    Model #2300", price: "$69.99", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured302.jpg" },
+            { brand: "Vista Dental Products", name: "Vista  EDTA Solution 17% 16oz (480ml)/Bt", price: "$54.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured316.jpg" },
+            { brand: "SS WHITE", name: "FG 557 Straight Surgical Length", price: "$18.25", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured350.jpg" },
+            { brand: "Vista Dental", name: "Quick-Stat FS Gel 30 mL Bulk Syringe Kit Ea", price: "$38.59", cat: "Hemostasis and Retraction", imageUrl: "https://lhdistributors.com/uploads/featured403.jpg" },
+            { brand: "DSC", name: "Matrix Retainer Tofflemire Universal (Made in the USA)", price: "$14.99", cat: "Matrix Materials", imageUrl: "https://lhdistributors.com/uploads/featured418.jpg" },
+            { brand: "Dentsply Sirona", name: "IRM Caps Temporary Filling Material 0.34 Gm Capsules 50/Bx", price: "$169.29", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured432.jpg" },
+            { brand: "Not Specified", name: "Miltex  Instrument Cleaning Brush Steel Bristles 3/pk", price: "$8.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured476.jpg" },
+            { brand: "Not Specified", name: "Gingi-Pak MAX Cord / EPINEPHRINE", price: "$15.35", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured551.jpg" },
+            { brand: "DCI", name: "Push-On Saliva Ejector Tips Latex Free Gray", price: "$18.29", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured627.jpg" },
+            { brand: "KaVo Kerr", name: "Tubli-Seal EWT Root Canal Permanent Sealer Standard Package", price: "$59.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured628.jpg" },
+            { brand: "Crosstex", name: "Crosstex Horseshoe", price: "$15.99", cat: "Articulating", imageUrl: "https://lhdistributors.com/uploads/featured631.jpg" },
+            { brand: "Plasdent", name: "Plasdent Instrument Sterilization Container", price: "$6.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured917.jpg" },
+            { brand: "Not Specified", name: "Amalgon Disposable System 1gal", price: "$199.29", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured988.jpg" },
+            { brand: "Mydent", name: "Defend Topical Anesthetic Gel - Strawberry, 1 oz. Jar. Benzocaine", price: "$6.25", cat: "Anesthetics", imageUrl: "https://lhdistributors.com/uploads/featured989.jpg" },
+            { brand: "Dentsply", name: "IRM Caps ZOE Intermediate Restorative Material, 50 - 0.34 Gm", price: "$169.29", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured1026.jpg" },
+            { brand: "Not Specified", name: "House Brand 3\\\" x 3\\\" Poly Coated Mixing Pad, Single Pad", price: "$5.15", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1055.jpg" },
+            { brand: "Pulpdent", name: "Etch-Rite Jumbo Syringe Refill - 38% Phosphoric Acid Etching Gel: 2", price: "$59.29", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured1075.jpg" },
+            { brand: "UniPack", name: "DISPOSABLE EVACUATION TRAPS & SCREENS", price: "$45.25", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1199.jpg" },
+            { brand: "Premier", name: "Enamel Pro Fluoride Varnish Bubblegum 0.4mL 35/Box", price: "$83.86", cat: "Fluorides & Varnish", imageUrl: "https://lhdistributors.com/uploads/featured1336.jpeg" },
+            { brand: "UniPack", name: "BLU-TRAY PERFORATED IMPRESSION TRAYS", price: "$4.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1337.jpg" },
+            { brand: "Not Specified", name: "CompCore AF Mixing Tips", price: "$13.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1349.jpg" },
+            { brand: "US ELITE", name: "CW-TYPE ASPIRATING SYRINGE", price: "$13.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1361.jpg" },
+            { brand: "Miltex", name: "2-1/8", price: "$12.5", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1416.jpg" },
+            { brand: "Plasdent", name: "BUR TUB", price: "$13.99", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1417.jpg" },
+            { brand: "House Brand", name: "Unnamed Product", price: "$15.99", cat: "Cements & Liners", imageUrl: "https://lhdistributors.com/uploads/featured1420.jpg" },
+            { brand: "3M Oral Care", name: "Clinpro Sealant - 1.2 ml Syringe Refill with 10 Syringe Tips. Low Viscosity", price: "$28.5", cat: "Cements & Liners", imageUrl: "https://lhdistributors.com/uploads/featured1458.jpg" },
+            { brand: "House Brand", name: "Crown & Bridge T-Mix Tips", price: "$15.99", cat: "Crown & Bridge", imageUrl: "https://lhdistributors.com/uploads/featured1467.jpg" },
+            { brand: "Strauss Diamonds", name: "MULTI USE FLAT END CONE BURS", price: "$19.15", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1476.jpg" },
+            { brand: "Strauss Diamonds", name: "MULTI USE NEEDLE BURS", price: "$19.15", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1478.jpg" },
+            { brand: "Strauss Diamonds", name: "MULTI USE ROUND END TAPER BURS", price: "$19.15", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1479.jpg" },
+            { brand: "House Brand", name: "28MM GATES GLIDDEN DRILLS", price: "$10.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1516.jpg" },
+            { brand: "House Brand", name: "32MM GATES GLIDDEN DRILLS", price: "$12.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1517.jpg" },
+            { brand: "Pulpdent", name: "Multi-Cal Kit: 4 - 1.2 mL Syringes and 8 Applicator Tips. Calcium Hydroxide", price: "$69.29", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1526.jpg" },
+            { brand: "Plasdent", name: "Air/Water Syringe Cover 10", price: "$12.71", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured1535.jpeg" },
+            { brand: "Not Specified", name: "SALIVA EJECTORS", price: "$4.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1538.jpg" },
+            { brand: "Not Specified", name: "J. Morita Multi Spray for Handpiece Maintenance 420ml/Can", price: "$29", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1540.jpg" },
+            { brand: "Not Specified", name: "Plasdent Standard Keyboard Cover with cuff 22\" x 14\" 250/Bx. Plastic sheet", price: "$19.68", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1584.jpg" },
+            { brand: "Mydent", name: "Defend 1 5/8", price: "$11.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured1585.jpg" },
+            { brand: "Not Specified", name: "Safe-Dent 15\" x 26\" X-Ray Head Sleeve, 250/Box. Clear Plastic protective", price: "$32.29", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1590.jpg" },
+            { brand: "Strauss Diamonds", name: "Flame", price: "$16.59", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1605.jpg" },
+            { brand: "Not Specified", name: "Safe Dent Blue Fluid Resistant Ear-Loop 3 ply face mask with 98% filtration", price: "$6.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1606.jpg" },
+            { brand: "House Brand", name: "STAINLESS STEEL BRISTLE BRUSH", price: "$12.99", cat: "Instruments", imageUrl: "https://lhdistributors.com/uploads/featured1625.jpg" },
+            { brand: "Blazer  Torch", name: "Blazer Triple Refined Butane 9.12oz", price: "$12.99", cat: "Acrylic and Reline Materials", imageUrl: "https://lhdistributors.com/uploads/featured1645.jpeg" },
+            { brand: "SS WHITE", name: "Inverted Cone (FG#38)", price: "$21.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1667.jpg" },
+            { brand: "SS WHITE", name: "Pear (FG#330)", price: "$21.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1668.jpg" },
+            { brand: "SS WHITE", name: "Round", price: "$21.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1669.jpg" },
+            { brand: "SS WHITE", name: "557 Cross Cut - FGOS", price: "$18.25", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1671.jpg" },
+            { brand: "SS WHITE", name: "Round Surgical", price: "$18.25", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1672.jpg" },
+            { brand: "Strauss Diamonds", name: "Flat End Cone Diamond Burs", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1675.jpg" },
+            { brand: "Strauss Diamonds", name: "Round End Taper Diamond Bur", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1677.jpg" },
+            { brand: "Strauss Diamonds", name: "Flame Diamond Bur", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1678.jpg" },
+            { brand: "House Brand", name: "High Performance Mixing Tips - LONG", price: "$15.99", cat: "Core Build-Up Materials", imageUrl: "https://lhdistributors.com/uploads/featured1690.jpg" },
+            { brand: "Coltene", name: "Hygenic Endo-Ice", price: "$23.75", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1726.jpg" },
+            { brand: "3D", name: "Absorbent Paper Point", price: "$13.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1748.jpg" },
+            { brand: "Plasti Products", name: "5 Qt. Container Clear", price: "$8.89", cat: "Anesthetics", imageUrl: "https://lhdistributors.com/uploads/featured1749.jpg" },
+            { brand: "Crosstex", name: "Crosstex 6", price: "$35.29", cat: "Rubber Dam and Accessories", imageUrl: "https://lhdistributors.com/uploads/featured1750.jpg" },
+            { brand: "House Brand", name: "Intra-Oral Tips, Yellow 100/Bag.", price: "$9.99", cat: "Core Build-Up Materials", imageUrl: "https://lhdistributors.com/uploads/featured1755.jpg" },
+            { brand: "Gingi-Pak", name: "Gingi-Pak MAX Z-Twist Weave - SIZE # 00 ,1,2,3", price: "$15.99", cat: "Hemostasis and Retraction", imageUrl: "https://lhdistributors.com/uploads/featured1763.jpg" },
+            { brand: "House Brand", name: "Disposable Air-Water Syringe Tips, Clear with assorted color", price: "$14.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured1768.jpg" },
+            { brand: "UniPack", name: "Easy-E-Trap Canisters", price: "$54.95", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured1778.jpg" },
+            { brand: "Safe Dent", name: "4\" x 6\" Blue Barrier Film", price: "$15.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured1781.jpg" },
+            { brand: "Safe Dent", name: "K-Files", price: "$6.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1783.jpg" },
+            { brand: "House Brand", name: "Prophy Angles", price: "$42.99", cat: "Prophy Products", imageUrl: "https://lhdistributors.com/uploads/featured1784.jpg" },
+            { brand: "Plasdent", name: "Disposable Bite Trays - Mesh Fabric", price: "$13.99", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured1789.jpg" },
+            { brand: "Plasdent", name: "Temporary Crown & Bridge Dispensing Gun", price: "$53.67", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured1792.jpg" },
+            { brand: "Plasdent", name: "Impression Gun - High Performance", price: "$53.67", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured1793.jpg" },
+            { brand: "Plasdent", name: "Cheek Retractors", price: "$9.89", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured1797.jpg" },
+            { brand: "Plasdent", name: "Dappen Dishes - Disposable", price: "$14.15", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured1799.jpg" },
+            { brand: "Plasdent", name: "Silicone Mouth Props - Small , Medium , Large", price: "$15.99", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured1818.jpg" },
+            { brand: "US ELITE", name: "Bicuspids #2A Premolars Winged Large Neck Bicuspid, Single", price: "$9.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1820.jpg" },
+            { brand: "US ELITE", name: "Clamp #8A Molar Winged, Molar Root Upper And Lower, Single clamp", price: "$9.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1821.jpg" },
+            { brand: "US ELITE", name: "Clamp #9 for Labial Caries on Anterior Teeth, Winged Smooth", price: "$9.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1822.jpg" },
+            { brand: "US ELITE", name: "Clamp #56 Winged Metal Rubber Dam Clamp, Single", price: "$9.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1824.jpg" },
+            { brand: "House Brand", name: "27 Gauge XL Long Dental Needles, for Nerve Blocks", price: "$9.99", cat: "Anesthetics", imageUrl: "https://lhdistributors.com/uploads/featured1825.jpg" },
+            { brand: "House Brand", name: "30 Gauge Long Disposable Dental Needle", price: "$7.99", cat: "Anesthetics", imageUrl: "https://lhdistributors.com/uploads/featured1826.jpg" },
+            { brand: "House Brand", name: "Adult Tofflemire Matrix Band 13 0.002 in 144/Pk", price: "$12.99", cat: "Alloy And Accessories", imageUrl: "https://lhdistributors.com/uploads/featured1838.jpg" },
+            { brand: "Plasdent", name: "EXTND SILICONE MOUTH PROPS", price: "$19.99", cat: "Surgical Products", imageUrl: "https://lhdistributors.com/uploads/featured1847.jpg" },
+            { brand: "House Brand", name: "Tips are high performance for Temporary Cement", price: "$12.99", cat: "Acrylic and Reline Materials", imageUrl: "https://lhdistributors.com/uploads/featured1849.jpg" },
+            { brand: "Plasdent", name: "Plasdent Biohazard Can Liner Red", price: "$30.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured1852.jpg" },
+            { brand: "Dentsply Sirona", name: "Dycal", price: "$69.99", cat: "Cements & Liners", imageUrl: "https://lhdistributors.com/uploads/featured1858.jpg" },
+            { brand: "Plasti Products", name: "Locking Wall Cabinet (for 5 qt Container)", price: "$45.29", cat: "Anesthetics", imageUrl: "https://lhdistributors.com/uploads/featured1869.jpg" },
+            { brand: "Richmond Dental and Medical", name: "Path-O-Guard Ear-Loop Face Mask Lavender 50/Bx.", price: "$6.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured1870.jpg" },
+            { brand: "Solmetex", name: "Solmetex Amalgam Separator", price: "$688.95", cat: "Alloy And Accessories", imageUrl: "https://lhdistributors.com/uploads/featured1904.jpg" },
+            { brand: "Coltene", name: "ParaPost Posts Stainless Steel Refill", price: "$90", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1910.jpg" },
+            { brand: "Coltene", name: "ParaPost XP Posts Stainless Steel Introductory Kit P-780 Each", price: "$299.25", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1911.jpg" },
+            { brand: "Coltene", name: "ParaPost Drills Two-Fluted -", price: "$0", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1916.jpg" },
+            { brand: "3M", name: "Clinpro Sealant Syringe Tip Refill 1.2mL", price: "$28.5", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured1917.jpeg" },
+            { brand: "Dentsply Professional", name: "Cavitron Slimline SLI inserts", price: "$190", cat: "Equipment", imageUrl: "https://lhdistributors.com/uploads/featured1918.jpg" },
+            { brand: "Plasdent", name: "Plasdent 15\" x 26\" X-Ray head covers, 500/box.", price: "$39.99", cat: "X-Ray Products", imageUrl: "https://lhdistributors.com/uploads/featured1922.jpg" },
+            { brand: "LH", name: "Fluid Resistant Procedure Mask  Level 3", price: "$6.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured1923.jpg" },
+            { brand: "Plasdent", name: "Ease Cartridge Transfer Connectors 5/Package", price: "$14.99", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured1926.jpg" },
+            { brand: "Plasdent", name: "Bite Block Cover 1.5 in x 3 in 500/Bx", price: "$11.99", cat: "X-Ray Products", imageUrl: "https://lhdistributors.com/uploads/featured1927.jpg" },
+            { brand: "Solmetex", name: "Solmetex NXT Hg5 Collection Container With Recycle Kit", price: "$380", cat: "Alloy And Accessories", imageUrl: "https://lhdistributors.com/uploads/featured1928.jpg" },
+            { brand: "DCI", name: "DCI Saliva Ejector Autoclavable Rubber Tip - Gray 5/pk", price: "$14.99", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured1930.jpg" },
+            { brand: "DCI", name: "Quick-Clean Syringe Repair Kit w/ 2 buttons. Kit includes: PN 3085 Syringe", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1933.jpg" },
+            { brand: "DCI", name: "DCI Precision Comfort Premium Autoclavable Extended Vacuum Valves w/Quick", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1938.png" },
+            { brand: "DCI", name: "DCI Fitting, 1/4\" Poly Q.D. w/o Shut-off, Male. For use with air only. Single", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1940.jpg" },
+            { brand: "DCI", name: "Precision Comfort Premium Autoclavable Saliva Ejector with Quick-Disconnect", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1941.jpg" },
+            { brand: "DCI", name: "DCI Replacement Lever - for use with saliva ejector, economy autoclavable", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1942.jpg" },
+            { brand: "DCI", name: "DCI Replacement Lever for High Volume Evacuation Valve. Economy autoclavable", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1943.jpg" },
+            { brand: "DCI", name: "DCI Gasket Kit for Midmark M11 and M11D. Includes: 1 Door Gasket, 1 Dam Gasket", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1945.jpg" },
+            { brand: "DCI", name: "DCI Molded Asepsis Holder, Lt. White, Normally Closed, Designed for 1/2", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1950.jpg" },
+            { brand: "Plasdent", name: "Screen-4-Vac Disposable Evacuation Traps", price: "$29.18", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured1955.jpg" },
+            { brand: "UniPack", name: "Dispos-A-Trap #5501 evacuation trap", price: "$29.15", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured1956.jpg" },
+            { brand: "US ELITE", name: "Rubber Dam Clamp", price: "$39.99", cat: "Instruments", imageUrl: "https://lhdistributors.com/uploads/featured2018.pdf" },
+            { brand: "3D", name: "Temporary Crown & Bridge Material", price: "$75.29", cat: "Crown & Bridge", imageUrl: "https://lhdistributors.com/uploads/featured2052.png" },
+            { brand: "3D", name: "3D - Bite Registration Material", price: "$33.29", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured2053.jpg" },
+            { brand: "Premier", name: "CompCore AF Automix Core Buildup Refill Package Shade A3 50 Gm Each", price: "$165.29", cat: "Core Build-Up Materials", imageUrl: "https://lhdistributors.com/uploads/featured2057.jpg" },
+            { brand: "Microcopy", name: "NeoDrys", price: "$15.29", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured2058.jpg" },
+            { brand: "Sunstar Americas, Inc", name: "Eez-Touch Disposable Tapered Prophy Angle Brush Latex-Free 50/Bx", price: "$39.29", cat: "Prophy Products", imageUrl: "https://lhdistributors.com/uploads/featured2059.jpg" },
+            { brand: "Plasdent", name: "Mixing Spatulas", price: "$5.99", cat: "Cements & Liners", imageUrl: "https://lhdistributors.com/uploads/featured2060.jpg" },
+            { brand: "House Brand", name: "House Brand Nitrile glove: 100/Bx. Non-Sterile, Powder-Free", price: "$5.99", cat: "Gloves", imageUrl: "https://lhdistributors.com/uploads/featured2061.jpg" },
+            { brand: "DentAmerica", name: "DentAmerica Mylar Strips, Dupont clear mylar strip", price: "$14.99", cat: "Matrix Materials", imageUrl: "https://lhdistributors.com/uploads/featured2066.webp" },
+            { brand: "DCI", name: "Quick-Clean Valve Core Syringe", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured2075.webp" },
+            { brand: "Safedent", name: "Safe-Dent Gauze Non-Woven 4\" x 4\"", price: "$38.99", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured2077.jpg" },
+            { brand: "Blazer  Torch", name: "HOT SHOT MT 3000", price: "$32.99", cat: "Acrylic and Reline Materials", imageUrl: "https://lhdistributors.com/uploads/featured2083.jpg" },
+            { brand: "Premium Plus", name: "Mouth Mirror #5 (Made in USA)", price: "$26.95", cat: "Instruments", imageUrl: "https://lhdistributors.com/uploads/featured2086.jpg" },
+            { brand: "Septodont", name: "Septoject XL Dental Needles, 27ga for Nerve Blocks", price: "$22.19", cat: "Anesthetics", imageUrl: "https://lhdistributors.com/uploads/featured2087.jpg" },
+            { brand: "Premier", name: "CompCore AF Core Buildup 50 Gm Shade A3 Refill Package", price: "$186.19", cat: "Core Build-Up Materials", imageUrl: "https://lhdistributors.com/uploads/featured2090.avif" },
+            { brand: "House Brand", name: "Expro Size 23 Double End Round Shepherd Hook / Michigan / Williams", price: "$0", cat: "Instruments", imageUrl: "https://lhdistributors.com/uploads/featured2091.jpg" },
+            { brand: "House Brand", name: "Brown color tip", price: "$15.99", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured2092.jpg" },
+            { brand: "SS WHITE", name: "859-012SF", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured2093.jpg" },
+            { brand: "3M", name: "3M Sof-Lex Finishing & Polishing Strips Coarse / Medium 150/Bx", price: "$55.59", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured2094.jpg" },
+            { brand: "Safedent", name: "Safe-Dent Fluoride Trays - Large Hinged Dual Arch 100/Pk", price: "$19.5", cat: "Fluorides & Varnish", imageUrl: "https://lhdistributors.com/uploads/featured2102.jpg" },
+            { brand: "Safedent", name: "Safe-Dent Fluoride Trays - Small Hinged Dual Arch 100/Pk. Green Foam", price: "$19.5", cat: "Fluorides & Varnish", imageUrl: "https://lhdistributors.com/uploads/featured2103.jpg" },
+            { brand: "SS WHITE", name: "Jazz Polishers C1S Cup 20/Pack Single-use", price: "$60.29", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured2104.jpg" },
+            { brand: "SS WHITE", name: "Unnamed Product", price: "$60.29", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured2105.png" },
+            { brand: "Key stone", name: "Optimize Autoclave Cleaner  32 oz.", price: "$25.84", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured2132.jpg" },
+            { brand: "Dukal", name: "4\" x 4\" Non-Sterile Non-Woven Top Sponge", price: "$0", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured2133.jpg" },
+            { brand: "UniPack", name: "Flex Mask Level 1 Ear-Loop Blue 50/BX", price: "$6.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured2134.pdf" },
+            { brand: "DSC", name: "DSC Universal Matrix Retainer, Stainless Steel, Tofflemire-type", price: "$22.58", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured2137.jpg" },
+            { brand: "Premier", name: "RC-Prep for Chemo-Mechanical Preparation of Root Canals, 18 Gm. Jar. #9007131", price: "$40.1", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured2138.jpg" },
+            { brand: "KavoKerr", name: "Optibond", price: "$85", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured2139.jpg" },
+            { brand: "UniPack", name: "Endo Irrigation Kit 27ga. 3cc, Yellow. Contains 100 X 3 cc luer", price: "$29.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured2140.jpg" },
+            { brand: "KaVo Kerr", name: "Kerr Temp-Bond NE automix syringe", price: "$89.99", cat: "Cements & Liners", imageUrl: "https://lhdistributors.com/uploads/featured2141.jpg" },
+            { brand: "Voco", name: "Ionoseal Glass Ionomer Composite Liner, 25 ml 3/Pk. Light-curing", price: "$195", cat: "Cements & Liners", imageUrl: "https://lhdistributors.com/uploads/featured2142.avif" },
+            { brand: "Premier", name: "Traxodent Hemodent Paste Retraction System, Starter Kit: 7 - 0.7g Syringes", price: "$97.95", cat: "Hemostasis and Retraction", imageUrl: "https://lhdistributors.com/uploads/featured2143.jpeg" }
         ];
 
-        let selectedProduct = null;
         const grid = document.getElementById('productGrid');
+        const paginationContainer = document.getElementById('paginationControls');
         const modal = document.getElementById('orderModal');
         
-        // Render Product Grid
-        products.forEach((p, index) => {
-            const imageUrl = `https://placehold.co/400x300/f4f4f5/0087a1?text=${encodeURIComponent(p.brand)}`;
-            const card = `
-                <div class="product-card" onclick="openModal(${index})">
-                    <img src="${imageUrl}" alt="${p.name}" class="product-image-container" loading="lazy">
-                    <div class="product-info">
-                        <div class="product-meta">
-                            <span>${p.cat}</span>
-                            <span class="product-brand">${p.brand}</span>
+        // PAGINATION LOGIC
+        const ITEMS_PER_PAGE = 12;
+        let currentPage = 1;
+        const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+
+        function renderProducts(page) {
+            grid.innerHTML = '';
+            const start = (page - 1) * ITEMS_PER_PAGE;
+            const end = start + ITEMS_PER_PAGE;
+            const paginatedItems = products.slice(start, end);
+
+            paginatedItems.forEach((p, relativeIndex) => {
+                const globalIndex = start + relativeIndex;
+                const displayImage = p.imageUrl && p.imageUrl.trim() !== "" ? p.imageUrl : `https://placehold.co/400x300/f4f4f5/0087a1?text=${encodeURIComponent(p.brand)}`;
+                
+                const card = `
+                    <div class="product-card" onclick="openModal(${globalIndex})">
+                        <img src="${displayImage}" alt="${p.name}" class="product-image-container" loading="lazy">
+                        <div class="product-divider">
+                            <span class="product-category">${p.cat && p.cat.trim() !== "" ? p.cat : "Uncategorized"}</span>
                         </div>
-                        <h4 class="product-name">${p.name}</h4>
-                        <div class="product-price">${p.price}</div>
-                        <button class="btn btn-outline-dark">Order / Details</button>
+                        <div class="product-info">
+                            <div class="product-brand">${p.brand}</div>
+                            <h4 class="product-name">${p.name}</h4>
+                            <div class="product-price">${p.price}</div>
+                            <button class="btn btn-teal" style="width: 100%;">ⓘ Details</button>
+                        </div>
                     </div>
-                </div>
-            `;
-            grid.insertAdjacentHTML('beforeend', card);
-        });
+                `;
+                grid.insertAdjacentHTML('beforeend', card);
+            });
+
+            renderPaginationControls();
+        }
+
+        function renderPaginationControls() {
+            paginationContainer.innerHTML = '';
+            
+            const prevBtn = document.createElement('button');
+            prevBtn.innerText = 'Prev';
+            prevBtn.className = 'page-btn';
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.onclick = () => { if (currentPage > 1) { currentPage--; renderProducts(currentPage); } };
+            paginationContainer.appendChild(prevBtn);
+
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, currentPage + 2);
+            
+            if (currentPage <= 3) {
+                endPage = Math.min(totalPages, 5);
+            } else if (currentPage >= totalPages - 2) {
+                startPage = Math.max(1, totalPages - 4);
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const btn = document.createElement('button');
+                btn.innerText = i;
+                btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                btn.onclick = () => { currentPage = i; renderProducts(currentPage); };
+                paginationContainer.appendChild(btn);
+            }
+
+            const nextBtn = document.createElement('button');
+            nextBtn.innerText = 'Next';
+            nextBtn.className = 'page-btn';
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.onclick = () => { if (currentPage < totalPages) { currentPage++; renderProducts(currentPage); } };
+            paginationContainer.appendChild(nextBtn);
+        }
+
+        // Initialize the first page
+        renderProducts(currentPage);
 
         // Modal Logic
-        function openModal(index) {
-            selectedProduct = products[index];
-            document.getElementById('modalImg').src = `https://placehold.co/600x400/f4f4f5/0087a1?text=${encodeURIComponent(selectedProduct.brand)}`;
-            document.getElementById('modalCat').innerText = selectedProduct.cat.toUpperCase();
+        function openModal(globalIndex) {
+            const selectedProduct = products[globalIndex];
+            const displayImage = selectedProduct.imageUrl && selectedProduct.imageUrl.trim() !== "" ? selectedProduct.imageUrl : `https://placehold.co/600x400/f4f4f5/0087a1?text=${encodeURIComponent(selectedProduct.brand)}`;
+
+            document.getElementById('modalImg').src = displayImage;
+            document.getElementById('modalCat').innerText = selectedProduct.cat && selectedProduct.cat.trim() !== "" ? selectedProduct.cat.toUpperCase() : "UNCATEGORIZED";
             document.getElementById('modalName').innerText = selectedProduct.name;
             document.getElementById('modalBrand').innerText = selectedProduct.brand;
             document.getElementById('modalPrice').innerText = selectedProduct.price;
             
-            // Populate hidden fields for the email payload
             document.getElementById('hiddenProductName').value = selectedProduct.name;
             document.getElementById('hiddenBrand').value = selectedProduct.brand;
             document.getElementById('hiddenCategory').value = selectedProduct.cat;
