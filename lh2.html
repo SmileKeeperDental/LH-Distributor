@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LH Distributor | Premium Dental Supply</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Minimalist Variables */
+        :root {
+            --navy: #0A1C3A;
+            --teal: #0087A1;
+            --black: #000000;
+            --white: #ffffff;
+            --gray-light: #f4f4f5;
+            --gray-medium: #d4d4d8;
+            --gray-dark: #3f3f46;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--gray-light); color: var(--black); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* Typography */
+        h1, h2, h3, h4 { font-weight: 800; text-transform: uppercase; letter-spacing: -0.5px; }
+        h1 { font-size: 4rem; line-height: 1; color: var(--white); margin-bottom: 20px; }
+        h2 { font-size: 2.5rem; color: var(--black); margin-bottom: 40px; text-align: center; }
+        p { color: var(--gray-dark); margin-bottom: 20px; }
+
+        /* Buttons */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border-radius: 0; cursor: pointer; transition: var(--transition); border: 2px solid transparent; font-family: inherit; font-size: 1rem; }
+        .btn-teal { background-color: var(--teal); color: var(--white); }
+        .btn-teal:hover { background-color: var(--navy); color: var(--white); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .btn-outline-dark { border-color: var(--navy); color: var(--navy); background: transparent; }
+        .btn-outline-dark:hover { background-color: var(--teal); border-color: var(--teal); color: var(--white); }
+        .product-card .btn-outline-dark { width: 100%; margin-top: auto; }
+
+        /* Layout */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
+        section { padding: 100px 0; }
+        .bg-white { background-color: var(--white); }
+        .bg-black { background-color: var(--black); color: var(--white); }
+        .bg-black h2, .bg-black p { color: var(--white); }
+
+        /* Header */
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--gray-medium); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { font-size: 2rem; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 10px; }
+        .logo span { color: var(--teal); }
+        .nav-links { display: flex; gap: 40px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--teal); }
+
+        /* HERO SECTION */
+        .hero { padding: 80px 0 120px; background: linear-gradient(135deg, var(--white) 0%, var(--gray-light) 100%); min-height: 85vh; display: flex; align-items: center; }
+        .hero-inner { display: flex; align-items: center; justify-content: space-between; gap: 60px; flex-wrap: wrap; }
+        .hero-content { flex: 1; min-width: 400px; }
+        .hero-content h1 { color: var(--navy); font-size: 4.5rem; line-height: 1.1; margin-bottom: 25px; }
+        .hero-content h1 span { color: var(--teal); }
+        .hero-content p { color: var(--gray-dark); font-size: 1.25rem; margin-bottom: 40px; max-width: 550px; }
+        .hero-features { display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; }
+        .hero-features span { display: flex; align-items: center; gap: 10px; color: var(--navy); font-weight: 800; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 0.5px; }
+        .hero-features span::before { content: ''; display: inline-block; width: 8px; height: 8px; background-color: var(--teal); }
+        .hero-buttons { display: flex; gap: 20px; }
+        .hero-image { flex: 1; min-width: 400px; display: flex; justify-content: flex-end; position: relative; }
+        .hero-image::before { content: ''; position: absolute; top: -20px; right: -20px; width: 100%; height: 100%; border: 4px solid var(--teal); z-index: 0; }
+        .hero-image img { max-width: 100%; position: relative; z-index: 1; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+
+        /* Workflows */
+        .workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .step-card { background: var(--white); padding: 40px; border: 1px solid var(--gray-medium); transition: var(--transition); }
+        .step-card:hover { border-color: var(--teal); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .step-number { font-size: 4rem; font-weight: 800; color: var(--gray-light); -webkit-text-stroke: 2px var(--teal); margin-bottom: 20px; line-height: 1; }
+
+        /* Departments */
+        .dept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .dept-card { display: block; background: var(--white); padding: 40px 30px; text-align: center; border: 1px solid var(--gray-medium); transition: var(--transition); position: relative; overflow: hidden; }
+        .dept-card::before { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: var(--teal); transform: scaleX(0); transition: var(--transition); transform-origin: left; }
+        .dept-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: transparent; }
+        .dept-card:hover::before { transform: scaleX(1); }
+        .dept-card h3 { color: var(--navy); margin-bottom: 15px; font-size: 1.5rem; }
+
+        /* Product Grid */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; margin-top: 40px; }
+        .product-card { background: var(--white); display: flex; flex-direction: column; border: 1px solid var(--gray-medium); transition: var(--transition); }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,135,161,0.15); border-color: var(--teal); }
+        .product-image-container { width: 100%; height: 200px; background-color: var(--gray-light); object-fit: cover; border-bottom: 1px solid var(--gray-medium); cursor: pointer; }
+        .product-info { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-meta { display: flex; justify-content: space-between; font-size: 0.75rem; text-transform: uppercase; font-weight: 600; color: var(--gray-dark); margin-bottom: 10px; }
+        .product-brand { color: var(--teal); }
+        .product-name { font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 15px; line-height: 1.3; }
+        .product-price { font-size: 1.5rem; font-weight: 800; color: var(--black); margin-bottom: 20px; }
+
+        /* Text Pages */
+        .text-page-content { max-width: 800px; margin: 0 auto; text-align: center; }
+        .text-page-content p { font-size: 1.1rem; margin-bottom: 30px; color: var(--gray-dark); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px; text-align: left; }
+        .contact-info-box { background: var(--white); padding: 40px; border: 1px solid var(--gray-medium); }
+        .contact-info-box h3 { color: var(--teal); margin-bottom: 20px; }
+
+        /* Forms */
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--navy); font-size: 0.9rem; text-transform: uppercase; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid var(--gray-medium); font-family: inherit; font-size: 1rem; transition: var(--transition); }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,135,161,0.1); }
+        
+        /* Modal Styles */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(5px); }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: var(--white); width: 90%; max-width: 900px; max-height: 90vh; overflow-y: auto; position: relative; display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; }
+        .close-btn { position: absolute; top: 20px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--gray-dark); z-index: 10; line-height: 1; }
+        .close-btn:hover { color: var(--black); }
+        .modal-product-pane { background: var(--gray-light); padding: 40px; border-right: 1px solid var(--gray-medium); display: flex; flex-direction: column; }
+        .modal-form-pane { padding: 40px; }
+        .modal-product-image { width: 100%; height: 250px; object-fit: cover; margin-bottom: 20px; border: 1px solid var(--gray-medium); }
+        
+        @media (max-width: 768px) {
+            .modal-content { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .hero-inner { flex-direction: column; text-align: center; }
+            .hero-features { align-items: center; }
+            .hero-buttons { justify-content: center; }
+        }
+
+        /* Footer */
+        footer { background-color: var(--black); color: var(--white); padding: 80px 0 40px; border-top: 5px solid var(--teal); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 60px; }
+        .footer-logo { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
+        .footer-logo span { color: var(--teal); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #333; font-size: 0.9rem; color: var(--gray-dark); }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">LH <span>Distributor</span></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#catalog">Products</a></li>
+                    <li><a href="#workflow">How It Works</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container hero-inner">
+            <div class="hero-content">
+                <h1>High-Performance<br><span>Dental Supply.</span></h1>
+                <p>A crisp, fast, no-payment ordering engine for clinics that demand precision. Get product details, quote requests, and direct owner alerts in under 60 seconds.</p>
+                <div class="hero-features">
+                    <span>Same-Day Quote Response</span>
+                    <span>Zero Checkout Friction</span>
+                    <span>Clinic-First Detailed Specs</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#catalog" class="btn btn-teal">View Full Catalog</a>
+                    <a href="#workflow" class="btn btn-outline-dark">How It Works</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Clinical Supply">
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section id="workflow" class="bg-white">
+        <div class="container">
+            <h2>Built for Speed: 60-Second Ordering</h2>
+            <p style="text-align: center; max-width: 600px; margin: 0 auto 50px;">Every order bypasses the cart. Select your products, enter your clinic details, and we instantly sync your request with our fulfillment team.</p>
+            <div class="workflow-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <h3 style="color: var(--navy); margin-bottom: 10px;">Select Product</h3>
+                    <p>Click on any item in our extensive, clinically-curated catalog to view details.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h3 style="color: var(--navy); margin-bottom: 10px;">Add Details</h3>
+                    <p>Fill out a quick form with your clinic name, delivery address, and urgency.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3 style="color: var(--navy); margin-bottom: 10px;">Auto-Sync Order</h3>
+                    <p>The system instantly alerts our office while sending you a direct confirmation email.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Massive Product Catalog -->
+    <section id="catalog" class="bg-gray-light">
+        <div class="container">
+            <h2>Complete Inventory</h2>
+            <div class="product-grid" id="productGrid">
+                <!-- Javascript injects products here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-white">
+        <div class="container text-page-content">
+            <h2>About LH Distributor</h2>
+            <h3 style="color: var(--teal); margin-bottom: 20px;">Quality Products. Trusted Partner.</h3>
+            <p>LH Distributor was built specifically for the modern dental team. We understand that clinical professionals don't have time to navigate complicated checkout systems, deal with hidden shipping fees, or wait days for inventory confirmations.</p>
+            <p>Our catalog focuses on the high-demand chairside materials that keep your rooms moving: restoratives, sterilization pouches, burs, and disposables. By utilizing a direct quote-based fulfillment system, we strip away the noise and connect your clinic directly to the supplies you need, allowing owners to personally verify availability and pricing for every single order.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-gray-light">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info-box">
+                    <h3>Get In Touch</h3>
+                    <p>Whether you have a question about a specific SKU, need bulk pricing, or want to establish a recurring order list, we are here to help.</p>
+                    <div style="margin-top: 30px; font-size: 1.1rem; line-height: 2;">
+                        <p><strong>Phone:</strong> <a href="tel:5308596003" style="color: var(--teal);">(530) 859-6003</a></p>
+                        <p><strong>Email:</strong> <a href="mailto:manishajain8095@gmail.com" style="color: var(--teal);">manishajain8095@gmail.com</a></p>
+                    </div>
+                </div>
+                <div class="contact-form-box">
+                    <!-- Standard HTML Form for FormSubmit -->
+                    <form action="https://formsubmit.co/manishajain8095@gmail.com" method="POST" target="_blank">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="New Contact Message from LH Distributor Website">
+                        <input type="hidden" name="_template" value="table">
+                        
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" name="Name" required placeholder="How can we help?">
+                        </div>
+                        <div class="form-group">
+                            <label>Your Email</label>
+                            <input type="email" name="Email" required placeholder="name@clinic.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea name="Message" rows="5" required placeholder="Type your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-teal" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">LH <span>Distributor</span></div>
+                    <p style="color: var(--gray-medium); max-width: 300px;">Modern dental supply ordering for clinics that prefer quote-based fulfillment and immediate service.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 20px; color: var(--white);">Direct Contact</h4>
+                    <p><strong>Phone:</strong> (530) 859-6003</p>
+                    <p><strong>Email:</strong> manishajain8095@gmail.com</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 20px; color: var(--white);">Navigation</h4>
+                    <ul style="line-height: 2;">
+                        <li><a href="#catalog">Full Catalog</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 LH Distributor. Quality Products. Trusted Partner.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ORDER MODAL OVERLAY -->
+    <div id="orderModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            
+            <div class="modal-product-pane">
+                <h3 style="color: var(--navy); margin-bottom: 20px;">Order Details</h3>
+                <img id="modalImg" src="" alt="Product" class="modal-product-image">
+                <div style="font-size: 0.85rem; color: var(--teal); font-weight: 800;" id="modalCat">CATEGORY</div>
+                <h2 id="modalName" style="text-align: left; margin: 10px 0; font-size: 1.5rem; color: var(--black);">Product Name</h2>
+                <div id="modalBrand" style="color: var(--gray-dark); margin-bottom: 15px;">Brand</div>
+                <div id="modalPrice" style="font-size: 1.8rem; font-weight: 800; color: var(--navy);">Price</div>
+            </div>
+
+            <div class="modal-form-pane">
+                <h3 style="margin-bottom: 25px; color: var(--navy);">Delivery Information</h3>
+                
+                <!-- Standard HTML Form for FormSubmit -->
+                <form id="orderForm" action="https://formsubmit.co/manishajain8095@gmail.com" method="POST" target="_blank">
+                    
+                    <!-- FormSubmit Configurations & Hidden Dynamic Fields -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_autoresponse" value="Thank you for your order request. We have received it and will process it shortly. - LH Distributor">
+                    <input type="hidden" id="hiddenSubject" name="_subject" value="New Order Request">
+                    
+                    <!-- Dynamic product details injected via Javascript -->
+                    <input type="hidden" id="hiddenProductName" name="Product_Name" value="">
+                    <input type="hidden" id="hiddenBrand" name="Product_Brand" value="">
+                    <input type="hidden" id="hiddenCategory" name="Product_Category" value="">
+                    <input type="hidden" id="hiddenPrice" name="Listed_Price" value="">
+                    
+                    <div class="form-group">
+                        <label>Clinic Name</label>
+                        <input type="text" name="Clinic_Name" required placeholder="e.g., Summit Dental Group">
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label>Contact Name</label>
+                            <input type="text" name="Contact_Name" required placeholder="e.g., Manisha">
+                        </div>
+                        <div class="form-group">
+                            <label>Quantity Required</label>
+                            <input type="number" name="Quantity" required min="1" value="1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Email Address (For Confirmation)</label>
+                        <input type="email" name="Email" required placeholder="name@clinic.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Delivery Address</label>
+                        <input type="text" name="Delivery_Address" required placeholder="Street, City, Zip">
+                    </div>
+
+                    <div class="form-group">
+                        <label>When Needed?</label>
+                        <select name="Urgency" required>
+                            <option value="Standard (3-5 Days)">Standard (3-5 Days)</option>
+                            <option value="Urgent (1-2 Days)">Urgent (1-2 Days)</option>
+                            <option value="Stock Restock (Next Week)">Stock Restock (Next Week)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Additional Notes</label>
+                        <textarea name="Notes" rows="2" placeholder="Any specific instructions?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-teal" style="width: 100%; margin-top: 10px;" onclick="setTimeout(closeModal, 1500)">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        const products = [
+            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "(FG#330) Pear Shape", price: "$21.15" },
+            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "(FG#557) Straight Flat end", price: "$21.15" },
+            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "RA Round Surgical Length Bur", price: "$18.25" },
+            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "Round Football (379-023)", price: "$19.15" },
+            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "Pointed Football Burs 368-023", price: "$19.15" },
+            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "Flat End Cone 856-014C", price: "$19.15" },
+            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "Flat End Taper 848-014C", price: "$19.15" },
+            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "Needle 859-012SF", price: "$19.15" },
+            { cat: "Disposable Products", brand: "UniPack", name: "Tongue Depressors", price: "$12.15" },
+            { cat: "Disposable Products", brand: "UniPack", name: "DISPOSABLE PATIENT BIBS", price: "$29.99" },
+            { cat: "Disposable Products", brand: "Safedent", name: "2x2 gauze", price: "$32.97" },
+            { cat: "Disposable Products", brand: "Safedent", name: "Cotton Tipped Applicators", price: "$8.15" },
+            { cat: "Disposable Products", brand: "UniPack", name: "COTTON ROLLS", price: "$29.99" },
+            { cat: "Disposable Products", brand: "Safedent", name: "DISPOSABLE PLASTIC CUPS", price: "$29.35" },
+            { cat: "Infection Control", brand: "Safe Dent", name: "PAPER TRAY COVERS", price: "$28.29" },
+            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "(FG 557) Straight Surgical Length", price: "$18.25" },
+            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "FG Round Oral Surgery", price: "$18.25" },
+            { cat: "Composites Filling Materials", brand: "Plasdent", name: "Composite Dispensing Gun", price: "$13.99" },
+            { cat: "Evacuation", brand: "UniPack", name: "Evacuator HVE Tips", price: "$4.99" },
+            { cat: "Evacuation", brand: "Safedent", name: "Saliva Ejectors", price: "$4.99" },
+            { cat: "Evacuation", brand: "Safe Dent", name: "SURGICAL ASPIRATOR TIPS", price: "$7.99" },
+            { cat: "Impression Materials", brand: "UniPack", name: "CAVEX CREAM FAST SET ALGINATE", price: "$12.99" },
+            { cat: "Endodontic Products", brand: "UniPack", name: "Endo Irrigation Combo Kit", price: "$27.29" },
+            { cat: "Disposable Products", brand: "Plasdent", name: "Ortho Boxes - Retainer Box", price: "$10.99" },
+            { cat: "Composites Filling Materials", brand: "UniPack", name: "Pre-Bent Needle Tips", price: "$9.05" },
+            { cat: "Composites Filling Materials", brand: "Mydent", name: "Micro Applicator Tips", price: "$5.26" },
+            { cat: "Impression Materials", brand: "House Brand", name: "Mixing Pads", price: "$1.29" },
+            { cat: "Impression Materials", brand: "Plasdent", name: "CURVED TIP UTILITY SYRINGE", price: "$24.99" },
+            { cat: "Endodontic Products", brand: "UniPack", name: "LUER LOCK IRRIGATION SYRINGE", price: "$10.99" },
+            { cat: "Evacuation", brand: "UniPack", name: "Easy-E-Trap Canisters", price: "$69.99" },
+            { cat: "Acrylic and Reline Materials", brand: "House Brand", name: "Intra Oral Mixing Tips", price: "$9.99" },
+            { cat: "Impression Materials", brand: "Safedent", name: "Disposable Impression Trays", price: "$5.99" },
+            { cat: "Infection Control", brand: "UniPack", name: "ISOLATION GOWN", price: "$15.99" },
+            { cat: "Infection Control", brand: "House Brand", name: "Protective Eyewear - Clear", price: "$3.99" },
+            { cat: "Infection Control", brand: "Safedent", name: "STERILIZATION POUCHES", price: "$6.75" },
+            { cat: "Infection Control", brand: "Plasdent", name: "CHAIR & HEADREST COVERS", price: "$37.92" },
+            { cat: "Infection Control", brand: "Safe Dent", name: "Barrier Film", price: "$15.99" },
+            { cat: "Surgical Products", brand: "Look", name: "Suture - 3/0, 27 - Chromic - C-6", price: "$48.50" },
+            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "Flame 863-012 SF", price: "$19.15" },
+            { cat: "Disposable Products", brand: "UniPack", name: "DENTURE BOX", price: "$10.99" },
+            { cat: "Evacuation", brand: "UniPack", name: "All saliva ejectors Universal fit", price: "$12.99" },
+            { cat: "Surgical Products", brand: "House Brand", name: "Scalpel, Stainless Steel Blade, Size 15", price: "$12.99" },
+            { cat: "Not Specified", brand: "General", name: "Reflective Dry Tips®", price: "$15.99" },
+            { cat: "Infection Control", brand: "Plasdent", name: "Optical PC Mouse", price: "$15.99" },
+            { cat: "Infection Control", brand: "Plasdent", name: "Keyboard Cover", price: "$17.99" },
+            { cat: "Not Specified", brand: "Enzyme Industries", name: "Sani-Treet Plus®", price: "$81.25" },
+            { cat: "Disposable Products", brand: "UniPack", name: "DENTURE BOX", price: "$9.99" },
+            { cat: "Prophy Products", brand: "Mydent", name: "Prophy Paste", price: "$29.85" },
+            { cat: "Disposable Products", brand: "UniPack", name: "Disposable Bib Holders", price: "$12.99" },
+            { cat: "Not Specified", brand: "General", name: "Round End Taper", price: "$19.15" },
+            { cat: "Not Specified", brand: "General", name: "Amalgon Disposable System 1gal", price: "$199.29" },
+            { cat: "Endodontic Products", brand: "Crosstex", name: "CROSSTEX DENTAL DAMS", price: "$34.29" },
+            { cat: "Not Specified", brand: "Crosstex", name: "Articulating Paper", price: "$13.99" },
+            { cat: "Not Specified", brand: "Microbrush", name: "Dry Tips", price: "$12.99" },
+            { cat: "Surgical Products", brand: "Myco Medical", name: "Surgical Blades Stainless Steel", price: "$14.99" },
+            { cat: "Not Specified", brand: "General", name: "CompCore AF Mixing Tips 50/pkt", price: "$15.99" },
+            { cat: "Evacuation", brand: "UniPack", name: "Easy-E-Trap Canisters Model #2300", price: "$69.99" },
+            { cat: "Endodontic Products", brand: "Vista Dental", name: "Vista EDTA Solution 17% 16oz", price: "$54.99" },
+            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "FG 557 Straight Surgical Length", price: "$18.25" },
+            { cat: "Hemostasis and Retraction", brand: "Vista Dental", name: "Quick-Stat FS Gel 30 mL", price: "$38.59" },
+            { cat: "Matrix Materials", brand: "DSC", name: "Matrix Retainer Tofflemire Universal", price: "$14.99" },
+            { cat: "Composites Filling Materials", brand: "Dentsply Sirona", name: "IRM Caps Temporary Filling Material", price: "$169.29" },
+            { cat: "Not Specified", brand: "Miltex", name: "Instrument Cleaning Brush Steel Bristles", price: "$8.99" },
+            { cat: "Not Specified", brand: "Gingi-Pak", name: "MAX Cord / EPINEPHRINE", price: "$15.35" },
+            { cat: "Evacuation", brand: "DCI", name: "Push-On Saliva Ejector Tips", price: "$18.29" },
+            { cat: "Endodontic Products", brand: "KaVo Kerr", name: "Tubli-Seal EWT Root Canal Sealer", price: "$59.99" },
+            { cat: "Articulating", brand: "Crosstex", name: "Crosstex Horseshoe", price: "$15.99" },
+            { cat: "Infection Control", brand: "Plasdent", name: "Plasdent Instrument Sterilization Container", price: "$6.99" },
+            { cat: "Anesthetics", brand: "Mydent", name: "Defend Topical Anesthetic Gel", price: "$6.25" },
+            { cat: "Composites Filling Materials", brand: "Pulpdent", name: "Etch-Rite Jumbo Syringe Refill", price: "$59.29" },
+            { cat: "Evacuation", brand: "UniPack", name: "DISPOSABLE EVACUATION TRAPS", price: "$45.25" },
+            { cat: "Fluorides & Varnish", brand: "Premier", name: "Enamel Pro Fluoride Varnish Bubblegum", price: "$83.86" },
+            { cat: "Impression Materials", brand: "UniPack", name: "BLU-TRAY PERFORATED IMPRESSION TRAYS", price: "$4.99" },
+            { cat: "Not Specified", brand: "US ELITE", name: "CW-TYPE ASPIRATING SYRINGE", price: "$13.99" },
+            { cat: "Burs & Diamonds", brand: "Miltex", name: "2-1/8 Bur", price: "$12.50" },
+            { cat: "Burs & Diamonds", brand: "Plasdent", name: "BUR TUB", price: "$13.99" },
+            { cat: "Cements & Liners", brand: "3M Oral Care", name: "Clinpro Sealant - 1.2 ml Syringe Refill", price: "$28.50" },
+            { cat: "Crown & Bridge", brand: "House Brand", name: "Crown & Bridge T-Mix Tips", price: "$15.99" },
+            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "MULTI USE FLAT END CONE BURS", price: "$19.15" },
+            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "MULTI USE NEEDLE BURS", price: "$19.15" },
+            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "MULTI USE ROUND END TAPER BURS", price: "$19.15" },
+            { cat: "Endodontic Products", brand: "House Brand", name: "28MM GATES GLIDDEN DRILLS", price: "$10.99" },
+            { cat: "Endodontic Products", brand: "House Brand", name: "32MM GATES GLIDDEN DRILLS", price: "$12.99" },
+            { cat: "Endodontic Products", brand: "Pulpdent", name: "Multi-Cal Kit: 4 - 1.2 mL Syringes", price: "$69.29" },
+            { cat: "Infection Control", brand: "Plasdent", name: "Air/Water Syringe Cover 10", price: "$12.71" },
+            { cat: "Maintenance", brand: "J. Morita", name: "Multi Spray for Handpiece Maintenance", price: "$29.00" },
+            { cat: "Infection Control", brand: "Safe Dent", name: "Blue Fluid Resistant Ear-Loop Mask", price: "$6.99" },
+            { cat: "Instruments", brand: "House Brand", name: "STAINLESS STEEL BRISTLE BRUSH", price: "$12.99" },
+            { cat: "Acrylic and Reline Materials", brand: "Blazer Torch", name: "Blazer Triple Refined Butane", price: "$12.99" },
+            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "Inverted Cone (FG#38)", price: "$21.15" },
+            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "Pear (FG#330)", price: "$21.15" },
+            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "Round", price: "$21.15" },
+            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "557 Cross Cut - FGOS", price: "$18.25" },
+            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "Round Surgical", price: "$18.25" },
+            { cat: "Burs & Diamonds", brand: "Strauss Diamonds", name: "Flat End Cone Diamond Burs", price: "$19.15" },
+            { cat: "Core Build-Up Materials", brand: "House Brand", name: "High Performance Mixing Tips", price: "$15.99" },
+            { cat: "Endodontic Products", brand: "Coltene", name: "Hygenic Endo-Ice", price: "$23.75" },
+            { cat: "Endodontic Products", brand: "3D", name: "Absorbent Paper Point", price: "$13.99" },
+            { cat: "Anesthetics", brand: "Plasti Products", name: "5 Qt. Container Clear", price: "$8.89" },
+            { cat: "Rubber Dam and Accessories", brand: "Crosstex", name: "Crosstex 6", price: "$35.29" },
+            { cat: "Hemostasis and Retraction", brand: "Gingi-Pak", name: "MAX Z-Twist Weave - SIZE # 00 ,1,2,3", price: "$15.99" },
+            { cat: "Infection Control", brand: "House Brand", name: "Disposable Air-Water Syringe Tips", price: "$14.99" },
+            { cat: "Evacuation", brand: "UniPack", name: "Easy-E-Trap Canisters", price: "$54.95" },
+            { cat: "Infection Control", brand: "Safe Dent", name: "4\" x 6\" Blue Barrier Film", price: "$15.99" },
+            { cat: "Endodontic Products", brand: "Safe Dent", name: "K-Files", price: "$6.99" },
+            { cat: "Prophy Products", brand: "House Brand", name: "Prophy Angles", price: "$42.99" },
+            { cat: "Impression Materials", brand: "Plasdent", name: "Disposable Bite Trays", price: "$13.99" },
+            { cat: "Impression Materials", brand: "Plasdent", name: "Temporary Crown & Bridge Dispensing Gun", price: "$53.67" },
+            { cat: "Disposable Products", brand: "Plasdent", name: "Cheek Retractors", price: "$9.89" },
+            { cat: "Composites Filling Materials", brand: "Plasdent", name: "Dappen Dishes - Disposable", price: "$14.15" },
+            { cat: "Composites Filling Materials", brand: "Plasdent", name: "Silicone Mouth Props", price: "$15.99" },
+            { cat: "Endodontic Products", brand: "US ELITE", name: "Bicuspids #2A Premolars Winged", price: "$9.99" },
+            { cat: "Endodontic Products", brand: "US ELITE", name: "Clamp #8A Molar Winged", price: "$9.99" },
+            { cat: "Endodontic Products", brand: "US ELITE", name: "Clamp #9 for Labial Caries", price: "$9.99" },
+            { cat: "Endodontic Products", brand: "US ELITE", name: "Clamp #56 Winged Metal", price: "$9.99" },
+            { cat: "Anesthetics", brand: "House Brand", name: "27 Gauge XL Long Dental Needles", price: "$9.99" },
+            { cat: "Anesthetics", brand: "House Brand", name: "30 Gauge Long Disposable Dental Needle", price: "$7.99" },
+            { cat: "Alloy And Accessories", brand: "House Brand", name: "Adult Tofflemire Matrix Band", price: "$12.99" },
+            { cat: "Surgical Products", brand: "Plasdent", name: "EXTND SILICONE MOUTH PROPS", price: "$19.99" },
+            { cat: "Infection Control", brand: "Plasdent", name: "Plasdent Biohazard Can Liner Red", price: "$30.99" },
+            { cat: "Cements & Liners", brand: "Dentsply Sirona", name: "Dycal", price: "$69.99" },
+            { cat: "Anesthetics", brand: "Plasti Products", name: "Locking Wall Cabinet", price: "$45.29" },
+            { cat: "Infection Control", brand: "Richmond Dental", name: "Path-O-Guard Ear-Loop Face Mask", price: "$6.99" },
+            { cat: "Alloy And Accessories", brand: "Solmetex", name: "Solmetex Amalgam Separator", price: "$688.95" },
+            { cat: "Endodontic Products", brand: "Coltene", name: "ParaPost Posts Stainless Steel Refill", price: "$90.00" },
+            { cat: "Endodontic Products", brand: "Coltene", name: "ParaPost XP Posts Introductory Kit", price: "$299.25" },
+            { cat: "Composites Filling Materials", brand: "3M", name: "Clinpro Sealant Syringe Tip Refill", price: "$28.50" },
+            { cat: "Equipment", brand: "Dentsply Professional", name: "Cavitron Slimline SLI inserts", price: "$190.00" },
+            { cat: "X-Ray Products", brand: "Plasdent", name: "Plasdent 15\" x 26\" X-Ray head covers", price: "$39.99" },
+            { cat: "Infection Control", brand: "LH", name: "Fluid Resistant Procedure Mask Level 3", price: "$6.99" },
+            { cat: "Impression Materials", brand: "Plasdent", name: "Ease Cartridge Transfer Connectors", price: "$14.99" },
+            { cat: "X-Ray Products", brand: "Plasdent", name: "Bite Block Cover", price: "$11.99" },
+            { cat: "Alloy And Accessories", brand: "Solmetex", name: "Solmetex NXT Hg5 Collection Container", price: "$380.00" },
+            { cat: "Evacuation", brand: "DCI", name: "Saliva Ejector Autoclavable Rubber Tip", price: "$14.99" },
+            { cat: "Evacuation", brand: "Plasdent", name: "Screen-4-Vac Disposable Traps", price: "$29.18" },
+            { cat: "Evacuation", brand: "UniPack", name: "Dispos-A-Trap #5501", price: "$29.15" },
+            { cat: "Instruments", brand: "US ELITE", name: "Rubber Dam Clamp", price: "$39.99" },
+            { cat: "Crown & Bridge", brand: "3D", name: "Temporary Crown & Bridge Material", price: "$75.29" },
+            { cat: "Impression Materials", brand: "3D", name: "3D - Bite Registration Material", price: "$33.29" },
+            { cat: "Core Build-Up Materials", brand: "Premier", name: "CompCore AF Automix Core Buildup", price: "$165.29" },
+            { cat: "Disposable Products", brand: "Microcopy", name: "NeoDrys", price: "$15.29" },
+            { cat: "Prophy Products", brand: "Sunstar", name: "Eez-Touch Disposable Prophy Angle", price: "$39.29" },
+            { cat: "Cements & Liners", brand: "Plasdent", name: "Mixing Spatulas", price: "$5.99" },
+            { cat: "Gloves", brand: "House Brand", name: "Nitrile glove: 100/Bx. Powder-Free", price: "$5.99" },
+            { cat: "Matrix Materials", brand: "DentAmerica", name: "Dupont clear mylar strip", price: "$14.99" },
+            { cat: "Disposable Products", brand: "Safedent", name: "Safe-Dent Gauze Non-Woven 4\" x 4\"", price: "$38.99" },
+            { cat: "Acrylic and Reline Materials", brand: "Blazer Torch", name: "HOT SHOT MT 3000", price: "$32.99" },
+            { cat: "Instruments", brand: "Premium Plus", name: "Mouth Mirror #5", price: "$26.95" },
+            { cat: "Anesthetics", brand: "Septodont", name: "Septoject XL Dental Needles 27ga", price: "$22.19" },
+            { cat: "Core Build-Up Materials", brand: "Premier", name: "CompCore AF Core Buildup Shade A3", price: "$186.19" },
+            { cat: "Impression Materials", brand: "House Brand", name: "Brown color tip", price: "$15.99" },
+            { cat: "Burs & Diamonds", brand: "SS WHITE", name: "859-012SF", price: "$19.15" },
+            { cat: "Composites Filling Materials", brand: "3M", name: "Sof-Lex Finishing Strips", price: "$55.59" },
+            { cat: "Fluorides & Varnish", brand: "Safedent", name: "Fluoride Trays - Large Hinged", price: "$19.50" },
+            { cat: "Fluorides & Varnish", brand: "Safedent", name: "Fluoride Trays - Small Hinged", price: "$19.50" },
+            { cat: "Composites Filling Materials", brand: "SS WHITE", name: "Jazz Polishers C1S Cup", price: "$60.29" },
+            { cat: "Infection Control", brand: "Key stone", name: "Optimize Autoclave Cleaner", price: "$25.84" },
+            { cat: "Infection Control", brand: "UniPack", name: "Flex Mask Level 1 Ear-Loop Blue", price: "$6.99" },
+            { cat: "Endodontic Products", brand: "DSC", name: "Universal Matrix Retainer Tofflemire-type", price: "$22.58" },
+            { cat: "Endodontic Products", brand: "Premier", name: "RC-Prep Root Canals 18 Gm", price: "$40.10" },
+            { cat: "Composites Filling Materials", brand: "KavoKerr", name: "Optibond", price: "$85.00" },
+            { cat: "Endodontic Products", brand: "UniPack", name: "Endo Irrigation Kit 27ga", price: "$29.99" },
+            { cat: "Cements & Liners", brand: "KaVo Kerr", name: "Kerr Temp-Bond NE automix", price: "$89.99" },
+            { cat: "Cements & Liners", brand: "Voco", name: "Ionoseal Glass Ionomer Composite Liner", price: "$195.00" },
+            { cat: "Hemostasis and Retraction", brand: "Premier", name: "Traxodent Hemodent Paste Retraction System", price: "$97.95" }
+        ];
+
+        let selectedProduct = null;
+        const grid = document.getElementById('productGrid');
+        const modal = document.getElementById('orderModal');
+        
+        // Render Product Grid
+        products.forEach((p, index) => {
+            const imageUrl = `https://placehold.co/400x300/f4f4f5/0087a1?text=${encodeURIComponent(p.brand)}`;
+            const card = `
+                <div class="product-card" onclick="openModal(${index})">
+                    <img src="${imageUrl}" alt="${p.name}" class="product-image-container" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-meta">
+                            <span>${p.cat}</span>
+                            <span class="product-brand">${p.brand}</span>
+                        </div>
+                        <h4 class="product-name">${p.name}</h4>
+                        <div class="product-price">${p.price}</div>
+                        <button class="btn btn-outline-dark">Order / Details</button>
+                    </div>
+                </div>
+            `;
+            grid.insertAdjacentHTML('beforeend', card);
+        });
+
+        // Modal Logic
+        function openModal(index) {
+            selectedProduct = products[index];
+            document.getElementById('modalImg').src = `https://placehold.co/600x400/f4f4f5/0087a1?text=${encodeURIComponent(selectedProduct.brand)}`;
+            document.getElementById('modalCat').innerText = selectedProduct.cat.toUpperCase();
+            document.getElementById('modalName').innerText = selectedProduct.name;
+            document.getElementById('modalBrand').innerText = selectedProduct.brand;
+            document.getElementById('modalPrice').innerText = selectedProduct.price;
+            
+            // Populate hidden fields for the email payload
+            document.getElementById('hiddenProductName').value = selectedProduct.name;
+            document.getElementById('hiddenBrand').value = selectedProduct.brand;
+            document.getElementById('hiddenCategory').value = selectedProduct.cat;
+            document.getElementById('hiddenPrice').value = selectedProduct.price;
+            document.getElementById('hiddenSubject').value = `New Order: ${selectedProduct.name}`;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            document.getElementById('orderForm').reset();
+        }
+
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
