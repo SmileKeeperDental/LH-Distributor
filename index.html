@@ -4,224 +4,271 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LH Distributor | Premium Dental Supply</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Modern Minimalist Variables */
+        /* Ultra-Modern Variables */
         :root {
-            --navy: #0A1C3A;
-            --teal: #0087A1;
-            --black: #000000;
-            --white: #ffffff;
-            --gray-light: #f4f4f5;
-            --gray-medium: #d4d4d8;
-            --gray-dark: #3f3f46;
-            --danger: #e11d48;
-            --transition: all 0.3s ease;
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            
+            /* High-End Brand Gradient */
+            --brand-primary: #0284c7;
+            --brand-secondary: #06b6d4;
+            --brand-gradient: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            --brand-gradient-hover: linear-gradient(135deg, #0369a1, #0891b2);
+            
+            --accent-orange: #f97316;
+            --danger: #ef4444;
+            
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 25px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 40px -5px rgba(2, 132, 199, 0.15);
+            --shadow-float: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-pill: 9999px;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Reset & Base */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--gray-light); color: var(--black); line-height: 1.6; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         ul { list-style: none; }
         img { max-width: 100%; display: block; }
 
         /* Typography */
-        h1, h2, h3, h4 { font-weight: 800; text-transform: uppercase; letter-spacing: -0.5px; }
-        h1 { font-size: 4rem; line-height: 1; color: var(--navy); margin-bottom: 20px; }
-        h1 span { color: var(--teal); }
-        h2 { font-size: 2.5rem; color: var(--black); margin-bottom: 40px; text-align: center; }
-        p { color: var(--gray-dark); margin-bottom: 20px; }
-
-        /* Buttons */
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border-radius: 25px; cursor: pointer; transition: var(--transition); border: 2px solid transparent; font-family: inherit; font-size: 1rem; }
-        .btn-teal { background-color: var(--teal); color: var(--white); }
-        .btn-teal:hover { background-color: var(--navy); color: var(--white); transform: translateY(-2px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
-        .btn-outline-dark { border-color: var(--navy); color: var(--navy); background: transparent; border-radius: 25px; }
-        .btn-outline-dark:hover { background-color: var(--teal); border-color: var(--teal); color: var(--white); }
-        .btn-danger { background-color: transparent; color: var(--danger); border: 1px solid var(--danger); padding: 6px 12px; font-size: 0.8rem; border-radius: 4px; }
-        .btn-danger:hover { background-color: var(--danger); color: var(--white); }
-
-        /* Layout */
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
-        section { padding: 100px 0; }
-        .bg-white { background-color: var(--white); }
-        .bg-black { background-color: var(--black); color: var(--white); }
-        .bg-black h2, .bg-black p { color: var(--white); }
-
-        /* Header & Cart Badge */
-        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--gray-medium); }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 80px; }
-        .logo { font-size: 2rem; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 10px; }
-        .logo span { color: var(--teal); }
-        .nav-links { display: flex; align-items: center; gap: 30px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; }
-        .nav-links a:hover { color: var(--teal); }
+        h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; }
+        .text-gradient { background: var(--brand-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         
-        .cart-toggle { background: var(--navy); color: var(--white); padding: 8px 20px; border-radius: 25px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: var(--transition); }
-        .cart-toggle:hover { background: var(--teal); }
-        .cart-badge { background: var(--white); color: var(--navy); font-weight: 800; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; }
+        h1 { font-size: clamp(3rem, 5vw, 4.5rem); margin-bottom: 24px; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 48px; }
+        p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 20px; }
 
-        /* HERO SECTION */
-        .hero { padding: 80px 0 120px; background: linear-gradient(135deg, var(--white) 0%, var(--gray-light) 100%); min-height: 80vh; display: flex; align-items: center; }
-        .hero-inner { display: flex; align-items: center; justify-content: space-between; gap: 60px; flex-wrap: wrap; }
-        .hero-content { flex: 1; min-width: 400px; }
-        .hero-content p { font-size: 1.25rem; max-width: 550px; }
-        .hero-features { display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; }
-        .hero-features span { display: flex; align-items: center; gap: 10px; color: var(--navy); font-weight: 800; text-transform: uppercase; font-size: 0.95rem; }
-        .hero-features span::before { content: ''; display: inline-block; width: 8px; height: 8px; background-color: var(--teal); }
-        .hero-buttons { display: flex; gap: 20px; }
-        .hero-image { flex: 1; min-width: 400px; display: flex; justify-content: flex-end; position: relative; }
-        .hero-image::before { content: ''; position: absolute; top: -20px; right: -20px; width: 100%; height: 100%; border: 4px solid var(--teal); z-index: 0; }
-        .hero-image img { max-width: 100%; position: relative; z-index: 1; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+        /* Core Layout */
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 100px 0; position: relative; }
 
-        /* Workflows */
-        .workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .step-card { background: var(--white); padding: 40px; border: 1px solid var(--gray-medium); transition: var(--transition); text-align: center;}
-        .step-card:hover { border-color: var(--teal); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        .step-number { font-size: 4rem; font-weight: 800; color: var(--gray-light); -webkit-text-stroke: 2px var(--teal); margin-bottom: 20px; line-height: 1; }
+        /* Dynamic Buttons */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; font-weight: 700; border-radius: var(--radius-pill); cursor: pointer; transition: var(--transition); font-size: 1rem; border: none; outline: none; }
+        .btn-gradient { background: var(--brand-gradient); color: white; box-shadow: var(--shadow-md); }
+        .btn-gradient:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+        .btn-outline { background: white; color: var(--text-main); border: 2px solid #e2e8f0; box-shadow: var(--shadow-sm); }
+        .btn-outline:hover { border-color: var(--brand-secondary); color: var(--brand-primary); transform: translateY(-2px); }
+        .btn-danger { background: #fee2e2; color: var(--danger); padding: 8px 16px; border-radius: var(--radius-pill); font-size: 0.85rem; font-weight: 600; }
+        .btn-danger:hover { background: var(--danger); color: white; }
 
-        /* Product Grid & Cards */
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; margin-top: 40px; }
-        .product-card { background: var(--white); display: flex; flex-direction: column; border: 1px solid var(--gray-medium); transition: var(--transition); border-radius: 8px; overflow: hidden; padding-bottom: 20px; }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,135,161,0.15); border-color: var(--teal); }
-        .product-image-container { width: 100%; height: 220px; background-color: var(--white); padding: 20px; object-fit: contain; cursor: pointer; }
-        .product-divider { text-align: center; position: relative; margin: 10px 20px; }
-        .product-divider::before { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: var(--gray-medium); z-index: 1; }
-        .product-category { position: relative; z-index: 2; background: var(--white); padding: 0 10px; font-size: 0.8rem; color: var(--gray-dark); display: inline-block; }
-        .product-info { padding: 0 20px; display: flex; flex-direction: column; align-items: center; text-align: center; flex-grow: 1; }
-        .product-brand { color: #f03e00; font-size: 1.2rem; font-weight: 600; margin-top: 10px; } 
-        .product-name { font-size: 1rem; font-weight: 400; color: var(--black); margin: 10px 0 20px; line-height: 1.3; }
-        .product-price { font-size: 1.5rem; font-weight: 600; color: #f29a00; margin-bottom: 20px; } 
-
-        /* Pagination Styles */
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 60px; }
-        .page-btn { padding: 10px 18px; border: 1px solid var(--gray-medium); background: var(--white); color: var(--navy); font-weight: 600; cursor: pointer; transition: var(--transition); border-radius: 4px; }
-        .page-btn:hover:not(:disabled) { border-color: var(--teal); color: var(--teal); }
-        .page-btn.active { background: var(--teal); color: var(--white); border-color: var(--teal); }
-        .page-btn:disabled { color: var(--gray-medium); cursor: not-allowed; opacity: 0.5; }
-
-        /* Modals (Product Detail & Cart Checkout) */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(5px); }
-        .modal-overlay.active { display: flex; }
-        .modal-content { background: var(--white); width: 90%; max-width: 900px; max-height: 90vh; overflow-y: auto; position: relative; border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; }
-        .cart-modal-content { background: var(--gray-light); width: 95%; max-width: 1100px; max-height: 95vh; overflow-y: auto; position: relative; border-radius: 8px; display: grid; grid-template-columns: 1.2fr 1fr; }
+        /* Floating Frosted Header */
+        header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 1300px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.5); box-shadow: var(--shadow-md); border-radius: var(--radius-pill); z-index: 1000; transition: var(--transition); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 30px; }
+        .logo { font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 5px; }
+        .nav-links { display: flex; align-items: center; gap: 32px; font-weight: 600; font-size: 0.95rem; }
+        .nav-links a { position: relative; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background: var(--brand-gradient); transition: var(--transition); }
+        .nav-links a:hover::after { width: 100%; }
         
-        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--gray-dark); z-index: 10; line-height: 1; }
-        .close-btn:hover { color: var(--black); }
+        /* Modern Cart Badge */
+        .cart-toggle { background: var(--text-main); color: white; padding: 10px 24px; border-radius: var(--radius-pill); display: flex; align-items: center; gap: 12px; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-sm); }
+        .cart-toggle:hover { background: var(--brand-primary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .cart-badge { background: var(--brand-secondary); color: white; font-weight: 800; padding: 2px 10px; border-radius: 12px; font-size: 0.85rem; }
+
+        /* High-End Hero Section */
+        .hero { 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            padding-top: 120px;
+            background-color: #ffffff;
+            background-image: radial-gradient(at 0% 0%, hsla(199,89%,48%,0.08) 0px, transparent 50%),
+                              radial-gradient(at 100% 100%, hsla(189,94%,43%,0.08) 0px, transparent 50%);
+            overflow: hidden;
+        }
+        .hero-inner { display: flex; align-items: center; justify-content: space-between; gap: 60px; position: relative; z-index: 2; }
+        .hero-content { flex: 1.2; }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 40px; max-width: 500px; color: var(--text-muted); }
+        .hero-features { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+        .hero-features span { display: flex; align-items: center; gap: 12px; font-weight: 700; color: var(--text-main); font-size: 1rem; }
+        .hero-features span svg { width: 20px; height: 20px; color: var(--brand-secondary); }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+        .hero-image { flex: 1; position: relative; display: flex; justify-content: center; }
+        .hero-image img { width: 100%; max-width: 550px; border-radius: var(--radius-lg); box-shadow: var(--shadow-float); transform: perspective(1000px) rotateY(-5deg); transition: var(--transition); }
+        .hero-image:hover img { transform: perspective(1000px) rotateY(0deg) scale(1.02); }
+
+        /* Sleek Workflows */
+        .workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .step-card { background: white; padding: 40px; border-radius: var(--radius-lg); border: 1px solid #f1f5f9; box-shadow: var(--shadow-sm); transition: var(--transition); position: relative; overflow: hidden; z-index: 1; }
+        .step-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--brand-gradient); opacity: 0; z-index: -1; transition: var(--transition); }
+        .step-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: transparent; }
+        .step-card:hover h3, .step-card:hover p { color: white; }
+        .step-number { font-size: 5rem; font-weight: 800; color: #f1f5f9; line-height: 1; margin-bottom: 20px; transition: var(--transition); }
+        .step-card:hover .step-number { color: rgba(255,255,255,0.2); }
+        .step-card h3 { margin-bottom: 15px; font-size: 1.5rem; transition: var(--transition); }
+
+        /* Premium Product Grid */
+        .bg-products { background: #f1f5f9; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 32px; margin-top: 50px; }
+        .product-card { background: white; border-radius: var(--radius-lg); padding: 20px; display: flex; flex-direction: column; transition: var(--transition); border: 1px solid white; position: relative; }
+        .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: #e2e8f0; }
+        .product-image-wrapper { width: 100%; height: 220px; border-radius: var(--radius-md); background: #f8fafc; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .product-image-wrapper img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.5s ease; cursor: pointer; }
+        .product-card:hover .product-image-wrapper img { transform: scale(1.08); }
+        .product-badge { position: absolute; top: 35px; left: 35px; background: rgba(255,255,255,0.9); backdrop-filter: blur(4px); padding: 4px 12px; border-radius: var(--radius-pill); font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; box-shadow: var(--shadow-sm); z-index: 2; pointer-events: none; }
+        .product-brand { color: var(--accent-orange); font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+        .product-name { font-size: 1.15rem; font-weight: 600; color: var(--text-main); margin-bottom: 12px; line-height: 1.4; flex-grow: 1; }
+        .product-price-row { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 20px; border-top: 1px solid #f1f5f9; }
+        .product-price { font-size: 1.5rem; font-weight: 800; color: var(--text-main); }
+        .btn-icon { background: var(--bg-body); border: none; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition); color: var(--text-main); }
+        .btn-icon:hover { background: var(--brand-gradient); color: white; transform: rotate(90deg); }
+
+        /* Pagination */
+        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 60px; }
+        .page-btn { width: 45px; height: 45px; border-radius: 50%; border: none; background: white; color: var(--text-main); font-weight: 700; cursor: pointer; box-shadow: var(--shadow-sm); transition: var(--transition); }
+        .page-btn:hover:not(:disabled) { background: var(--brand-light); color: var(--brand-primary); transform: translateY(-2px); }
+        .page-btn.active { background: var(--brand-gradient); color: white; box-shadow: var(--shadow-md); }
+        .page-btn:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+
+        /* Contact & About Text Pages */
+        .text-page-content { max-width: 800px; margin: 0 auto; text-align: center; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; margin-top: 50px; text-align: left; }
+        .contact-info-box { background: white; padding: 50px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
         
-        .modal-pane { padding: 40px; }
-        .pane-light { background: var(--white); }
-        .pane-gray { background: var(--gray-light); border-right: 1px solid var(--gray-medium); }
+        /* Modern Forms */
+        .form-group { margin-bottom: 24px; text-align: left; }
+        .form-group label { display: block; font-weight: 700; margin-bottom: 10px; color: var(--text-main); font-size: 0.9rem; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 16px; border: 2px solid #e2e8f0; border-radius: var(--radius-sm); font-family: inherit; font-size: 1rem; transition: var(--transition); background: #f8fafc; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--brand-secondary); background: white; box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1); }
+
+        /* App-Like Modals */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
         
-        .modal-product-image { width: 100%; height: 300px; object-fit: contain; background: var(--white); padding: 20px; margin-bottom: 20px; border: 1px solid var(--gray-medium); border-radius: 4px; }
+        .modal-content { background: white; width: 95%; max-width: 1000px; max-height: 90vh; border-radius: var(--radius-lg); box-shadow: var(--shadow-float); display: grid; grid-template-columns: 1fr 1.2fr; overflow: hidden; transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        
+        .cart-modal-content { grid-template-columns: 1.2fr 1fr; }
+        
+        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; color: var(--text-muted); z-index: 10; line-height: 1; transition: var(--transition); background: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); }
+        .close-btn:hover { color: var(--danger); transform: rotate(90deg); }
+        
+        .modal-pane { padding: 50px; overflow-y: auto; max-height: 90vh; }
+        .pane-gray { background: #f8fafc; }
+        
+        .modal-product-image { width: 100%; height: 350px; object-fit: contain; background: white; padding: 30px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); margin-bottom: 30px; }
         
         /* Cart Items UI */
-        .cart-item { display: flex; align-items: center; justify-content: space-between; background: var(--white); padding: 15px; border: 1px solid var(--gray-medium); border-radius: 6px; margin-bottom: 15px; }
-        .cart-item-info { flex-grow: 1; margin: 0 15px; }
-        .cart-item-title { font-weight: 600; color: var(--navy); font-size: 0.95rem; }
-        .cart-item-price { color: #f29a00; font-weight: 600; font-size: 0.9rem; }
-        .cart-total-box { background: var(--navy); color: var(--white); padding: 20px; border-radius: 6px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 1.2rem; font-weight: 800; }
-
-        /* Forms */
-        .form-group { margin-bottom: 20px; text-align: left; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--navy); font-size: 0.9rem; text-transform: uppercase; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid var(--gray-medium); font-family: inherit; font-size: 1rem; transition: var(--transition); border-radius: 4px; }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,135,161,0.1); }
-        
-        /* Text Pages */
-        .text-page-content { max-width: 800px; margin: 0 auto; text-align: center; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px; text-align: left; }
-        .contact-info-box { background: var(--white); padding: 40px; border: 1px solid var(--gray-medium); border-radius: 8px;}
+        .cart-item { display: flex; align-items: center; gap: 20px; background: white; padding: 20px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); margin-bottom: 16px; border: 1px solid #f1f5f9; }
+        .cart-item img { width: 70px; height: 70px; object-fit: contain; background: #f8fafc; border-radius: 8px; padding: 5px; }
+        .cart-item-info { flex-grow: 1; }
+        .cart-item-title { font-weight: 700; color: var(--text-main); font-size: 1rem; margin-bottom: 4px; line-height: 1.2; }
+        .cart-item-price { color: var(--brand-primary); font-weight: 800; font-size: 1.1rem; }
+        .cart-total-box { background: var(--text-main); color: white; padding: 24px; border-radius: var(--radius-md); margin-top: 30px; display: flex; justify-content: space-between; align-items: center; font-size: 1.25rem; font-weight: 800; box-shadow: var(--shadow-md); }
 
         /* Footer */
-        footer { background-color: var(--black); color: var(--white); padding: 80px 0 40px; border-top: 5px solid var(--teal); }
+        footer { background-color: var(--text-main); color: white; padding: 80px 0 40px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 60px; }
         .footer-logo { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
-        .footer-logo span { color: var(--teal); }
-        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #333; font-size: 0.9rem; color: var(--gray-dark); }
+        .footer-logo span { color: var(--brand-secondary); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; color: #94a3b8; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .modal-content, .cart-modal-content { grid-template-columns: 1fr; }
-            .hero-inner { flex-direction: column; text-align: center; }
+            .hero-inner { flex-direction: column; text-align: center; margin-top: 40px; }
             .hero-features { align-items: center; }
             .hero-buttons { justify-content: center; }
             .contact-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; /* simple mobile hide for clean view */ }
-            .cart-toggle { display: flex; }
+            .nav-links { display: none; }
+            header { width: 100%; top: 0; border-radius: 0; border: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Floating Navigation -->
     <header>
-        <div class="container nav-container">
-            <div class="logo">LH <span>Distributor</span></div>
+        <div class="nav-container">
+            <div class="logo">LH <span class="text-gradient">Distributor</span></div>
             <nav style="display: flex; align-items: center; gap: 40px;">
                 <ul class="nav-links">
                     <li><a href="#catalog">Products</a></li>
-                    <li><a href="#workflow">How It Works</a></li>
+                    <li><a href="#workflow">Workflow</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="cart-toggle" onclick="openCartModal()">
-                    🛒 Cart <span id="cartBadge" class="cart-badge">0</span>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <span id="cartBadge" class="cart-badge">0</span>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- Ultra-Modern Hero -->
     <section class="hero">
         <div class="container hero-inner">
             <div class="hero-content">
-                <h1>High-Performance<br><span>Dental Supply.</span></h1>
-                <p>A crisp, fast, no-payment ordering engine for clinics that demand precision. Select multiple items, generate a quote request, and alert the owner in under 60 seconds.</p>
+                <h1>High-Performance <br><span class="text-gradient">Dental Supply.</span></h1>
+                <p>A crisp, fast, no-payment ordering engine for clinics that demand precision. Build custom orders and alert the owner in under 60 seconds.</p>
                 <div class="hero-features">
-                    <span>Build Custom Orders Easily</span>
-                    <span>Zero Checkout Friction</span>
-                    <span>Clinic-First Detailed Specs</span>
+                    <span>
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Same-Day Quote Response
+                    </span>
+                    <span>
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Zero Checkout Friction
+                    </span>
+                    <span>
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Clinic-First Detailed Specs
+                    </span>
                 </div>
                 <div class="hero-buttons">
-                    <a href="#catalog" class="btn btn-teal">View Full Catalog</a>
+                    <a href="#catalog" class="btn btn-gradient">Explore Catalog</a>
+                    <a href="#workflow" class="btn btn-outline">See How It Works</a>
                 </div>
             </div>
             <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Clinical Supply">
+                <!-- Using a high-quality relevant Unsplash image to establish a premium feel -->
+                <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Clinical Supply Precision">
             </div>
         </div>
     </section>
 
-    <!-- Workflow Section -->
-    <section id="workflow" class="bg-white">
+    <!-- Sleek Workflow Section -->
+    <section id="workflow">
         <div class="container">
-            <h2>Built for Speed: 60-Second Ordering</h2>
+            <h2>Built for Speed: <span class="text-gradient">60-Second Ordering</span></h2>
             <p style="text-align: center; max-width: 600px; margin: 0 auto 50px;">Every order bypasses the cart. Select your products, enter your clinic details, and we instantly sync your request with our fulfillment team.</p>
             <div class="workflow-grid">
                 <div class="step-card">
                     <div class="step-number">01</div>
-                    <h3 style="color: var(--navy); margin-bottom: 10px;">Select Products</h3>
+                    <h3>Select Products</h3>
                     <p>Browse our extensive, clinically-curated catalog and add essentials to your cart.</p>
                 </div>
                 <div class="step-card">
                     <div class="step-number">02</div>
-                    <h3 style="color: var(--navy); margin-bottom: 10px;">Add Details</h3>
+                    <h3>Add Details</h3>
                     <p>Open the cart and fill out a quick form with your clinic name and delivery address.</p>
                 </div>
                 <div class="step-card">
                     <div class="step-number">03</div>
-                    <h3 style="color: var(--navy); margin-bottom: 10px;">Auto-Sync Order</h3>
+                    <h3>Auto-Sync Order</h3>
                     <p>The system instantly alerts our office while sending you a direct confirmation email.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Massive Product Catalog -->
-    <section id="catalog" class="bg-gray-light">
+    <!-- Premium Product Catalog -->
+    <section id="catalog" class="bg-products">
         <div class="container">
-            <h2>Complete Inventory</h2>
+            <h2>Complete <span class="text-gradient">Inventory</span></h2>
             <div class="product-grid" id="productGrid">
                 <!-- Javascript injects products here -->
             </div>
@@ -231,29 +278,28 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="bg-white">
+    <section id="about">
         <div class="container text-page-content">
-            <h2>About LH Distributor</h2>
-            <h3 style="color: var(--teal); margin-bottom: 20px;">Quality Products. Trusted Partner.</h3>
+            <h2>About <span class="text-gradient">LH Distributor</span></h2>
+            <h3 style="margin-bottom: 20px;">Quality Products. Trusted Partner.</h3>
             <p>LH Distributor was built specifically for the modern dental team. We understand that clinical professionals don't have time to navigate complicated checkout systems, deal with hidden shipping fees, or wait days for inventory confirmations.</p>
             <p>Our catalog focuses on the high-demand chairside materials that keep your rooms moving: restoratives, sterilization pouches, burs, and disposables. By utilizing a direct quote-based fulfillment system, we strip away the noise and connect your clinic directly to the supplies you need, allowing owners to personally verify availability and pricing for every single order.</p>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="bg-gray-light">
+    <section id="contact" class="bg-products">
         <div class="container">
-            <h2>Contact Us</h2>
+            <h2>Get In <span class="text-gradient">Touch</span></h2>
             <div class="contact-grid">
-                <div class="contact-info-box">
-                    <h3>Get In Touch</h3>
-                    <p>Whether you have a question about a specific SKU, need bulk pricing, or want to establish a recurring order list, we are here to help.</p>
-                    <div style="margin-top: 30px; font-size: 1.1rem; line-height: 2;">
-                        <p><strong>Phone:</strong> <a href="tel:5308596003" style="color: var(--teal);">(530) 859-6003</a></p>
-                        <p><strong>Email:</strong> <a href="mailto:manishajain8095@gmail.com" style="color: var(--teal);">manishajain8095@gmail.com</a></p>
+                <div class="contact-info-box" style="background: transparent; box-shadow: none; padding: 20px;">
+                    <p style="font-size: 1.2rem;">Whether you have a question about a specific SKU, need bulk pricing, or want to establish a recurring order list, we are here to help.</p>
+                    <div style="margin-top: 40px; font-size: 1.2rem; line-height: 2;">
+                        <p><strong>Phone:</strong> <br><a href="tel:5308596003" class="text-gradient" style="font-size: 1.8rem; font-weight: 800;">(530) 859-6003</a></p>
+                        <p style="margin-top: 20px;"><strong>Email:</strong> <br><a href="mailto:manishajain8095@gmail.com" class="text-gradient" style="font-size: 1.5rem; font-weight: 800;">manishajain8095@gmail.com</a></p>
                     </div>
                 </div>
-                <div class="contact-info-box pane-light">
+                <div class="contact-info-box">
                     <form action="https://formsubmit.co/manishajain8095@gmail.com" method="POST" target="_blank">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_subject" value="New Contact Message from LH Distributor Website">
@@ -261,7 +307,7 @@
                         
                         <div class="form-group">
                             <label>Your Name</label>
-                            <input type="text" name="Name" required placeholder="How can we help?">
+                            <input type="text" name="Name" required placeholder="Dr. John Doe">
                         </div>
                         <div class="form-group">
                             <label>Your Email</label>
@@ -269,9 +315,9 @@
                         </div>
                         <div class="form-group">
                             <label>Message</label>
-                            <textarea name="Message" rows="4" required placeholder="Type your message here..."></textarea>
+                            <textarea name="Message" rows="5" required placeholder="How can we help your clinic today?"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-teal" style="width: 100%;">Send Message</button>
+                        <button type="submit" class="btn btn-gradient" style="width: 100%; padding: 18px;">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -283,17 +329,17 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="footer-logo">LH <span>Distributor</span></div>
-                    <p style="color: var(--gray-medium); max-width: 300px;">Modern dental supply ordering for clinics that prefer quote-based fulfillment and immediate service.</p>
+                    <div class="footer-logo">LH <span class="text-gradient">Distributor</span></div>
+                    <p style="color: #94a3b8; max-width: 300px; font-size: 0.95rem;">Modern dental supply ordering for clinics that prefer quote-based fulfillment and immediate service.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 20px; color: var(--white);">Direct Contact</h4>
-                    <p><strong>Phone:</strong> (530) 859-6003</p>
-                    <p><strong>Email:</strong> manishajain8095@gmail.com</p>
+                    <h4 style="margin-bottom: 20px; font-size: 1.2rem;">Direct Contact</h4>
+                    <p style="color: #94a3b8; margin-bottom: 10px;">(530) 859-6003</p>
+                    <p style="color: #94a3b8;">manishajain8095@gmail.com</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 20px; color: var(--white);">Navigation</h4>
-                    <ul style="line-height: 2;">
+                    <h4 style="margin-bottom: 20px; font-size: 1.2rem;">Navigation</h4>
+                    <ul style="line-height: 2.2; color: #94a3b8;">
                         <li><a href="#catalog">Full Catalog</a></li>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#contact">Contact Support</a></li>
@@ -309,28 +355,30 @@
     <!-- PRODUCT DETAIL MODAL (ADD TO CART) -->
     <div id="productModal" class="modal-overlay">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeProductModal()">&times;</span>
+            <div class="close-btn" onclick="closeProductModal()">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </div>
             
-            <div class="modal-pane pane-gray">
-                <img id="detailImg" src="" alt="Product Image" class="modal-product-image">
+            <div class="modal-pane pane-gray" style="display: flex; align-items: center; justify-content: center;">
+                <img id="detailImg" src="" alt="Product Image" class="modal-product-image" style="margin: 0;">
             </div>
 
-            <div class="modal-pane pane-light">
-                <div style="font-size: 0.85rem; color: var(--teal); font-weight: 800; margin-bottom: 5px;" id="detailCat">CATEGORY</div>
-                <h2 id="detailName" style="text-align: left; margin: 0 0 10px 0; font-size: 1.8rem; color: var(--black); line-height: 1.2;">Product Name</h2>
-                <div id="detailBrand" style="color: #f03e00; font-weight: 600; margin-bottom: 20px;">Brand</div>
+            <div class="modal-pane">
+                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 800; margin-bottom: 8px; letter-spacing: 0.05em; text-transform: uppercase;" id="detailCat">CATEGORY</div>
+                <h2 id="detailName" style="text-align: left; margin: 0 0 15px 0; font-size: 2rem; color: var(--text-main); line-height: 1.2;">Product Name</h2>
+                <div id="detailBrand" style="color: var(--accent-orange); font-weight: 800; margin-bottom: 30px; font-size: 1.1rem;">Brand</div>
                 
-                <div style="border-top: 1px solid var(--gray-medium); border-bottom: 1px solid var(--gray-medium); padding: 20px 0; margin-bottom: 30px;">
-                    <div id="detailPrice" style="font-size: 2rem; font-weight: 800; color: #f29a00; margin-bottom: 15px;">Price</div>
-                    <p style="font-size: 0.9rem; color: var(--gray-dark); margin: 0;">Add this item to your order list. Once you are finished browsing, click the Cart icon at the top of the page to submit your delivery request.</p>
+                <div style="background: var(--bg-body); padding: 25px; border-radius: var(--radius-md); margin-bottom: 30px;">
+                    <div id="detailPrice" style="font-size: 2.5rem; font-weight: 800; color: var(--text-main); margin-bottom: 10px;">Price</div>
+                    <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">Add this item to your order list. Once finished, click the Cart icon above to submit your request.</p>
                 </div>
 
-                <div class="form-group" style="display: flex; gap: 20px; align-items: center;">
-                    <div style="width: 100px;">
+                <div style="display: flex; gap: 20px; align-items: flex-end;">
+                    <div class="form-group" style="margin: 0; width: 120px;">
                         <label>Quantity</label>
-                        <input type="number" id="detailQty" min="1" value="1" style="text-align: center; font-weight: bold; font-size: 1.2rem;">
+                        <input type="number" id="detailQty" min="1" value="1" style="text-align: center; font-weight: 800; font-size: 1.2rem; padding: 14px;">
                     </div>
-                    <button class="btn btn-teal" style="flex-grow: 1; margin-top: 15px; height: 50px;" onclick="addItemToCart()">Add to Cart</button>
+                    <button class="btn btn-gradient" style="flex-grow: 1; padding: 16px;" onclick="addItemToCart()">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -338,53 +386,52 @@
 
     <!-- CART & CHECKOUT MODAL -->
     <div id="cartModal" class="modal-overlay">
-        <div class="cart-modal-content">
-            <span class="close-btn" onclick="closeCartModal()">&times;</span>
+        <div class="modal-content cart-modal-content">
+            <div class="close-btn" onclick="closeCartModal()">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </div>
             
-            <div class="modal-pane pane-light" style="border-right: 1px solid var(--gray-medium);">
-                <h3 style="color: var(--navy); margin-bottom: 20px;">Your Order List</h3>
+            <div class="modal-pane">
+                <h3 style="margin-bottom: 30px; font-size: 1.8rem;">Your <span class="text-gradient">Order List</span></h3>
                 
-                <!-- Dynamic Cart Items injected here -->
-                <div id="cartItemsContainer" style="min-height: 200px;">
-                    <p style="color: var(--gray-dark);">Your cart is empty.</p>
+                <div id="cartItemsContainer" style="min-height: 300px;">
+                    <!-- Dynamic Cart Items -->
                 </div>
 
                 <div class="cart-total-box">
                     <span>Estimated Total:</span>
-                    <span id="cartTotalPriceUI">$0.00</span>
+                    <span id="cartTotalPriceUI" style="font-size: 1.8rem;">$0.00</span>
                 </div>
             </div>
 
             <div class="modal-pane pane-gray">
-                <h3 style="margin-bottom: 25px; color: var(--navy);">Delivery Information</h3>
+                <h3 style="margin-bottom: 30px; font-size: 1.5rem;">Delivery Details</h3>
                 
                 <form id="checkoutForm" action="https://formsubmit.co/manishajain8095@gmail.com" method="POST" target="_blank" onsubmit="prepareCheckout(event)">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_subject" value="New Multi-Item Order Request">
                     <input type="hidden" name="_autoresponse" value="Thank you for your multi-item order request. We will review your list and contact you shortly. - LH Distributor">
-                    
-                    <!-- Hidden field to pass the entire cart text to the email -->
                     <textarea name="Order_Summary" id="hiddenOrderSummary" style="display:none;"></textarea>
                     
                     <div class="form-group">
                         <label>Clinic Name</label>
-                        <input type="text" name="Clinic_Name" required placeholder="e.g., Summit Dental Group">
+                        <input type="text" name="Clinic_Name" required placeholder="Summit Dental Group">
                     </div>
                     
                     <div class="form-group">
                         <label>Contact Name</label>
-                        <input type="text" name="Contact_Name" required placeholder="e.g., Manisha">
+                        <input type="text" name="Contact_Name" required placeholder="Dr. Smith">
                     </div>
 
                     <div class="form-group">
-                        <label>Your Email (For Confirmation)</label>
-                        <input type="email" name="Email" required placeholder="name@clinic.com">
+                        <label>Your Email</label>
+                        <input type="email" name="Email" required placeholder="billing@clinic.com">
                     </div>
 
                     <div class="form-group">
                         <label>Delivery Address</label>
-                        <input type="text" name="Delivery_Address" required placeholder="Street, City, Zip">
+                        <input type="text" name="Delivery_Address" required placeholder="123 Medical Pkwy, City, Zip">
                     </div>
 
                     <div class="form-group">
@@ -396,19 +443,15 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label>Additional Notes</label>
-                        <textarea name="Notes" rows="2" placeholder="Any specific instructions?"></textarea>
-                    </div>
-
-                    <button type="submit" id="checkoutBtn" class="btn btn-teal" style="width: 100%; margin-top: 10px;">Submit Order</button>
+                    <button type="submit" id="checkoutBtn" class="btn btn-gradient" style="width: 100%; padding: 18px; margin-top: 10px;">Submit Secure Order</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Application Logic -->
     <script>
+        // Exact Data Array provided
         const products = [
             { brand: "SS WHITE", name: "(FG#330) Pear Shape", price: "$21.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured69.jpg" },
             { brand: "SS WHITE", name: "(FG#557) Straight Flat end", price: "$21.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured70.jpg" },
@@ -633,19 +676,22 @@
 
             paginatedItems.forEach((p, relativeIndex) => {
                 const globalIndex = start + relativeIndex;
-                const displayImage = p.imageUrl && p.imageUrl.trim() !== "" ? p.imageUrl : `https://placehold.co/400x300/f4f4f5/0087a1?text=${encodeURIComponent(p.brand)}`;
+                const displayImage = p.imageUrl && p.imageUrl.trim() !== "" ? p.imageUrl : `https://placehold.co/400x300/f8fafc/0284c7?text=${encodeURIComponent(p.brand)}`;
+                const catLabel = p.cat && p.cat.trim() !== "" ? p.cat : "General";
                 
                 const card = `
                     <div class="product-card" onclick="openProductModal(${globalIndex})">
-                        <img src="${displayImage}" alt="${p.name}" class="product-image-container" loading="lazy">
-                        <div class="product-divider">
-                            <span class="product-category">${p.cat && p.cat.trim() !== "" ? p.cat : "Uncategorized"}</span>
+                        <div class="product-badge">${catLabel}</div>
+                        <div class="product-image-wrapper">
+                            <img src="${displayImage}" alt="${p.name}" loading="lazy">
                         </div>
-                        <div class="product-info">
-                            <div class="product-brand">${p.brand}</div>
-                            <h4 class="product-name">${p.name}</h4>
+                        <div class="product-brand">${p.brand}</div>
+                        <h4 class="product-name">${p.name}</h4>
+                        <div class="product-price-row">
                             <div class="product-price">${p.price}</div>
-                            <button class="btn btn-outline-dark">View Options</button>
+                            <button class="btn-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            </button>
                         </div>
                     </div>
                 `;
@@ -659,7 +705,7 @@
             paginationContainer.innerHTML = '';
             
             const prevBtn = document.createElement('button');
-            prevBtn.innerText = 'Prev';
+            prevBtn.innerHTML = '<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>';
             prevBtn.className = 'page-btn';
             prevBtn.disabled = currentPage === 1;
             prevBtn.onclick = () => { 
@@ -674,11 +720,8 @@
             let startPage = Math.max(1, currentPage - 2);
             let endPage = Math.min(totalPages, currentPage + 2);
             
-            if (currentPage <= 3) {
-                endPage = Math.min(totalPages, 5);
-            } else if (currentPage >= totalPages - 2) {
-                startPage = Math.max(1, totalPages - 4);
-            }
+            if (currentPage <= 3) { endPage = Math.min(totalPages, 5); } 
+            else if (currentPage >= totalPages - 2) { startPage = Math.max(1, totalPages - 4); }
 
             for (let i = startPage; i <= endPage; i++) {
                 const btn = document.createElement('button');
@@ -693,7 +736,7 @@
             }
 
             const nextBtn = document.createElement('button');
-            nextBtn.innerText = 'Next';
+            nextBtn.innerHTML = '<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>';
             nextBtn.className = 'page-btn';
             nextBtn.disabled = currentPage === totalPages;
             nextBtn.onclick = () => { 
@@ -706,10 +749,9 @@
             paginationContainer.appendChild(nextBtn);
         }
 
-        // Fix to smoothly scroll to the top of the products
         function scrollToCatalog() {
             const catalogSec = document.getElementById('catalog');
-            const headerOffset = 90; // Accounts for sticky header height
+            const headerOffset = 100; 
             const elementPosition = catalogSec.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
             window.scrollTo({ top: offsetPosition, behavior: "smooth" });
@@ -720,10 +762,10 @@
         // --- PRODUCT MODAL (ADD TO CART) ---
         function openProductModal(globalIndex) {
             selectedProduct = products[globalIndex];
-            const displayImage = selectedProduct.imageUrl && selectedProduct.imageUrl.trim() !== "" ? selectedProduct.imageUrl : `https://placehold.co/600x400/f4f4f5/0087a1?text=${encodeURIComponent(selectedProduct.brand)}`;
+            const displayImage = selectedProduct.imageUrl && selectedProduct.imageUrl.trim() !== "" ? selectedProduct.imageUrl : `https://placehold.co/600x400/f8fafc/0284c7?text=${encodeURIComponent(selectedProduct.brand)}`;
 
             document.getElementById('detailImg').src = displayImage;
-            document.getElementById('detailCat').innerText = selectedProduct.cat && selectedProduct.cat.trim() !== "" ? selectedProduct.cat.toUpperCase() : "UNCATEGORIZED";
+            document.getElementById('detailCat').innerText = selectedProduct.cat && selectedProduct.cat.trim() !== "" ? selectedProduct.cat : "General";
             document.getElementById('detailName').innerText = selectedProduct.name;
             document.getElementById('detailBrand').innerText = selectedProduct.brand;
             document.getElementById('detailPrice').innerText = selectedProduct.price;
@@ -743,7 +785,6 @@
             const qty = parseInt(document.getElementById('detailQty').value);
             if (qty < 1) return;
             
-            // Check if item exists in cart to update qty instead of duplicate
             const existingItemIndex = cart.findIndex(item => item.product.name === selectedProduct.name);
             if (existingItemIndex > -1) {
                 cart[existingItemIndex].quantity += qty;
@@ -753,7 +794,6 @@
             
             updateCartBadge();
             closeProductModal();
-            alert(`${qty}x ${selectedProduct.name} added to cart!`);
         }
 
         function removeFromCart(index) {
@@ -785,7 +825,7 @@
             let orderSummaryText = "ORDER SUMMARY:\n-----------------------\n";
 
             if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p style="color: var(--gray-dark); margin-top: 20px;">Your cart is currently empty. Add items from the catalog.</p>';
+                cartItemsContainer.innerHTML = '<div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; color:var(--text-muted);"><svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-bottom:20px; opacity:0.5;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg><p>Your cart is empty.</p></div>';
                 document.getElementById('checkoutBtn').disabled = true;
                 cartTotalPriceUI.innerText = "$0.00";
                 hiddenOrderSummary.value = "";
@@ -800,21 +840,20 @@
                 const lineTotal = priceNum * item.quantity;
                 totalCost += lineTotal;
 
-                // Build text for the email
                 orderSummaryText += `${item.quantity}x - ${p.name} (${p.brand}) @ ${p.price} each\n`;
 
-                const displayImage = p.imageUrl && p.imageUrl.trim() !== "" ? p.imageUrl : `https://placehold.co/100x100/f4f4f5/0087a1?text=${encodeURIComponent(p.brand)}`;
+                const displayImage = p.imageUrl && p.imageUrl.trim() !== "" ? p.imageUrl : `https://placehold.co/100x100/f8fafc/0284c7?text=${encodeURIComponent(p.brand)}`;
                 
                 const itemHTML = `
                     <div class="cart-item">
-                        <img src="${displayImage}" alt="Item" style="width: 50px; height: 50px; object-fit: contain;">
+                        <img src="${displayImage}" alt="Item">
                         <div class="cart-item-info">
                             <div class="cart-item-title">${p.name}</div>
-                            <div style="font-size: 0.8rem; color: var(--gray-dark);">Qty: ${item.quantity} | ${p.brand}</div>
+                            <div style="font-size: 0.85rem; color: var(--text-muted); font-weight:600;">Qty: ${item.quantity} &nbsp;&bull;&nbsp; ${p.brand}</div>
                         </div>
-                        <div style="text-align: right;">
+                        <div style="text-align: right; min-width: 80px;">
                             <div class="cart-item-price">$${lineTotal.toFixed(2)}</div>
-                            <button class="btn-danger" onclick="removeFromCart(${index})">Remove</button>
+                            <button class="btn-danger" style="margin-top:8px;" onclick="removeFromCart(${index})">Remove</button>
                         </div>
                     </div>
                 `;
@@ -834,7 +873,7 @@
             }
             // Form is automatically submitted via target="_blank"
             setTimeout(() => {
-                cart = []; // Empty cart after submission
+                cart = []; 
                 updateCartBadge();
                 closeCartModal();
             }, 1000);
