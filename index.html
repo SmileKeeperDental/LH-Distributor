@@ -218,6 +218,17 @@
             .nav-links { display: none; }
             header { width: 100%; top: 0; border-radius: 0; border: none; }
         }
+		
+/* Update  */
+.nav-container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    height: 100px; /* Increase this to fit your larger logo */
+    padding: 0 30px; 
+}
+
+
     </style>
 </head>
 <body>
@@ -227,11 +238,15 @@
         <div class="nav-container">
             
 			<!-- Inside <header> -->
+
 <div class="logo">
     <a href="#catalog">
-        <img src="LHLogo.png" alt="LH Distributor Logo" style="height: 50px; width: auto; object-fit: contain;">
+        <!-- Change height from 50px to 80px or higher -->
+        <img src="LHLogo.png" alt="LH Distributor Logo" style="height: 80px; width: auto; object-fit: contain;">
     </a>
 </div>
+
+
 
             <nav style="display: flex; align-items: center; gap: 40px;">
                 <ul class="nav-links">
