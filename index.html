@@ -15,7 +15,8 @@
             --gray-light: #f4f4f5;
             --gray-medium: #d4d4d8;
             --gray-dark: #3f3f46;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --danger: #e11d48;
+            --transition: all 0.3s ease;
         }
 
         /* Reset & Base */
@@ -28,18 +29,19 @@
 
         /* Typography */
         h1, h2, h3, h4 { font-weight: 800; text-transform: uppercase; letter-spacing: -0.5px; }
-        h1 { font-size: 4rem; line-height: 1; color: var(--white); margin-bottom: 20px; }
+        h1 { font-size: 4rem; line-height: 1; color: var(--navy); margin-bottom: 20px; }
+        h1 span { color: var(--teal); }
         h2 { font-size: 2.5rem; color: var(--black); margin-bottom: 40px; text-align: center; }
         p { color: var(--gray-dark); margin-bottom: 20px; }
 
         /* Buttons */
         .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border-radius: 25px; cursor: pointer; transition: var(--transition); border: 2px solid transparent; font-family: inherit; font-size: 1rem; }
         .btn-teal { background-color: var(--teal); color: var(--white); }
-        .btn-teal:hover { background-color: var(--navy); color: var(--white); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-        .btn-teal:disabled { background-color: var(--gray-medium); cursor: not-allowed; transform: none; box-shadow: none; border-color: var(--gray-medium); }
+        .btn-teal:hover { background-color: var(--navy); color: var(--white); transform: translateY(-2px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
         .btn-outline-dark { border-color: var(--navy); color: var(--navy); background: transparent; border-radius: 25px; }
         .btn-outline-dark:hover { background-color: var(--teal); border-color: var(--teal); color: var(--white); }
-        .product-card .btn-outline-dark { width: 100%; margin-top: auto; }
+        .btn-danger { background-color: transparent; color: var(--danger); border: 1px solid var(--danger); padding: 6px 12px; font-size: 0.8rem; border-radius: 4px; }
+        .btn-danger:hover { background-color: var(--danger); color: var(--white); }
 
         /* Layout */
         .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
@@ -48,30 +50,38 @@
         .bg-black { background-color: var(--black); color: var(--white); }
         .bg-black h2, .bg-black p { color: var(--white); }
 
-        /* Header */
+        /* Header & Cart Badge */
         header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--gray-medium); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; height: 80px; }
         .logo { font-size: 2rem; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 10px; }
         .logo span { color: var(--teal); }
-        .nav-links { display: flex; gap: 40px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; }
+        .nav-links { display: flex; align-items: center; gap: 30px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; }
         .nav-links a:hover { color: var(--teal); }
+        
+        .cart-toggle { background: var(--navy); color: var(--white); padding: 8px 20px; border-radius: 25px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: var(--transition); }
+        .cart-toggle:hover { background: var(--teal); }
+        .cart-badge { background: var(--white); color: var(--navy); font-weight: 800; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; }
 
         /* HERO SECTION */
-        .hero { padding: 80px 0 120px; background: linear-gradient(135deg, var(--white) 0%, var(--gray-light) 100%); min-height: 85vh; display: flex; align-items: center; }
+        .hero { padding: 80px 0 120px; background: linear-gradient(135deg, var(--white) 0%, var(--gray-light) 100%); min-height: 80vh; display: flex; align-items: center; }
         .hero-inner { display: flex; align-items: center; justify-content: space-between; gap: 60px; flex-wrap: wrap; }
         .hero-content { flex: 1; min-width: 400px; }
-        .hero-content h1 { color: var(--navy); font-size: 4.5rem; line-height: 1.1; margin-bottom: 25px; }
-        .hero-content h1 span { color: var(--teal); }
-        .hero-content p { color: var(--gray-dark); font-size: 1.25rem; margin-bottom: 40px; max-width: 550px; }
+        .hero-content p { font-size: 1.25rem; max-width: 550px; }
         .hero-features { display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; }
-        .hero-features span { display: flex; align-items: center; gap: 10px; color: var(--navy); font-weight: 800; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 0.5px; }
+        .hero-features span { display: flex; align-items: center; gap: 10px; color: var(--navy); font-weight: 800; text-transform: uppercase; font-size: 0.95rem; }
         .hero-features span::before { content: ''; display: inline-block; width: 8px; height: 8px; background-color: var(--teal); }
         .hero-buttons { display: flex; gap: 20px; }
         .hero-image { flex: 1; min-width: 400px; display: flex; justify-content: flex-end; position: relative; }
         .hero-image::before { content: ''; position: absolute; top: -20px; right: -20px; width: 100%; height: 100%; border: 4px solid var(--teal); z-index: 0; }
         .hero-image img { max-width: 100%; position: relative; z-index: 1; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
 
-        /* Product Grid & Cards (Updated Layout) */
+        /* Workflows */
+        .workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .step-card { background: var(--white); padding: 40px; border: 1px solid var(--gray-medium); transition: var(--transition); text-align: center;}
+        .step-card:hover { border-color: var(--teal); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .step-number { font-size: 4rem; font-weight: 800; color: var(--gray-light); -webkit-text-stroke: 2px var(--teal); margin-bottom: 20px; line-height: 1; }
+
+        /* Product Grid & Cards */
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; margin-top: 40px; }
         .product-card { background: var(--white); display: flex; flex-direction: column; border: 1px solid var(--gray-medium); transition: var(--transition); border-radius: 8px; overflow: hidden; padding-bottom: 20px; }
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,135,161,0.15); border-color: var(--teal); }
@@ -91,27 +101,54 @@
         .page-btn.active { background: var(--teal); color: var(--white); border-color: var(--teal); }
         .page-btn:disabled { color: var(--gray-medium); cursor: not-allowed; opacity: 0.5; }
 
-        /* Modal Styles */
+        /* Modals (Product Detail & Cart Checkout) */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(5px); }
         .modal-overlay.active { display: flex; }
-        .modal-content { background: var(--white); width: 90%; max-width: 900px; max-height: 90vh; overflow-y: auto; position: relative; display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; border-radius: 8px; }
-        .close-btn { position: absolute; top: 20px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--gray-dark); z-index: 10; line-height: 1; }
-        .close-btn:hover { color: var(--black); }
-        .modal-product-pane { background: var(--gray-light); padding: 40px; border-right: 1px solid var(--gray-medium); display: flex; flex-direction: column; }
-        .modal-form-pane { padding: 40px; }
-        .modal-product-image { width: 100%; height: 250px; object-fit: contain; background: var(--white); padding: 20px; margin-bottom: 20px; border: 1px solid var(--gray-medium); border-radius: 4px; }
+        .modal-content { background: var(--white); width: 90%; max-width: 900px; max-height: 90vh; overflow-y: auto; position: relative; border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; }
+        .cart-modal-content { background: var(--gray-light); width: 95%; max-width: 1100px; max-height: 95vh; overflow-y: auto; position: relative; border-radius: 8px; display: grid; grid-template-columns: 1.2fr 1fr; }
         
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--gray-dark); z-index: 10; line-height: 1; }
+        .close-btn:hover { color: var(--black); }
+        
+        .modal-pane { padding: 40px; }
+        .pane-light { background: var(--white); }
+        .pane-gray { background: var(--gray-light); border-right: 1px solid var(--gray-medium); }
+        
+        .modal-product-image { width: 100%; height: 300px; object-fit: contain; background: var(--white); padding: 20px; margin-bottom: 20px; border: 1px solid var(--gray-medium); border-radius: 4px; }
+        
+        /* Cart Items UI */
+        .cart-item { display: flex; align-items: center; justify-content: space-between; background: var(--white); padding: 15px; border: 1px solid var(--gray-medium); border-radius: 6px; margin-bottom: 15px; }
+        .cart-item-info { flex-grow: 1; margin: 0 15px; }
+        .cart-item-title { font-weight: 600; color: var(--navy); font-size: 0.95rem; }
+        .cart-item-price { color: #f29a00; font-weight: 600; font-size: 0.9rem; }
+        .cart-total-box { background: var(--navy); color: var(--white); padding: 20px; border-radius: 6px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 1.2rem; font-weight: 800; }
+
         /* Forms */
         .form-group { margin-bottom: 20px; text-align: left; }
         .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--navy); font-size: 0.9rem; text-transform: uppercase; }
         .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid var(--gray-medium); font-family: inherit; font-size: 1rem; transition: var(--transition); border-radius: 4px; }
         .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,135,161,0.1); }
         
+        /* Text Pages */
+        .text-page-content { max-width: 800px; margin: 0 auto; text-align: center; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px; text-align: left; }
+        .contact-info-box { background: var(--white); padding: 40px; border: 1px solid var(--gray-medium); border-radius: 8px;}
+
+        /* Footer */
+        footer { background-color: var(--black); color: var(--white); padding: 80px 0 40px; border-top: 5px solid var(--teal); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 60px; }
+        .footer-logo { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
+        .footer-logo span { color: var(--teal); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #333; font-size: 0.9rem; color: var(--gray-dark); }
+
         @media (max-width: 768px) {
-            .modal-content { grid-template-columns: 1fr; }
+            .modal-content, .cart-modal-content { grid-template-columns: 1fr; }
             .hero-inner { flex-direction: column; text-align: center; }
             .hero-features { align-items: center; }
             .hero-buttons { justify-content: center; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; /* simple mobile hide for clean view */ }
+            .cart-toggle { display: flex; }
         }
     </style>
 </head>
@@ -121,11 +158,16 @@
     <header>
         <div class="container nav-container">
             <div class="logo">LH <span>Distributor</span></div>
-            <nav>
+            <nav style="display: flex; align-items: center; gap: 40px;">
                 <ul class="nav-links">
                     <li><a href="#catalog">Products</a></li>
                     <li><a href="#workflow">How It Works</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
+                <div class="cart-toggle" onclick="openCartModal()">
+                    🛒 Cart <span id="cartBadge" class="cart-badge">0</span>
+                </div>
             </nav>
         </div>
     </header>
@@ -135,9 +177,9 @@
         <div class="container hero-inner">
             <div class="hero-content">
                 <h1>High-Performance<br><span>Dental Supply.</span></h1>
-                <p>A crisp, fast, no-payment ordering engine for clinics that demand precision. Get product details, quote requests, and direct owner alerts in under 60 seconds.</p>
+                <p>A crisp, fast, no-payment ordering engine for clinics that demand precision. Select multiple items, generate a quote request, and alert the owner in under 60 seconds.</p>
                 <div class="hero-features">
-                    <span>Same-Day Quote Response</span>
+                    <span>Build Custom Orders Easily</span>
                     <span>Zero Checkout Friction</span>
                     <span>Clinic-First Detailed Specs</span>
                 </div>
@@ -147,6 +189,31 @@
             </div>
             <div class="hero-image">
                 <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Clinical Supply">
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section id="workflow" class="bg-white">
+        <div class="container">
+            <h2>Built for Speed: 60-Second Ordering</h2>
+            <p style="text-align: center; max-width: 600px; margin: 0 auto 50px;">Every order bypasses the cart. Select your products, enter your clinic details, and we instantly sync your request with our fulfillment team.</p>
+            <div class="workflow-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <h3 style="color: var(--navy); margin-bottom: 10px;">Select Products</h3>
+                    <p>Browse our extensive, clinically-curated catalog and add essentials to your cart.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h3 style="color: var(--navy); margin-bottom: 10px;">Add Details</h3>
+                    <p>Open the cart and fill out a quick form with your clinic name and delivery address.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3 style="color: var(--navy); margin-bottom: 10px;">Auto-Sync Order</h3>
+                    <p>The system instantly alerts our office while sending you a direct confirmation email.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -163,52 +230,155 @@
         </div>
     </section>
 
-    <!-- ORDER MODAL OVERLAY -->
-    <div id="orderModal" class="modal-overlay">
+    <!-- About Section -->
+    <section id="about" class="bg-white">
+        <div class="container text-page-content">
+            <h2>About LH Distributor</h2>
+            <h3 style="color: var(--teal); margin-bottom: 20px;">Quality Products. Trusted Partner.</h3>
+            <p>LH Distributor was built specifically for the modern dental team. We understand that clinical professionals don't have time to navigate complicated checkout systems, deal with hidden shipping fees, or wait days for inventory confirmations.</p>
+            <p>Our catalog focuses on the high-demand chairside materials that keep your rooms moving: restoratives, sterilization pouches, burs, and disposables. By utilizing a direct quote-based fulfillment system, we strip away the noise and connect your clinic directly to the supplies you need, allowing owners to personally verify availability and pricing for every single order.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-gray-light">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info-box">
+                    <h3>Get In Touch</h3>
+                    <p>Whether you have a question about a specific SKU, need bulk pricing, or want to establish a recurring order list, we are here to help.</p>
+                    <div style="margin-top: 30px; font-size: 1.1rem; line-height: 2;">
+                        <p><strong>Phone:</strong> <a href="tel:5308596003" style="color: var(--teal);">(530) 859-6003</a></p>
+                        <p><strong>Email:</strong> <a href="mailto:manishajain8095@gmail.com" style="color: var(--teal);">manishajain8095@gmail.com</a></p>
+                    </div>
+                </div>
+                <div class="contact-info-box pane-light">
+                    <form action="https://formsubmit.co/manishajain8095@gmail.com" method="POST" target="_blank">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="New Contact Message from LH Distributor Website">
+                        <input type="hidden" name="_template" value="table">
+                        
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" name="Name" required placeholder="How can we help?">
+                        </div>
+                        <div class="form-group">
+                            <label>Your Email</label>
+                            <input type="email" name="Email" required placeholder="name@clinic.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea name="Message" rows="4" required placeholder="Type your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-teal" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">LH <span>Distributor</span></div>
+                    <p style="color: var(--gray-medium); max-width: 300px;">Modern dental supply ordering for clinics that prefer quote-based fulfillment and immediate service.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 20px; color: var(--white);">Direct Contact</h4>
+                    <p><strong>Phone:</strong> (530) 859-6003</p>
+                    <p><strong>Email:</strong> manishajain8095@gmail.com</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 20px; color: var(--white);">Navigation</h4>
+                    <ul style="line-height: 2;">
+                        <li><a href="#catalog">Full Catalog</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 LH Distributor. Quality Products. Trusted Partner.
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRODUCT DETAIL MODAL (ADD TO CART) -->
+    <div id="productModal" class="modal-overlay">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <span class="close-btn" onclick="closeProductModal()">&times;</span>
             
-            <div class="modal-product-pane">
-                <h3 style="color: var(--navy); margin-bottom: 20px;">Order Details</h3>
-                <img id="modalImg" src="" alt="Product Image" class="modal-product-image">
-                <div style="font-size: 0.85rem; color: var(--teal); font-weight: 800;" id="modalCat">CATEGORY</div>
-                <h2 id="modalName" style="text-align: left; margin: 10px 0; font-size: 1.5rem; color: var(--black);">Product Name</h2>
-                <div id="modalBrand" style="color: var(--gray-dark); margin-bottom: 15px;">Brand</div>
-                <div id="modalPrice" style="font-size: 1.8rem; font-weight: 800; color: var(--navy);">Price</div>
+            <div class="modal-pane pane-gray">
+                <img id="detailImg" src="" alt="Product Image" class="modal-product-image">
             </div>
 
-            <div class="modal-form-pane">
+            <div class="modal-pane pane-light">
+                <div style="font-size: 0.85rem; color: var(--teal); font-weight: 800; margin-bottom: 5px;" id="detailCat">CATEGORY</div>
+                <h2 id="detailName" style="text-align: left; margin: 0 0 10px 0; font-size: 1.8rem; color: var(--black); line-height: 1.2;">Product Name</h2>
+                <div id="detailBrand" style="color: #f03e00; font-weight: 600; margin-bottom: 20px;">Brand</div>
+                
+                <div style="border-top: 1px solid var(--gray-medium); border-bottom: 1px solid var(--gray-medium); padding: 20px 0; margin-bottom: 30px;">
+                    <div id="detailPrice" style="font-size: 2rem; font-weight: 800; color: #f29a00; margin-bottom: 15px;">Price</div>
+                    <p style="font-size: 0.9rem; color: var(--gray-dark); margin: 0;">Add this item to your order list. Once you are finished browsing, click the Cart icon at the top of the page to submit your delivery request.</p>
+                </div>
+
+                <div class="form-group" style="display: flex; gap: 20px; align-items: center;">
+                    <div style="width: 100px;">
+                        <label>Quantity</label>
+                        <input type="number" id="detailQty" min="1" value="1" style="text-align: center; font-weight: bold; font-size: 1.2rem;">
+                    </div>
+                    <button class="btn btn-teal" style="flex-grow: 1; margin-top: 15px; height: 50px;" onclick="addItemToCart()">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART & CHECKOUT MODAL -->
+    <div id="cartModal" class="modal-overlay">
+        <div class="cart-modal-content">
+            <span class="close-btn" onclick="closeCartModal()">&times;</span>
+            
+            <div class="modal-pane pane-light" style="border-right: 1px solid var(--gray-medium);">
+                <h3 style="color: var(--navy); margin-bottom: 20px;">Your Order List</h3>
+                
+                <!-- Dynamic Cart Items injected here -->
+                <div id="cartItemsContainer" style="min-height: 200px;">
+                    <p style="color: var(--gray-dark);">Your cart is empty.</p>
+                </div>
+
+                <div class="cart-total-box">
+                    <span>Estimated Total:</span>
+                    <span id="cartTotalPriceUI">$0.00</span>
+                </div>
+            </div>
+
+            <div class="modal-pane pane-gray">
                 <h3 style="margin-bottom: 25px; color: var(--navy);">Delivery Information</h3>
                 
-                <form id="orderForm" action="https://formsubmit.co/manishajain8095@gmail.com" method="POST" target="_blank">
+                <form id="checkoutForm" action="https://formsubmit.co/manishajain8095@gmail.com" method="POST" target="_blank" onsubmit="prepareCheckout(event)">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_autoresponse" value="Thank you for your order request. We have received it and will process it shortly. - LH Distributor">
-                    <input type="hidden" id="hiddenSubject" name="_subject" value="New Order Request">
+                    <input type="hidden" name="_subject" value="New Multi-Item Order Request">
+                    <input type="hidden" name="_autoresponse" value="Thank you for your multi-item order request. We will review your list and contact you shortly. - LH Distributor">
                     
-                    <input type="hidden" id="hiddenProductName" name="Product_Name" value="">
-                    <input type="hidden" id="hiddenBrand" name="Product_Brand" value="">
-                    <input type="hidden" id="hiddenCategory" name="Product_Category" value="">
-                    <input type="hidden" id="hiddenPrice" name="Listed_Price" value="">
+                    <!-- Hidden field to pass the entire cart text to the email -->
+                    <textarea name="Order_Summary" id="hiddenOrderSummary" style="display:none;"></textarea>
                     
                     <div class="form-group">
                         <label>Clinic Name</label>
                         <input type="text" name="Clinic_Name" required placeholder="e.g., Summit Dental Group">
                     </div>
                     
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div class="form-group">
-                            <label>Contact Name</label>
-                            <input type="text" name="Contact_Name" required placeholder="e.g., Manisha">
-                        </div>
-                        <div class="form-group">
-                            <label>Quantity Required</label>
-                            <input type="number" name="Quantity" required min="1" value="1">
-                        </div>
+                    <div class="form-group">
+                        <label>Contact Name</label>
+                        <input type="text" name="Contact_Name" required placeholder="e.g., Manisha">
                     </div>
 
                     <div class="form-group">
-                        <label>Your Email Address (For Confirmation)</label>
+                        <label>Your Email (For Confirmation)</label>
                         <input type="email" name="Email" required placeholder="name@clinic.com">
                     </div>
 
@@ -217,7 +387,21 @@
                         <input type="text" name="Delivery_Address" required placeholder="Street, City, Zip">
                     </div>
 
-                    <button type="submit" class="btn btn-teal" style="width: 100%; margin-top: 10px;" onclick="setTimeout(closeModal, 1500)">Place Order</button>
+                    <div class="form-group">
+                        <label>When Needed?</label>
+                        <select name="Urgency" required>
+                            <option value="Standard (3-5 Days)">Standard (3-5 Days)</option>
+                            <option value="Urgent (1-2 Days)">Urgent (1-2 Days)</option>
+                            <option value="Stock Restock (Next Week)">Stock Restock (Next Week)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Additional Notes</label>
+                        <textarea name="Notes" rows="2" placeholder="Any specific instructions?"></textarea>
+                    </div>
+
+                    <button type="submit" id="checkoutBtn" class="btn btn-teal" style="width: 100%; margin-top: 10px;">Submit Order</button>
                 </form>
             </div>
         </div>
@@ -422,11 +606,21 @@
             { brand: "Premier", name: "Traxodent Hemodent Paste Retraction System, Starter Kit: 7 - 0.7g Syringes", price: "$97.95", cat: "Hemostasis and Retraction", imageUrl: "https://lhdistributors.com/uploads/featured2143.jpeg" }
         ];
 
+        // System State
+        let cart = [];
+        let selectedProduct = null;
+        
+        // Element References
         const grid = document.getElementById('productGrid');
         const paginationContainer = document.getElementById('paginationControls');
-        const modal = document.getElementById('orderModal');
+        const productModal = document.getElementById('productModal');
+        const cartModal = document.getElementById('cartModal');
+        const cartBadge = document.getElementById('cartBadge');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartTotalPriceUI = document.getElementById('cartTotalPriceUI');
+        const hiddenOrderSummary = document.getElementById('hiddenOrderSummary');
         
-        // PAGINATION LOGIC
+        // --- PAGINATION LOGIC ---
         const ITEMS_PER_PAGE = 12;
         let currentPage = 1;
         const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
@@ -442,7 +636,7 @@
                 const displayImage = p.imageUrl && p.imageUrl.trim() !== "" ? p.imageUrl : `https://placehold.co/400x300/f4f4f5/0087a1?text=${encodeURIComponent(p.brand)}`;
                 
                 const card = `
-                    <div class="product-card" onclick="openModal(${globalIndex})">
+                    <div class="product-card" onclick="openProductModal(${globalIndex})">
                         <img src="${displayImage}" alt="${p.name}" class="product-image-container" loading="lazy">
                         <div class="product-divider">
                             <span class="product-category">${p.cat && p.cat.trim() !== "" ? p.cat : "Uncategorized"}</span>
@@ -451,7 +645,7 @@
                             <div class="product-brand">${p.brand}</div>
                             <h4 class="product-name">${p.name}</h4>
                             <div class="product-price">${p.price}</div>
-                            <button class="btn btn-teal" style="width: 100%;">ⓘ Details</button>
+                            <button class="btn btn-outline-dark">View Options</button>
                         </div>
                     </div>
                 `;
@@ -468,7 +662,13 @@
             prevBtn.innerText = 'Prev';
             prevBtn.className = 'page-btn';
             prevBtn.disabled = currentPage === 1;
-            prevBtn.onclick = () => { if (currentPage > 1) { currentPage--; renderProducts(currentPage); } };
+            prevBtn.onclick = () => { 
+                if (currentPage > 1) { 
+                    currentPage--; 
+                    renderProducts(currentPage); 
+                    scrollToCatalog(); 
+                } 
+            };
             paginationContainer.appendChild(prevBtn);
 
             let startPage = Math.max(1, currentPage - 2);
@@ -484,7 +684,11 @@
                 const btn = document.createElement('button');
                 btn.innerText = i;
                 btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
-                btn.onclick = () => { currentPage = i; renderProducts(currentPage); };
+                btn.onclick = () => { 
+                    currentPage = i; 
+                    renderProducts(currentPage); 
+                    scrollToCatalog();
+                };
                 paginationContainer.appendChild(btn);
             }
 
@@ -492,44 +696,154 @@
             nextBtn.innerText = 'Next';
             nextBtn.className = 'page-btn';
             nextBtn.disabled = currentPage === totalPages;
-            nextBtn.onclick = () => { if (currentPage < totalPages) { currentPage++; renderProducts(currentPage); } };
+            nextBtn.onclick = () => { 
+                if (currentPage < totalPages) { 
+                    currentPage++; 
+                    renderProducts(currentPage); 
+                    scrollToCatalog();
+                } 
+            };
             paginationContainer.appendChild(nextBtn);
         }
 
-        // Initialize the first page
+        // Fix to smoothly scroll to the top of the products
+        function scrollToCatalog() {
+            const catalogSec = document.getElementById('catalog');
+            const headerOffset = 90; // Accounts for sticky header height
+            const elementPosition = catalogSec.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+        }
+
         renderProducts(currentPage);
 
-        // Modal Logic
-        function openModal(globalIndex) {
-            const selectedProduct = products[globalIndex];
+        // --- PRODUCT MODAL (ADD TO CART) ---
+        function openProductModal(globalIndex) {
+            selectedProduct = products[globalIndex];
             const displayImage = selectedProduct.imageUrl && selectedProduct.imageUrl.trim() !== "" ? selectedProduct.imageUrl : `https://placehold.co/600x400/f4f4f5/0087a1?text=${encodeURIComponent(selectedProduct.brand)}`;
 
-            document.getElementById('modalImg').src = displayImage;
-            document.getElementById('modalCat').innerText = selectedProduct.cat && selectedProduct.cat.trim() !== "" ? selectedProduct.cat.toUpperCase() : "UNCATEGORIZED";
-            document.getElementById('modalName').innerText = selectedProduct.name;
-            document.getElementById('modalBrand').innerText = selectedProduct.brand;
-            document.getElementById('modalPrice').innerText = selectedProduct.price;
+            document.getElementById('detailImg').src = displayImage;
+            document.getElementById('detailCat').innerText = selectedProduct.cat && selectedProduct.cat.trim() !== "" ? selectedProduct.cat.toUpperCase() : "UNCATEGORIZED";
+            document.getElementById('detailName').innerText = selectedProduct.name;
+            document.getElementById('detailBrand').innerText = selectedProduct.brand;
+            document.getElementById('detailPrice').innerText = selectedProduct.price;
+            document.getElementById('detailQty').value = 1;
             
-            document.getElementById('hiddenProductName').value = selectedProduct.name;
-            document.getElementById('hiddenBrand').value = selectedProduct.brand;
-            document.getElementById('hiddenCategory').value = selectedProduct.cat;
-            document.getElementById('hiddenPrice').value = selectedProduct.price;
-            document.getElementById('hiddenSubject').value = `New Order: ${selectedProduct.name}`;
-            
-            modal.classList.add('active');
+            productModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() {
-            modal.classList.remove('active');
+        function closeProductModal() {
+            productModal.classList.remove('active');
             document.body.style.overflow = 'auto';
-            document.getElementById('orderForm').reset();
         }
 
-        window.onclick = function(event) {
-            if (event.target === modal) {
-                closeModal();
+        // --- CART LOGIC ---
+        function addItemToCart() {
+            const qty = parseInt(document.getElementById('detailQty').value);
+            if (qty < 1) return;
+            
+            // Check if item exists in cart to update qty instead of duplicate
+            const existingItemIndex = cart.findIndex(item => item.product.name === selectedProduct.name);
+            if (existingItemIndex > -1) {
+                cart[existingItemIndex].quantity += qty;
+            } else {
+                cart.push({ product: selectedProduct, quantity: qty });
             }
+            
+            updateCartBadge();
+            closeProductModal();
+            alert(`${qty}x ${selectedProduct.name} added to cart!`);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function updateCartBadge() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartBadge.innerText = totalItems;
+        }
+
+        // --- CART CHECKOUT MODAL ---
+        function openCartModal() {
+            renderCartItems();
+            cartModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCartModal() {
+            cartModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function renderCartItems() {
+            cartItemsContainer.innerHTML = '';
+            let totalCost = 0;
+            let orderSummaryText = "ORDER SUMMARY:\n-----------------------\n";
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="color: var(--gray-dark); margin-top: 20px;">Your cart is currently empty. Add items from the catalog.</p>';
+                document.getElementById('checkoutBtn').disabled = true;
+                cartTotalPriceUI.innerText = "$0.00";
+                hiddenOrderSummary.value = "";
+                return;
+            }
+
+            document.getElementById('checkoutBtn').disabled = false;
+
+            cart.forEach((item, index) => {
+                const p = item.product;
+                const priceNum = parseFloat(p.price.replace('$', '')) || 0;
+                const lineTotal = priceNum * item.quantity;
+                totalCost += lineTotal;
+
+                // Build text for the email
+                orderSummaryText += `${item.quantity}x - ${p.name} (${p.brand}) @ ${p.price} each\n`;
+
+                const displayImage = p.imageUrl && p.imageUrl.trim() !== "" ? p.imageUrl : `https://placehold.co/100x100/f4f4f5/0087a1?text=${encodeURIComponent(p.brand)}`;
+                
+                const itemHTML = `
+                    <div class="cart-item">
+                        <img src="${displayImage}" alt="Item" style="width: 50px; height: 50px; object-fit: contain;">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${p.name}</div>
+                            <div style="font-size: 0.8rem; color: var(--gray-dark);">Qty: ${item.quantity} | ${p.brand}</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="cart-item-price">$${lineTotal.toFixed(2)}</div>
+                            <button class="btn-danger" onclick="removeFromCart(${index})">Remove</button>
+                        </div>
+                    </div>
+                `;
+                cartItemsContainer.insertAdjacentHTML('beforeend', itemHTML);
+            });
+
+            orderSummaryText += `-----------------------\nESTIMATED TOTAL: $${totalCost.toFixed(2)}`;
+            hiddenOrderSummary.value = orderSummaryText;
+            cartTotalPriceUI.innerText = `$${totalCost.toFixed(2)}`;
+        }
+
+        function prepareCheckout(event) {
+            if (cart.length === 0) {
+                event.preventDefault();
+                alert("Your cart is empty!");
+                return false;
+            }
+            // Form is automatically submitted via target="_blank"
+            setTimeout(() => {
+                cart = []; // Empty cart after submission
+                updateCartBadge();
+                closeCartModal();
+            }, 1000);
+        }
+
+        // Close Modals on background click
+        window.onclick = function(event) {
+            if (event.target === productModal) closeProductModal();
+            if (event.target === cartModal) closeCartModal();
         }
     </script>
 </body>
