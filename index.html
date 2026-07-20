@@ -17,11 +17,10 @@
             --brand-primary: #0284c7;
             --brand-secondary: #06b6d4;
             --brand-gradient: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
-            --brand-gradient-hover: linear-gradient(135deg, #0369a1, #0891b2);
             
-            --accent-orange: #f97316;
+            --accent-orange: #f03e00;
+            --accent-red: #ff2a00;
             --danger: #ef4444;
-            --success: #10b981;
             
             --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
             --shadow-md: 0 10px 25px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
@@ -67,7 +66,7 @@
 
         /* Floating Frosted Header */
         header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 1300px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.5); box-shadow: var(--shadow-md); border-radius: var(--radius-pill); z-index: 1000; transition: var(--transition); }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 30px; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 100px; padding: 0 30px; }
         .logo { font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 5px; }
         .nav-links { display: flex; align-items: center; gap: 32px; font-weight: 600; font-size: 0.95rem; }
         .nav-links a { position: relative; }
@@ -101,21 +100,15 @@
         .hero-image img { width: 100%; max-width: 550px; border-radius: var(--radius-lg); box-shadow: var(--shadow-float); transform: perspective(1000px) rotateY(-5deg); transition: var(--transition); }
         .hero-image:hover img { transform: perspective(1000px) rotateY(0deg) scale(1.02); }
 
-        /* Sleek Workflows - BUG FIXED HERE */
+        /* Sleek Workflows */
         .workflow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .step-card { background: white; padding: 40px; border-radius: var(--radius-lg); border: 1px solid #e2e8f0; box-shadow: var(--shadow-sm); transition: var(--transition); position: relative; overflow: hidden; z-index: 1; }
-        
-        /* The gradient background layer */
         .step-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--brand-gradient); opacity: 0; z-index: -1; transition: var(--transition); }
-        
-        /* Hover Effects */
         .step-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: transparent; }
-        .step-card:hover::before { opacity: 1; } /* This makes the background visible! */
+        .step-card:hover::before { opacity: 1; } 
         .step-card:hover h3, .step-card:hover p { color: white; }
-        
         .step-number { font-size: 5rem; font-weight: 800; color: #f1f5f9; line-height: 1; margin-bottom: 20px; transition: var(--transition); }
         .step-card:hover .step-number { color: rgba(255,255,255,0.25); }
-        
         .step-card h3 { margin-bottom: 15px; font-size: 1.5rem; color: var(--text-main); transition: var(--transition); }
         .step-card p { color: var(--text-muted); transition: var(--transition); }
 
@@ -131,8 +124,8 @@
         /* Category Badge */
         .product-badge { position: absolute; top: 35px; left: 35px; background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); padding: 6px 14px; border-radius: var(--radius-pill); font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; box-shadow: var(--shadow-sm); z-index: 2; pointer-events: none; }
         
-        /* In-Cart Status Badge */
-        .in-cart-badge { position: absolute; top: 35px; right: 35px; background: var(--brand-gradient); padding: 6px 14px; border-radius: var(--radius-pill); font-size: 0.75rem; font-weight: 800; color: white; box-shadow: var(--shadow-md); z-index: 2; pointer-events: none; display: flex; align-items: center; gap: 6px; animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        /* Main Grid: In-Cart Status Badge */
+        .in-cart-badge { position: absolute; top: 35px; right: 35px; background: var(--text-main); padding: 6px 14px; border-radius: var(--radius-pill); font-size: 0.75rem; font-weight: 800; color: white; box-shadow: var(--shadow-md); z-index: 2; pointer-events: none; display: flex; align-items: center; gap: 6px; animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
         .product-brand { color: var(--accent-orange); font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
@@ -177,22 +170,38 @@
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--brand-secondary); background: white; box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1); }
 
         /* App-Like Modals */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; overflow-y: auto; padding: 20px;}
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         
-        .modal-content { background: white; width: 95%; max-width: 1000px; max-height: 90vh; border-radius: var(--radius-lg); box-shadow: var(--shadow-float); display: grid; grid-template-columns: 1fr 1.2fr; overflow: hidden; transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .modal-content { background: white; width: 95%; max-width: 1000px; max-height: 90vh; border-radius: var(--radius-lg); box-shadow: var(--shadow-float); display: flex; flex-direction: column; overflow: hidden; transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); margin: auto;}
         .modal-overlay.active .modal-content { transform: translateY(0); }
         
-        .cart-modal-content { grid-template-columns: 1.2fr 1fr; }
+        .cart-modal-content { display: grid; grid-template-columns: 1.2fr 1fr; }
         
         .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; color: var(--text-muted); z-index: 10; line-height: 1; transition: var(--transition); background: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); }
         .close-btn:hover { color: var(--danger); transform: rotate(90deg); }
         
-        .modal-pane { padding: 50px; overflow-y: auto; max-height: 90vh; }
+        .modal-pane { padding: 40px; overflow-y: auto; }
         .pane-gray { background: #f8fafc; }
         
-        .modal-product-image { width: 100%; height: 350px; object-fit: contain; background: white; padding: 30px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); margin-bottom: 30px; }
+        /* NEW: Tabular Modal Styles */
+        .tabular-header { border-bottom: 1px solid var(--gray-medium); padding-bottom: 15px; margin-bottom: 20px; }
+        .tabular-brand { color: var(--accent-orange); font-size: 1.4rem; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; }
+        .tabular-title { color: var(--text-main); font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; }
         
+        .section-title { font-size: 1.1rem; color: var(--text-muted); font-weight: 500; margin-bottom: 10px; }
+        .desc-text { color: var(--text-main); font-size: 1rem; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--gray-medium); }
+
+        .options-table-wrapper { width: 100%; overflow-x: auto; margin-bottom: 30px; }
+        .options-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        .options-table th { padding: 12px 10px; border-bottom: 2px solid var(--gray-medium); color: var(--text-muted); font-weight: 600; font-size: 0.9rem; text-align: left; }
+        .options-table td { padding: 15px 10px; border-bottom: 1px solid #f1f5f9; font-size: 0.95rem; color: var(--text-main); vertical-align: middle; }
+        .options-table input[type="number"] { width: 70px; padding: 10px; border: 1px solid var(--gray-medium); border-radius: 4px; text-align: center; font-weight: 600; font-family: inherit; font-size: 1rem; }
+        .options-table input[type="number"]:focus { outline: none; border-color: var(--accent-orange); }
+        
+        .btn-add-cart { background: var(--accent-red); color: white; font-weight: 700; font-size: 1.1rem; padding: 14px 40px; border-radius: var(--radius-pill); cursor: pointer; border: none; display: inline-flex; box-shadow: 0 4px 6px rgba(255, 42, 0, 0.2); transition: var(--transition); margin-bottom: 20px;}
+        .btn-add-cart:hover { background: #e02400; transform: translateY(-2px); box-shadow: 0 8px 12px rgba(255, 42, 0, 0.3); }
+
         /* Cart Items UI */
         .cart-item { display: flex; align-items: center; gap: 20px; background: white; padding: 20px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); margin-bottom: 16px; border: 1px solid #f1f5f9; }
         .cart-item img { width: 70px; height: 70px; object-fit: contain; background: #f8fafc; border-radius: 8px; padding: 5px; }
@@ -205,30 +214,19 @@
         footer { background-color: var(--text-main); color: white; padding: 80px 0 40px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 60px; }
         .footer-logo { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
-        .footer-logo span { color: var(--brand-secondary); }
+        .footer-logo img { filter: brightness(0) invert(1); } /* Makes the dark logo white for the footer */
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; color: #94a3b8; }
 
         @media (max-width: 900px) {
-            .modal-content, .cart-modal-content { grid-template-columns: 1fr; }
+            .cart-modal-content { grid-template-columns: 1fr; }
             .hero-inner { flex-direction: column; text-align: center; margin-top: 40px; }
             .about-grid { grid-template-columns: 1fr; }
             .hero-features { align-items: center; }
             .hero-buttons { justify-content: center; }
             .contact-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
-            header { width: 100%; top: 0; border-radius: 0; border: none; }
+            header { width: 100%; top: 0; border-radius: 0; border: none; height: 80px;}
         }
-		
-/* Update  */
-.nav-container { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    height: 100px; /* Increase this to fit your larger logo */
-    padding: 0 30px; 
-}
-
-
     </style>
 </head>
 <body>
@@ -236,18 +234,11 @@
     <!-- Floating Navigation -->
     <header>
         <div class="nav-container">
-            
-			<!-- Inside <header> -->
-
-<div class="logo">
-    <a href="#catalog">
-        <!-- Change height from 50px to 80px or higher -->
-        <img src="LHLogo.png" alt="LH Distributor Logo" style="height: 80px; width: auto; object-fit: contain;">
-    </a>
-</div>
-
-
-
+            <div class="logo">
+                <a href="#catalog">
+                    <img src="LHLogo.png" alt="LH Distributor Logo" style="height: 60px; width: auto; object-fit: contain;">
+                </a>
+            </div>
             <nav style="display: flex; align-items: center; gap: 40px;">
                 <ul class="nav-links">
                     <li><a href="#catalog">Products</a></li>
@@ -372,11 +363,11 @@
                     <p style="font-size: 1.2rem;">Whether you have a question about a specific SKU, need bulk pricing, or want to establish a recurring order list, we are here to help.</p>
                     <div style="margin-top: 40px; font-size: 1.2rem; line-height: 2;">
                         <p><strong>Phone:</strong> <br><a href="tel:5308596003" class="text-gradient" style="font-size: 1.8rem; font-weight: 800;">(530) 859-6003</a></p>
-                        <p style="margin-top: 20px;"><strong>Email:</strong> <br><a href="mailto:lhdistributors@gmail.com" class="text-gradient" style="font-size: 1.5rem; font-weight: 800;">lhdistributors@gmail.com</a></p>
+                        <p style="margin-top: 20px;"><strong>Email:</strong> <br><a href="mailto:lhdistributors88@gmail.com" class="text-gradient" style="font-size: 1.5rem; font-weight: 800;">lhdistributors88@gmail.com</a></p>
                     </div>
                 </div>
                 <div class="contact-info-box">
-                    <form action="https://formsubmit.co/lhdistributors@gmail.com" method="POST" target="_blank">
+                    <form action="https://formsubmit.co/lhdistributors88@gmail.com" method="POST" target="_blank">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_subject" value="New Contact Message from LH Distributor Website">
                         <input type="hidden" name="_template" value="table">
@@ -405,13 +396,15 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="footer-logo">LH <span class="text-gradient">Distributor</span></div>
+                    <div class="footer-logo">
+                        <img src="LHLogo.png" alt="LH Distributor Logo" style="height: 60px; width: auto; object-fit: contain;">
+                    </div>
                     <p style="color: #94a3b8; max-width: 300px; font-size: 0.95rem;">Modern dental supply ordering for clinics that prefer quote-based fulfillment and immediate service.</p>
                 </div>
                 <div>
                     <h4 style="margin-bottom: 20px; font-size: 1.2rem;">Direct Contact</h4>
-                    <p style="color: #94a3b8; margin-bottom: 10px;">(530)8596003 </p>
-                    <p style="color: #94a3b8;">lhdistributors@gmail.com</p>
+                    <p style="color: #94a3b8; margin-bottom: 10px;">(530) 859-6003</p>
+                    <p style="color: #94a3b8;">lhdistributors88@gmail.com</p>
                 </div>
                 <div>
                     <h4 style="margin-bottom: 20px; font-size: 1.2rem;">Navigation</h4>
@@ -428,41 +421,49 @@
         </div>
     </footer>
 
-    <!-- PRODUCT DETAIL MODAL (ADD TO CART) -->
+    <!-- NEW TABULAR PRODUCT DETAIL MODAL -->
     <div id="productModal" class="modal-overlay">
-        <div class="modal-content">
+        <div class="modal-content" style="display: block;">
             <div class="close-btn" onclick="closeProductModal()">
                 <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </div>
             
-            <div class="modal-pane pane-gray" style="display: flex; align-items: center; justify-content: center;">
-                <img id="detailImg" src="" alt="Product Image" class="modal-product-image" style="margin: 0;">
-            </div>
-
             <div class="modal-pane">
-                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 800; margin-bottom: 8px; letter-spacing: 0.05em; text-transform: uppercase;" id="detailCat">CATEGORY</div>
-                <h2 id="detailName" style="text-align: left; margin: 0 0 15px 0; font-size: 2rem; color: var(--text-main); line-height: 1.2;">Product Name</h2>
-                <div id="detailBrand" style="color: var(--accent-orange); font-weight: 800; margin-bottom: 30px; font-size: 1.1rem;">Brand</div>
+                <div class="tabular-header">
+                    <div class="tabular-brand" id="tabularBrand">SS WHITE</div>
+                    <div class="tabular-title" id="tabularTitle">(FG#330) Pear Shape</div>
+                </div>
                 
-                <div style="background: var(--bg-body); padding: 25px; border-radius: var(--radius-md); margin-bottom: 30px;">
-                    <div id="detailPrice" style="font-size: 2.5rem; font-weight: 800; color: var(--text-main); margin-bottom: 10px;">Price</div>
-                    <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">Add this item to your order list. Once finished, click the Cart icon above to submit your request.</p>
+                <div class="section-title">Product Description:</div>
+                <div class="desc-text" id="tabularDesc">(FG#330) Pear Shape</div>
+                
+                <div class="section-title" style="margin-top: 20px;">Please Enter Quantity:</div>
+                <div class="options-table-wrapper">
+                    <table class="options-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 80px;">Qty</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Item #</th>
+                                <th>Packaging</th>
+                            </tr>
+                        </thead>
+                        <tbody id="optionsTableBody">
+                            <!-- Injected dynamically via JS -->
+                        </tbody>
+                    </table>
                 </div>
 
-                <div style="display: flex; gap: 20px; align-items: flex-end;">
-                    <div class="form-group" style="margin: 0; width: 120px;">
-                        <label>Quantity</label>
-                        <input type="number" id="detailQty" min="1" value="1" style="text-align: center; font-weight: 800; font-size: 1.2rem; padding: 14px;">
-                    </div>
-                    <button class="btn btn-gradient" id="detailBtn" style="flex-grow: 1; padding: 16px;" onclick="addItemToCart()">Add to Cart</button>
-                </div>
+                <button class="btn-add-cart" onclick="addItemToCart()">Add to Cart</button>
+                <div style="color: #a52a2a; font-weight: 700; font-size: 1.1rem; margin-top: 10px;">MIX & MATCH Any Gloves Any Size To Make a Case! 10 Boxes / Case</div>
             </div>
         </div>
     </div>
 
     <!-- CART & CHECKOUT MODAL -->
     <div id="cartModal" class="modal-overlay">
-        <div class="modal-content cart-modal-content">
+        <div class="modal-content cart-modal-content" style="display: grid;">
             <div class="close-btn" onclick="closeCartModal()">
                 <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </div>
@@ -483,7 +484,7 @@
             <div class="modal-pane pane-gray">
                 <h3 style="margin-bottom: 30px; font-size: 1.5rem;">Delivery Details</h3>
                 
-                <form id="checkoutForm" action="https://formsubmit.co/lhdistributors@gmail.com" method="POST" target="_blank" onsubmit="prepareCheckout(event)">
+                <form id="checkoutForm" action="https://formsubmit.co/lhdistributors88@gmail.com" method="POST" target="_blank" onsubmit="prepareCheckout(event)">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_subject" value="New Multi-Item Order Request">
@@ -524,464 +525,1637 @@
             </div>
         </div>
     </div>
+	
+	<script>
+    // =========================================================
+    // LH DISTRIBUTOR - PRODUCT, CART & CHECKOUT SYSTEM
+    // Products are loaded dynamically from:
+    // data/products.json
+    // =========================================================
 
-    <!-- Application Logic -->
-    <script>
-        // Exact Data Array provided
-        const products = [
-            { brand: "SS WHITE", name: "(FG#330) Pear Shape", price: "$21.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured69.jpg" },
-            { brand: "SS WHITE", name: "(FG#557) Straight Flat end", price: "$21.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured70.jpg" },
-            { brand: "SS WHITE", name: "RA Round Surgical Length Bur", price: "$18.25", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured73.jpg" },
-            { brand: "Strauss Diamonds", name: "Round Football (379-023)", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured82.jpg" },
-            { brand: "Strauss Diamonds", name: "Pointed Football Burs 368-023", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured83.jpg" },
-            { brand: "Strauss Diamonds", name: "Flat End Cone 856-014C", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured84.jpg" },
-            { brand: "Strauss Diamonds", name: "Flat End Taper 848-014C", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured85.jpg" },
-            { brand: "Strauss Diamonds", name: "Needle 859-012SF", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured86.jpg" },
-            { brand: "UniPack", name: "Tongue Depressors", price: "$12.15", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured94.jpg" },
-            { brand: "UniPack", name: "DISPOSABLE PATIENT BIBS", price: "$29.99", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured96.jpg" },
-            { brand: "Safedent", name: "2x2 gauze", price: "$32.97", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured99.jpg" },
-            { brand: "Safedent", name: "Cotton Tipped Applicators", price: "$8.15", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured100.jpg" },
-            { brand: "UniPack", name: "COTTON ROLLS", price: "$29.99", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured101.jpg" },
-            { brand: "Safedent", name: "DISPOSABLE PLASTIC CUPS", price: "$29.35", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured102.jpg" },
-            { brand: "Safe Dent", name: "PAPER TRAY COVERS", price: "$28.29", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured103.jpg" },
-            { brand: "SS WHITE", name: "(FG 557) Straight Surgical Length", price: "$18.25", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured104.jpg" },
-            { brand: "SS WHITE", name: "FG Round Oral Surgery", price: "$18.25", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured105.jpg" },
-            { brand: "Plasdent", name: "Composite Dispensing Gun", price: "$13.99", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured106.jpg" },
-            { brand: "UniPack", name: "Evacuator HVE Tips", price: "$4.99", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured109.jpg" },
-            { brand: "Safedent", name: "Saliva Ejectors", price: "$4.99", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured111.jpg" },
-            { brand: "Safe Dent", name: "SURGICAL ASPIRATOR TIPS", price: "$7.99", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured112.jpg" },
-            { brand: "UniPack", name: "CAVEX CREAM FAST SET ALGINATE", price: "$12.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured121.jpg" },
-            { brand: "UniPack", name: "Endo Irrigation Combo Kit", price: "$27.29", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured131.jpg" },
-            { brand: "Plasdent", name: "Ortho Boxes - Retainer Box", price: "$10.99", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured162.jpg" },
-            { brand: "UniPack", name: "Pre-Bent Needle Tips", price: "$9.05", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured167.jpg" },
-            { brand: "Mydent", name: "Micro Applicator Tips", price: "$5.26", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured168.jpg" },
-            { brand: "House Brand", name: "Mixing Pads", price: "$1.29", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured176.png" },
-            { brand: "Plasdent", name: "CURVED TIP UTILITY SYRINGE", price: "$24.99", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured182.jpg" },
-            { brand: "UniPack", name: "LUER LOCK IRRIGATION SYRINGE", price: "$10.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured184.jpg" },
-            { brand: "UniPack", name: "Easy-E-Trap Canisters", price: "$69.99", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured185.jpg" },
-            { brand: "House Brand", name: "Intra Oral Mixing Tips", price: "$9.99", cat: "Acrylic and Reline Materials", imageUrl: "https://lhdistributors.com/uploads/featured186.jpg" },
-            { brand: "Safedent", name: "Disposable Impression Trays", price: "$5.99", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured188.jpg" },
-            { brand: "UniPack", name: "ISOLATION GOWN", price: "$15.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured192.jpg" },
-            { brand: "House Brand", name: "Protective Eyewear - Clear", price: "$3.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured194.jpg" },
-            { brand: "Safedent", name: "STERILIZATION POUCHES", price: "$6.75", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured199.jpg" },
-            { brand: "Plasdent", name: "CHAIR & HEADREST COVERS", price: "$37.92", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured200.jpg" },
-            { brand: "Safe Dent", name: "Barrier Film", price: "$15.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured201.jpg" },
-            { brand: "Look", name: "Suture - 3/0, 27 - Chromic - C-6", price: "$48.5", cat: "Surgical Products", imageUrl: "https://lhdistributors.com/uploads/featured207.jpg" },
-            { brand: "Strauss Diamonds", name: "Flame 863-012 SF", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured212.jpg" },
-            { brand: "UniPack", name: "DENTURE BOX", price: "$10.99", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured222.jpg" },
-            { brand: "UniPack", name: "All saliva ejectors Universal fit", price: "$12.99", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured233.jpg" },
-            { brand: "House Brand", name: "Scalpel, Stainless Steel Blade, Size 15, 10/bx, 10 bx/cs", price: "$12.99", cat: "Surgical Products", imageUrl: "https://lhdistributors.com/uploads/featured237.jpg" },
-            { brand: "Not Specified", name: "Reflective Dry Tips®", price: "$15.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured241.jpg" },
-            { brand: "Plasdent", name: "Optical PC Mouse", price: "$15.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured242.jpg" },
-            { brand: "Plasdent", name: "Keyboard Cover", price: "$17.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured243.jpg" },
-            { brand: "Not Specified", name: "Sani-Treet Plus® Enzyme Industries", price: "$81.25", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured244.jpg" },
-            { brand: "UniPack", name: "DENTURE BOX", price: "$9.99", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured245.jpg" },
-            { brand: "Mydent", name: "Prophy Paste", price: "$29.85", cat: "Prophy Products", imageUrl: "https://lhdistributors.com/uploads/featured254.jpg" },
-            { brand: "UniPack", name: "Disposable Bib Holders", price: "$12.99", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured269.jpg" },
-            { brand: "Not Specified", name: "Round End Taper", price: "$19.15", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured271.jpg" },
-            { brand: "Not Specified", name: "Amalgon Disposable System 1gal", price: "$199.29", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured273.jpg" },
-            { brand: "Not Specified", name: "Sani-Treet Plus® Enzyme Industries", price: "$81.25", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured285.jpg" },
-            { brand: "Crosstex", name: "CROSSTEX DENTAL DAMS", price: "$34.29", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured290.jpg" },
-            { brand: "Not Specified", name: "Articulating Paper By Crosstex", price: "$13.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured294.jpg" },
-            { brand: "Not Specified", name: "Dry Tips - Microbrush", price: "$12.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured295.jpg" },
-            { brand: "Myco Medical", name: "Surgical Blades Stainless Steel", price: "$14.99", cat: "Surgical Products", imageUrl: "https://lhdistributors.com/uploads/featured296.jpg" },
-            { brand: "Not Specified", name: "CompCore AF Mixing Tips 50/pkt", price: "$15.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured297.jpg" },
-            { brand: "UniPack", name: "Easy-E-Trap Canisters    Model #2300", price: "$69.99", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured302.jpg" },
-            { brand: "Vista Dental Products", name: "Vista  EDTA Solution 17% 16oz (480ml)/Bt", price: "$54.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured316.jpg" },
-            { brand: "SS WHITE", name: "FG 557 Straight Surgical Length", price: "$18.25", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured350.jpg" },
-            { brand: "Vista Dental", name: "Quick-Stat FS Gel 30 mL Bulk Syringe Kit Ea", price: "$38.59", cat: "Hemostasis and Retraction", imageUrl: "https://lhdistributors.com/uploads/featured403.jpg" },
-            { brand: "DSC", name: "Matrix Retainer Tofflemire Universal (Made in the USA)", price: "$14.99", cat: "Matrix Materials", imageUrl: "https://lhdistributors.com/uploads/featured418.jpg" },
-            { brand: "Dentsply Sirona", name: "IRM Caps Temporary Filling Material 0.34 Gm Capsules 50/Bx", price: "$169.29", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured432.jpg" },
-            { brand: "Not Specified", name: "Miltex  Instrument Cleaning Brush Steel Bristles 3/pk", price: "$8.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured476.jpg" },
-            { brand: "Not Specified", name: "Gingi-Pak MAX Cord / EPINEPHRINE", price: "$15.35", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured551.jpg" },
-            { brand: "DCI", name: "Push-On Saliva Ejector Tips Latex Free Gray", price: "$18.29", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured627.jpg" },
-            { brand: "KaVo Kerr", name: "Tubli-Seal EWT Root Canal Permanent Sealer Standard Package", price: "$59.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured628.jpg" },
-            { brand: "Crosstex", name: "Crosstex Horseshoe", price: "$15.99", cat: "Articulating", imageUrl: "https://lhdistributors.com/uploads/featured631.jpg" },
-            { brand: "Plasdent", name: "Plasdent Instrument Sterilization Container", price: "$6.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured917.jpg" },
-            { brand: "Not Specified", name: "Amalgon Disposable System 1gal", price: "$199.29", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured988.jpg" },
-            { brand: "Mydent", name: "Defend Topical Anesthetic Gel - Strawberry, 1 oz. Jar. Benzocaine", price: "$6.25", cat: "Anesthetics", imageUrl: "https://lhdistributors.com/uploads/featured989.jpg" },
-            { brand: "Dentsply", name: "IRM Caps ZOE Intermediate Restorative Material, 50 - 0.34 Gm", price: "$169.29", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured1026.jpg" },
-            { brand: "Not Specified", name: "House Brand 3\\\" x 3\\\" Poly Coated Mixing Pad, Single Pad", price: "$5.15", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1055.jpg" },
-            { brand: "Pulpdent", name: "Etch-Rite Jumbo Syringe Refill - 38% Phosphoric Acid Etching Gel: 2", price: "$59.29", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured1075.jpg" },
-            { brand: "UniPack", name: "DISPOSABLE EVACUATION TRAPS & SCREENS", price: "$45.25", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1199.jpg" },
-            { brand: "Premier", name: "Enamel Pro Fluoride Varnish Bubblegum 0.4mL 35/Box", price: "$83.86", cat: "Fluorides & Varnish", imageUrl: "https://lhdistributors.com/uploads/featured1336.jpeg" },
-            { brand: "UniPack", name: "BLU-TRAY PERFORATED IMPRESSION TRAYS", price: "$4.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1337.jpg" },
-            { brand: "Not Specified", name: "CompCore AF Mixing Tips", price: "$13.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1349.jpg" },
-            { brand: "US ELITE", name: "CW-TYPE ASPIRATING SYRINGE", price: "$13.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1361.jpg" },
-            { brand: "Miltex", name: "2-1/8", price: "$12.5", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1416.jpg" },
-            { brand: "Plasdent", name: "BUR TUB", price: "$13.99", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1417.jpg" },
-            { brand: "House Brand", name: "Unnamed Product", price: "$15.99", cat: "Cements & Liners", imageUrl: "https://lhdistributors.com/uploads/featured1420.jpg" },
-            { brand: "3M Oral Care", name: "Clinpro Sealant - 1.2 ml Syringe Refill with 10 Syringe Tips. Low Viscosity", price: "$28.5", cat: "Cements & Liners", imageUrl: "https://lhdistributors.com/uploads/featured1458.jpg" },
-            { brand: "House Brand", name: "Crown & Bridge T-Mix Tips", price: "$15.99", cat: "Crown & Bridge", imageUrl: "https://lhdistributors.com/uploads/featured1467.jpg" },
-            { brand: "Strauss Diamonds", name: "MULTI USE FLAT END CONE BURS", price: "$19.15", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1476.jpg" },
-            { brand: "Strauss Diamonds", name: "MULTI USE NEEDLE BURS", price: "$19.15", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1478.jpg" },
-            { brand: "Strauss Diamonds", name: "MULTI USE ROUND END TAPER BURS", price: "$19.15", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1479.jpg" },
-            { brand: "House Brand", name: "28MM GATES GLIDDEN DRILLS", price: "$10.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1516.jpg" },
-            { brand: "House Brand", name: "32MM GATES GLIDDEN DRILLS", price: "$12.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1517.jpg" },
-            { brand: "Pulpdent", name: "Multi-Cal Kit: 4 - 1.2 mL Syringes and 8 Applicator Tips. Calcium Hydroxide", price: "$69.29", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1526.jpg" },
-            { brand: "Plasdent", name: "Air/Water Syringe Cover 10", price: "$12.71", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured1535.jpeg" },
-            { brand: "Not Specified", name: "SALIVA EJECTORS", price: "$4.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1538.jpg" },
-            { brand: "Not Specified", name: "J. Morita Multi Spray for Handpiece Maintenance 420ml/Can", price: "$29", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1540.jpg" },
-            { brand: "Not Specified", name: "Plasdent Standard Keyboard Cover with cuff 22\" x 14\" 250/Bx. Plastic sheet", price: "$19.68", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1584.jpg" },
-            { brand: "Mydent", name: "Defend 1 5/8", price: "$11.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured1585.jpg" },
-            { brand: "Not Specified", name: "Safe-Dent 15\" x 26\" X-Ray Head Sleeve, 250/Box. Clear Plastic protective", price: "$32.29", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1590.jpg" },
-            { brand: "Strauss Diamonds", name: "Flame", price: "$16.59", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1605.jpg" },
-            { brand: "Not Specified", name: "Safe Dent Blue Fluid Resistant Ear-Loop 3 ply face mask with 98% filtration", price: "$6.99", cat: "Uncategorized", imageUrl: "https://lhdistributors.com/uploads/featured1606.jpg" },
-            { brand: "House Brand", name: "STAINLESS STEEL BRISTLE BRUSH", price: "$12.99", cat: "Instruments", imageUrl: "https://lhdistributors.com/uploads/featured1625.jpg" },
-            { brand: "Blazer  Torch", name: "Blazer Triple Refined Butane 9.12oz", price: "$12.99", cat: "Acrylic and Reline Materials", imageUrl: "https://lhdistributors.com/uploads/featured1645.jpeg" },
-            { brand: "SS WHITE", name: "Inverted Cone (FG#38)", price: "$21.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1667.jpg" },
-            { brand: "SS WHITE", name: "Pear (FG#330)", price: "$21.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1668.jpg" },
-            { brand: "SS WHITE", name: "Round", price: "$21.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1669.jpg" },
-            { brand: "SS WHITE", name: "557 Cross Cut - FGOS", price: "$18.25", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1671.jpg" },
-            { brand: "SS WHITE", name: "Round Surgical", price: "$18.25", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1672.jpg" },
-            { brand: "Strauss Diamonds", name: "Flat End Cone Diamond Burs", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1675.jpg" },
-            { brand: "Strauss Diamonds", name: "Round End Taper Diamond Bur", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1677.jpg" },
-            { brand: "Strauss Diamonds", name: "Flame Diamond Bur", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured1678.jpg" },
-            { brand: "House Brand", name: "High Performance Mixing Tips - LONG", price: "$15.99", cat: "Core Build-Up Materials", imageUrl: "https://lhdistributors.com/uploads/featured1690.jpg" },
-            { brand: "Coltene", name: "Hygenic Endo-Ice", price: "$23.75", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1726.jpg" },
-            { brand: "3D", name: "Absorbent Paper Point", price: "$13.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1748.jpg" },
-            { brand: "Plasti Products", name: "5 Qt. Container Clear", price: "$8.89", cat: "Anesthetics", imageUrl: "https://lhdistributors.com/uploads/featured1749.jpg" },
-            { brand: "Crosstex", name: "Crosstex 6", price: "$35.29", cat: "Rubber Dam and Accessories", imageUrl: "https://lhdistributors.com/uploads/featured1750.jpg" },
-            { brand: "House Brand", name: "Intra-Oral Tips, Yellow 100/Bag.", price: "$9.99", cat: "Core Build-Up Materials", imageUrl: "https://lhdistributors.com/uploads/featured1755.jpg" },
-            { brand: "Gingi-Pak", name: "Gingi-Pak MAX Z-Twist Weave - SIZE # 00 ,1,2,3", price: "$15.99", cat: "Hemostasis and Retraction", imageUrl: "https://lhdistributors.com/uploads/featured1763.jpg" },
-            { brand: "House Brand", name: "Disposable Air-Water Syringe Tips, Clear with assorted color", price: "$14.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured1768.jpg" },
-            { brand: "UniPack", name: "Easy-E-Trap Canisters", price: "$54.95", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured1778.jpg" },
-            { brand: "Safe Dent", name: "4\" x 6\" Blue Barrier Film", price: "$15.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured1781.jpg" },
-            { brand: "Safe Dent", name: "K-Files", price: "$6.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1783.jpg" },
-            { brand: "House Brand", name: "Prophy Angles", price: "$42.99", cat: "Prophy Products", imageUrl: "https://lhdistributors.com/uploads/featured1784.jpg" },
-            { brand: "Plasdent", name: "Disposable Bite Trays - Mesh Fabric", price: "$13.99", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured1789.jpg" },
-            { brand: "Plasdent", name: "Temporary Crown & Bridge Dispensing Gun", price: "$53.67", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured1792.jpg" },
-            { brand: "Plasdent", name: "Impression Gun - High Performance", price: "$53.67", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured1793.jpg" },
-            { brand: "Plasdent", name: "Cheek Retractors", price: "$9.89", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured1797.jpg" },
-            { brand: "Plasdent", name: "Dappen Dishes - Disposable", price: "$14.15", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured1799.jpg" },
-            { brand: "Plasdent", name: "Silicone Mouth Props - Small , Medium , Large", price: "$15.99", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured1818.jpg" },
-            { brand: "US ELITE", name: "Bicuspids #2A Premolars Winged Large Neck Bicuspid, Single", price: "$9.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1820.jpg" },
-            { brand: "US ELITE", name: "Clamp #8A Molar Winged, Molar Root Upper And Lower, Single clamp", price: "$9.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1821.jpg" },
-            { brand: "US ELITE", name: "Clamp #9 for Labial Caries on Anterior Teeth, Winged Smooth", price: "$9.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1822.jpg" },
-            { brand: "US ELITE", name: "Clamp #56 Winged Metal Rubber Dam Clamp, Single", price: "$9.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1824.jpg" },
-            { brand: "House Brand", name: "27 Gauge XL Long Dental Needles, for Nerve Blocks", price: "$9.99", cat: "Anesthetics", imageUrl: "https://lhdistributors.com/uploads/featured1825.jpg" },
-            { brand: "House Brand", name: "30 Gauge Long Disposable Dental Needle", price: "$7.99", cat: "Anesthetics", imageUrl: "https://lhdistributors.com/uploads/featured1826.jpg" },
-            { brand: "House Brand", name: "Adult Tofflemire Matrix Band 13 0.002 in 144/Pk", price: "$12.99", cat: "Alloy And Accessories", imageUrl: "https://lhdistributors.com/uploads/featured1838.jpg" },
-            { brand: "Plasdent", name: "EXTND SILICONE MOUTH PROPS", price: "$19.99", cat: "Surgical Products", imageUrl: "https://lhdistributors.com/uploads/featured1847.jpg" },
-            { brand: "House Brand", name: "Tips are high performance for Temporary Cement", price: "$12.99", cat: "Acrylic and Reline Materials", imageUrl: "https://lhdistributors.com/uploads/featured1849.jpg" },
-            { brand: "Plasdent", name: "Plasdent Biohazard Can Liner Red", price: "$30.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured1852.jpg" },
-            { brand: "Dentsply Sirona", name: "Dycal", price: "$69.99", cat: "Cements & Liners", imageUrl: "https://lhdistributors.com/uploads/featured1858.jpg" },
-            { brand: "Plasti Products", name: "Locking Wall Cabinet (for 5 qt Container)", price: "$45.29", cat: "Anesthetics", imageUrl: "https://lhdistributors.com/uploads/featured1869.jpg" },
-            { brand: "Richmond Dental and Medical", name: "Path-O-Guard Ear-Loop Face Mask Lavender 50/Bx.", price: "$6.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured1870.jpg" },
-            { brand: "Solmetex", name: "Solmetex Amalgam Separator", price: "$688.95", cat: "Alloy And Accessories", imageUrl: "https://lhdistributors.com/uploads/featured1904.jpg" },
-            { brand: "Coltene", name: "ParaPost Posts Stainless Steel Refill", price: "$90", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1910.jpg" },
-            { brand: "Coltene", name: "ParaPost XP Posts Stainless Steel Introductory Kit P-780 Each", price: "$299.25", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1911.jpg" },
-            { brand: "Coltene", name: "ParaPost Drills Two-Fluted -", price: "$0", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured1916.jpg" },
-            { brand: "3M", name: "Clinpro Sealant Syringe Tip Refill 1.2mL", price: "$28.5", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured1917.jpeg" },
-            { brand: "Dentsply Professional", name: "Cavitron Slimline SLI inserts", price: "$190", cat: "Equipment", imageUrl: "https://lhdistributors.com/uploads/featured1918.jpg" },
-            { brand: "Plasdent", name: "Plasdent 15\" x 26\" X-Ray head covers, 500/box.", price: "$39.99", cat: "X-Ray Products", imageUrl: "https://lhdistributors.com/uploads/featured1922.jpg" },
-            { brand: "LH", name: "Fluid Resistant Procedure Mask  Level 3", price: "$6.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured1923.jpg" },
-            { brand: "Plasdent", name: "Ease Cartridge Transfer Connectors 5/Package", price: "$14.99", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured1926.jpg" },
-            { brand: "Plasdent", name: "Bite Block Cover 1.5 in x 3 in 500/Bx", price: "$11.99", cat: "X-Ray Products", imageUrl: "https://lhdistributors.com/uploads/featured1927.jpg" },
-            { brand: "Solmetex", name: "Solmetex NXT Hg5 Collection Container With Recycle Kit", price: "$380", cat: "Alloy And Accessories", imageUrl: "https://lhdistributors.com/uploads/featured1928.jpg" },
-            { brand: "DCI", name: "DCI Saliva Ejector Autoclavable Rubber Tip - Gray 5/pk", price: "$14.99", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured1930.jpg" },
-            { brand: "DCI", name: "Quick-Clean Syringe Repair Kit w/ 2 buttons. Kit includes: PN 3085 Syringe", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1933.jpg" },
-            { brand: "DCI", name: "DCI Precision Comfort Premium Autoclavable Extended Vacuum Valves w/Quick", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1938.png" },
-            { brand: "DCI", name: "DCI Fitting, 1/4\" Poly Q.D. w/o Shut-off, Male. For use with air only. Single", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1940.jpg" },
-            { brand: "DCI", name: "Precision Comfort Premium Autoclavable Saliva Ejector with Quick-Disconnect", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1941.jpg" },
-            { brand: "DCI", name: "DCI Replacement Lever - for use with saliva ejector, economy autoclavable", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1942.jpg" },
-            { brand: "DCI", name: "DCI Replacement Lever for High Volume Evacuation Valve. Economy autoclavable", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1943.jpg" },
-            { brand: "DCI", name: "DCI Gasket Kit for Midmark M11 and M11D. Includes: 1 Door Gasket, 1 Dam Gasket", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1945.jpg" },
-            { brand: "DCI", name: "DCI Molded Asepsis Holder, Lt. White, Normally Closed, Designed for 1/2", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured1950.jpg" },
-            { brand: "Plasdent", name: "Screen-4-Vac Disposable Evacuation Traps", price: "$29.18", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured1955.jpg" },
-            { brand: "UniPack", name: "Dispos-A-Trap #5501 evacuation trap", price: "$29.15", cat: "Evacuation", imageUrl: "https://lhdistributors.com/uploads/featured1956.jpg" },
-            { brand: "US ELITE", name: "Rubber Dam Clamp", price: "$39.99", cat: "Instruments", imageUrl: "https://lhdistributors.com/uploads/featured2018.pdf" },
-            { brand: "3D", name: "Temporary Crown & Bridge Material", price: "$75.29", cat: "Crown & Bridge", imageUrl: "https://lhdistributors.com/uploads/featured2052.png" },
-            { brand: "3D", name: "3D - Bite Registration Material", price: "$33.29", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured2053.jpg" },
-            { brand: "Premier", name: "CompCore AF Automix Core Buildup Refill Package Shade A3 50 Gm Each", price: "$165.29", cat: "Core Build-Up Materials", imageUrl: "https://lhdistributors.com/uploads/featured2057.jpg" },
-            { brand: "Microcopy", name: "NeoDrys", price: "$15.29", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured2058.jpg" },
-            { brand: "Sunstar Americas, Inc", name: "Eez-Touch Disposable Tapered Prophy Angle Brush Latex-Free 50/Bx", price: "$39.29", cat: "Prophy Products", imageUrl: "https://lhdistributors.com/uploads/featured2059.jpg" },
-            { brand: "Plasdent", name: "Mixing Spatulas", price: "$5.99", cat: "Cements & Liners", imageUrl: "https://lhdistributors.com/uploads/featured2060.jpg" },
-            { brand: "House Brand", name: "House Brand Nitrile glove: 100/Bx. Non-Sterile, Powder-Free", price: "$5.99", cat: "Gloves", imageUrl: "https://lhdistributors.com/uploads/featured2061.jpg" },
-            { brand: "DentAmerica", name: "DentAmerica Mylar Strips, Dupont clear mylar strip", price: "$14.99", cat: "Matrix Materials", imageUrl: "https://lhdistributors.com/uploads/featured2066.webp" },
-            { brand: "DCI", name: "Quick-Clean Valve Core Syringe", price: "$0", cat: "DCI International", imageUrl: "https://lhdistributors.com/uploads/featured2075.webp" },
-            { brand: "Safedent", name: "Safe-Dent Gauze Non-Woven 4\" x 4\"", price: "$38.99", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured2077.jpg" },
-            { brand: "Blazer  Torch", name: "HOT SHOT MT 3000", price: "$32.99", cat: "Acrylic and Reline Materials", imageUrl: "https://lhdistributors.com/uploads/featured2083.jpg" },
-            { brand: "Premium Plus", name: "Mouth Mirror #5 (Made in USA)", price: "$26.95", cat: "Instruments", imageUrl: "https://lhdistributors.com/uploads/featured2086.jpg" },
-            { brand: "Septodont", name: "Septoject XL Dental Needles, 27ga for Nerve Blocks", price: "$22.19", cat: "Anesthetics", imageUrl: "https://lhdistributors.com/uploads/featured2087.jpg" },
-            { brand: "Premier", name: "CompCore AF Core Buildup 50 Gm Shade A3 Refill Package", price: "$186.19", cat: "Core Build-Up Materials", imageUrl: "https://lhdistributors.com/uploads/featured2090.avif" },
-            { brand: "House Brand", name: "Expro Size 23 Double End Round Shepherd Hook / Michigan / Williams", price: "$0", cat: "Instruments", imageUrl: "https://lhdistributors.com/uploads/featured2091.jpg" },
-            { brand: "House Brand", name: "Brown color tip", price: "$15.99", cat: "Impression Materials", imageUrl: "https://lhdistributors.com/uploads/featured2092.jpg" },
-            { brand: "SS WHITE", name: "859-012SF", price: "$19.15", cat: "Burs & Diamonds", imageUrl: "https://lhdistributors.com/uploads/featured2093.jpg" },
-            { brand: "3M", name: "3M Sof-Lex Finishing & Polishing Strips Coarse / Medium 150/Bx", price: "$55.59", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured2094.jpg" },
-            { brand: "Safedent", name: "Safe-Dent Fluoride Trays - Large Hinged Dual Arch 100/Pk", price: "$19.5", cat: "Fluorides & Varnish", imageUrl: "https://lhdistributors.com/uploads/featured2102.jpg" },
-            { brand: "Safedent", name: "Safe-Dent Fluoride Trays - Small Hinged Dual Arch 100/Pk. Green Foam", price: "$19.5", cat: "Fluorides & Varnish", imageUrl: "https://lhdistributors.com/uploads/featured2103.jpg" },
-            { brand: "SS WHITE", name: "Jazz Polishers C1S Cup 20/Pack Single-use", price: "$60.29", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured2104.jpg" },
-            { brand: "SS WHITE", name: "Unnamed Product", price: "$60.29", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured2105.png" },
-            { brand: "Key stone", name: "Optimize Autoclave Cleaner  32 oz.", price: "$25.84", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured2132.jpg" },
-            { brand: "Dukal", name: "4\" x 4\" Non-Sterile Non-Woven Top Sponge", price: "$0", cat: "Disposable Products", imageUrl: "https://lhdistributors.com/uploads/featured2133.jpg" },
-            { brand: "UniPack", name: "Flex Mask Level 1 Ear-Loop Blue 50/BX", price: "$6.99", cat: "Infection Control", imageUrl: "https://lhdistributors.com/uploads/featured2134.pdf" },
-            { brand: "DSC", name: "DSC Universal Matrix Retainer, Stainless Steel, Tofflemire-type", price: "$22.58", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured2137.jpg" },
-            { brand: "Premier", name: "RC-Prep for Chemo-Mechanical Preparation of Root Canals, 18 Gm. Jar. #9007131", price: "$40.1", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured2138.jpg" },
-            { brand: "KavoKerr", name: "Optibond", price: "$85", cat: "Composites Filling Materials", imageUrl: "https://lhdistributors.com/uploads/featured2139.jpg" },
-            { brand: "UniPack", name: "Endo Irrigation Kit 27ga. 3cc, Yellow. Contains 100 X 3 cc luer", price: "$29.99", cat: "Endodontic Products", imageUrl: "https://lhdistributors.com/uploads/featured2140.jpg" },
-            { brand: "KaVo Kerr", name: "Kerr Temp-Bond NE automix syringe", price: "$89.99", cat: "Cements & Liners", imageUrl: "https://lhdistributors.com/uploads/featured2141.jpg" },
-            { brand: "Voco", name: "Ionoseal Glass Ionomer Composite Liner, 25 ml 3/Pk. Light-curing", price: "$195", cat: "Cements & Liners", imageUrl: "https://lhdistributors.com/uploads/featured2142.avif" },
-            { brand: "Premier", name: "Traxodent Hemodent Paste Retraction System, Starter Kit: 7 - 0.7g Syringes", price: "$97.95", cat: "Hemostasis and Retraction", imageUrl: "https://lhdistributors.com/uploads/featured2143.jpeg" }
+
+    // ---------------------------------------------------------
+    // SYSTEM STATE
+    // ---------------------------------------------------------
+
+    let products = [];
+    let cart = [];
+    let selectedProduct = null;
+
+    const ITEMS_PER_PAGE = 12;
+    let currentPage = 1;
+    let totalPages = 0;
+
+
+    // ---------------------------------------------------------
+    // ELEMENT REFERENCES
+    // ---------------------------------------------------------
+
+    const grid = document.getElementById('productGrid');
+    const paginationContainer = document.getElementById('paginationControls');
+
+    const productModal = document.getElementById('productModal');
+    const cartModal = document.getElementById('cartModal');
+
+    const cartBadge = document.getElementById('cartBadge');
+    const cartItemsContainer = document.getElementById('cartItemsContainer');
+    const cartTotalPriceUI = document.getElementById('cartTotalPriceUI');
+    const hiddenOrderSummary = document.getElementById('hiddenOrderSummary');
+
+
+    // ---------------------------------------------------------
+    // HELPER FUNCTIONS
+    // ---------------------------------------------------------
+
+    function escapeHTML(value) {
+        return String(value ?? '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+
+    function getPriceNumber(price) {
+
+        if (typeof price === 'number') {
+            return price;
+        }
+
+        const cleanedPrice = String(price || '')
+            .replace(/From/gi, '')
+            .replace(/,/g, '')
+            .replace(/[^0-9.-]/g, '');
+
+        return parseFloat(cleanedPrice) || 0;
+    }
+
+
+    function getProductOptions(product) {
+
+        if (
+            Array.isArray(product.options) &&
+            product.options.length > 0
+        ) {
+            return product.options;
+        }
+
+        // Fallback for products without multiple options
+        return [
+            {
+                desc: product.name || 'Product',
+                price: product.price || '$0.00',
+                itemNum: product.itemNum || '-',
+                packaging: product.packaging || '1 / Pkg'
+            }
         ];
+    }
 
-        // System State
-        let cart = [];
-        let selectedProduct = null;
-        
-        // Element References
-        const grid = document.getElementById('productGrid');
-        const paginationContainer = document.getElementById('paginationControls');
-        const productModal = document.getElementById('productModal');
-        const cartModal = document.getElementById('cartModal');
-        const cartBadge = document.getElementById('cartBadge');
-        const cartItemsContainer = document.getElementById('cartItemsContainer');
-        const cartTotalPriceUI = document.getElementById('cartTotalPriceUI');
-        const hiddenOrderSummary = document.getElementById('hiddenOrderSummary');
-        const detailBtn = document.getElementById('detailBtn');
-        
-        // --- PAGINATION & GRID LOGIC ---
-        const ITEMS_PER_PAGE = 12;
-        let currentPage = 1;
-        const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
 
-        function renderProducts(page) {
-            grid.innerHTML = '';
-            const start = (page - 1) * ITEMS_PER_PAGE;
-            const end = start + ITEMS_PER_PAGE;
-            const paginatedItems = products.slice(start, end);
+    // ---------------------------------------------------------
+    // LOAD PRODUCTS FROM JSON
+    // ---------------------------------------------------------
 
-            paginatedItems.forEach((p, relativeIndex) => {
-                const globalIndex = start + relativeIndex;
-                const displayImage = p.imageUrl && p.imageUrl.trim() !== "" ? p.imageUrl : `https://placehold.co/400x300/f8fafc/0284c7?text=${encodeURIComponent(p.brand)}`;
-                const catLabel = p.cat && p.cat.trim() !== "" ? p.cat : "General";
-                
-                const cartItem = cart.find(item => item.product.name === p.name);
-                const cartQty = cartItem ? cartItem.quantity : 0;
-                
-                const cartBadgeHTML = cartQty > 0 
-                    ? `<div class="in-cart-badge"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> ${cartQty} in Cart</div>` 
-                    : '';
-                    
-                const btnActionClass = cartQty > 0 ? "btn-action active-state" : "btn-action";
-                const btnActionText = cartQty > 0 ? "Update Order" : "View Options";
+    async function loadProducts() {
 
-                const card = `
-                    <div class="product-card" onclick="openProductModal(${globalIndex})">
-                        ${cartBadgeHTML}
-                        <div class="product-badge">${catLabel}</div>
-                        <div class="product-image-wrapper">
-                            <img src="${displayImage}" alt="${p.name}" loading="lazy">
-                        </div>
-                        <div class="product-brand">${p.brand}</div>
-                        <h4 class="product-name">${p.name}</h4>
-                        <div class="product-price-row">
-                            <div class="product-price">${p.price}</div>
-                            <button class="${btnActionClass}">
-                                ${btnActionText}
-                            </button>
-                        </div>
+        if (!grid) {
+            console.error('Product grid element was not found.');
+            return;
+        }
+
+        grid.innerHTML = `
+            <div style="
+                grid-column: 1 / -1;
+                text-align: center;
+                padding: 60px 20px;
+            ">
+                <h3>Loading Products...</h3>
+                <p>Please wait while we load our inventory.</p>
+            </div>
+        `;
+
+        try {
+
+            const response = await fetch('./data/products.json');
+
+            if (!response.ok) {
+                throw new Error(
+                    `Unable to load products.json. HTTP ${response.status}`
+                );
+            }
+
+            const data = await response.json();
+
+
+            // Supports:
+            //
+            // [
+            //    { product },
+            //    { product }
+            // ]
+            //
+            // OR:
+            //
+            // {
+            //    "products": [
+            //       { product }
+            //    ]
+            // }
+
+            if (Array.isArray(data)) {
+
+                products = data;
+
+            } else if (
+                data &&
+                Array.isArray(data.products)
+            ) {
+
+                products = data.products;
+
+            } else {
+
+                throw new Error(
+                    'products.json does not contain a valid product array.'
+                );
+
+            }
+
+
+            totalPages = Math.ceil(
+                products.length / ITEMS_PER_PAGE
+            );
+
+            currentPage = 1;
+
+
+            if (products.length === 0) {
+
+                grid.innerHTML = `
+                    <div style="
+                        grid-column: 1 / -1;
+                        text-align: center;
+                        padding: 60px 20px;
+                    ">
+                        <h3>No Products Found</h3>
+                        <p>No products are currently available.</p>
                     </div>
                 `;
-                grid.insertAdjacentHTML('beforeend', card);
-            });
 
-            renderPaginationControls();
-        }
+                paginationContainer.innerHTML = '';
 
-        function renderPaginationControls() {
-            paginationContainer.innerHTML = '';
-            
-            const prevBtn = document.createElement('button');
-            prevBtn.innerHTML = '<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>';
-            prevBtn.className = 'page-btn';
-            prevBtn.disabled = currentPage === 1;
-            prevBtn.onclick = () => { 
-                if (currentPage > 1) { 
-                    currentPage--; 
-                    renderProducts(currentPage); 
-                    scrollToCatalog(); 
-                } 
-            };
-            paginationContainer.appendChild(prevBtn);
-
-            let startPage = Math.max(1, currentPage - 2);
-            let endPage = Math.min(totalPages, currentPage + 2);
-            
-            if (currentPage <= 3) { endPage = Math.min(totalPages, 5); } 
-            else if (currentPage >= totalPages - 2) { startPage = Math.max(1, totalPages - 4); }
-
-            for (let i = startPage; i <= endPage; i++) {
-                const btn = document.createElement('button');
-                btn.innerText = i;
-                btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
-                btn.onclick = () => { 
-                    currentPage = i; 
-                    renderProducts(currentPage); 
-                    scrollToCatalog();
-                };
-                paginationContainer.appendChild(btn);
-            }
-
-            const nextBtn = document.createElement('button');
-            nextBtn.innerHTML = '<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>';
-            nextBtn.className = 'page-btn';
-            nextBtn.disabled = currentPage === totalPages;
-            nextBtn.onclick = () => { 
-                if (currentPage < totalPages) { 
-                    currentPage++; 
-                    renderProducts(currentPage); 
-                    scrollToCatalog();
-                } 
-            };
-            paginationContainer.appendChild(nextBtn);
-        }
-
-        function scrollToCatalog() {
-            const catalogSec = document.getElementById('catalog');
-            const headerOffset = 100; 
-            const elementPosition = catalogSec.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-        }
-
-        renderProducts(currentPage);
-
-        // --- PRODUCT MODAL (ADD TO CART) ---
-        function openProductModal(globalIndex) {
-            selectedProduct = products[globalIndex];
-            const displayImage = selectedProduct.imageUrl && selectedProduct.imageUrl.trim() !== "" ? selectedProduct.imageUrl : `https://placehold.co/600x400/f8fafc/0284c7?text=${encodeURIComponent(selectedProduct.brand)}`;
-
-            document.getElementById('detailImg').src = displayImage;
-            document.getElementById('detailCat').innerText = selectedProduct.cat && selectedProduct.cat.trim() !== "" ? selectedProduct.cat : "General";
-            document.getElementById('detailName').innerText = selectedProduct.name;
-            document.getElementById('detailBrand').innerText = selectedProduct.brand;
-            document.getElementById('detailPrice').innerText = selectedProduct.price;
-            
-            const cartItem = cart.find(item => item.product.name === selectedProduct.name);
-            if (cartItem) {
-                document.getElementById('detailQty').value = cartItem.quantity;
-                detailBtn.innerText = "Update Cart Quantity";
-            } else {
-                document.getElementById('detailQty').value = 1;
-                detailBtn.innerText = "Add to Cart";
-            }
-            
-            productModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeProductModal() {
-            productModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // --- CART LOGIC ---
-        function addItemToCart() {
-            const qty = parseInt(document.getElementById('detailQty').value);
-            if (qty < 1) return;
-            
-            const existingItemIndex = cart.findIndex(item => item.product.name === selectedProduct.name);
-            if (existingItemIndex > -1) {
-                cart[existingItemIndex].quantity = qty; 
-            } else {
-                cart.push({ product: selectedProduct, quantity: qty });
-            }
-            
-            updateCartBadge();
-            renderProducts(currentPage); 
-            closeProductModal();
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartBadge();
-            renderCartItems();
-            renderProducts(currentPage); 
-        }
-
-        function updateCartBadge() {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartBadge.innerText = totalItems;
-        }
-
-        // --- CART CHECKOUT MODAL ---
-        function openCartModal() {
-            renderCartItems();
-            cartModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeCartModal() {
-            cartModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function renderCartItems() {
-            cartItemsContainer.innerHTML = '';
-            let totalCost = 0;
-            let orderSummaryText = "ORDER SUMMARY:\n-----------------------\n";
-
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; color:var(--text-muted);"><svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-bottom:20px; opacity:0.5;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg><p>Your cart is empty.</p></div>';
-                document.getElementById('checkoutBtn').disabled = true;
-                cartTotalPriceUI.innerText = "$0.00";
-                hiddenOrderSummary.value = "";
                 return;
             }
 
-            document.getElementById('checkoutBtn').disabled = false;
 
-            cart.forEach((item, index) => {
-                const p = item.product;
-                const priceNum = parseFloat(p.price.replace('$', '')) || 0;
-                const lineTotal = priceNum * item.quantity;
-                totalCost += lineTotal;
+            renderProducts(currentPage);
 
-                orderSummaryText += `${item.quantity}x - ${p.name} (${p.brand}) @ ${p.price} each\n`;
+            console.log(
+                `${products.length} products successfully loaded.`
+            );
 
-                const displayImage = p.imageUrl && p.imageUrl.trim() !== "" ? p.imageUrl : `https://placehold.co/100x100/f8fafc/0284c7?text=${encodeURIComponent(p.brand)}`;
-                
-                const itemHTML = `
-                    <div class="cart-item">
-                        <img src="${displayImage}" alt="Item">
-                        <div class="cart-item-info">
-                            <div class="cart-item-title">${p.name}</div>
-                            <div style="font-size: 0.85rem; color: var(--text-muted); font-weight:600;">Qty: ${item.quantity} &nbsp;&bull;&nbsp; ${p.brand}</div>
-                        </div>
-                        <div style="text-align: right; min-width: 80px;">
-                            <div class="cart-item-price">$${lineTotal.toFixed(2)}</div>
-                            <button class="btn-danger" style="margin-top:8px;" onclick="removeFromCart(${index})">Remove</button>
-                        </div>
-                    </div>
-                `;
-                cartItemsContainer.insertAdjacentHTML('beforeend', itemHTML);
-            });
 
-            orderSummaryText += `-----------------------\nESTIMATED TOTAL: $${totalCost.toFixed(2)}`;
-            hiddenOrderSummary.value = orderSummaryText;
-            cartTotalPriceUI.innerText = `$${totalCost.toFixed(2)}`;
-        }
+        } catch (error) {
 
-        function prepareCheckout(event) {
-            if (cart.length === 0) {
-                event.preventDefault();
-                alert("Your cart is empty!");
-                return false;
+            console.error(
+                'Product loading error:',
+                error
+            );
+
+
+            grid.innerHTML = `
+                <div style="
+                    grid-column: 1 / -1;
+                    text-align: center;
+                    padding: 60px 20px;
+                ">
+                    <h3>Unable to Load Products</h3>
+
+                    <p>
+                        Please make sure
+                        <strong>data/products.json</strong>
+                        exists and the website is running through
+                        a web server.
+                    </p>
+                </div>
+            `;
+
+
+            if (paginationContainer) {
+                paginationContainer.innerHTML = '';
             }
-            setTimeout(() => {
-                cart = []; 
-                updateCartBadge();
-                renderProducts(currentPage); 
-                closeCartModal();
-            }, 1000);
+
         }
 
-        // Close Modals on background click
-        window.onclick = function(event) {
-            if (event.target === productModal) closeProductModal();
-            if (event.target === cartModal) closeCartModal();
+    }
+
+
+    // ---------------------------------------------------------
+    // RENDER PRODUCT GRID
+    // ---------------------------------------------------------
+
+    function renderProducts(page) {
+
+        grid.innerHTML = '';
+
+
+        const start =
+            (page - 1) * ITEMS_PER_PAGE;
+
+        const end =
+            start + ITEMS_PER_PAGE;
+
+
+        const paginatedItems =
+            products.slice(start, end);
+
+
+        paginatedItems.forEach(
+            (product, relativeIndex) => {
+
+                const globalIndex =
+                    start + relativeIndex;
+
+
+                const displayImage =
+                    product.imageUrl &&
+                    product.imageUrl.trim() !== ''
+
+                        ? product.imageUrl
+
+                        : `https://placehold.co/400x300/f8fafc/0284c7?text=${
+                            encodeURIComponent(
+                                product.brand || 'Product'
+                            )
+                        }`;
+
+
+                const categoryLabel =
+                    product.cat &&
+                    product.cat.trim() !== ''
+
+                        ? product.cat
+
+                        : 'General';
+
+
+                // Count quantity of this product in cart
+                const productCartItems =
+                    cart.filter(
+                        item =>
+                            item.product.name ===
+                            product.name
+                    );
+
+
+                const cartQuantity =
+                    productCartItems.reduce(
+                        (sum, item) =>
+                            sum + item.quantity,
+                        0
+                    );
+
+
+                const cartBadgeHTML =
+                    cartQuantity > 0
+
+                        ? `
+                            <div class="in-cart-badge">
+
+                                <svg
+                                    width="14"
+                                    height="14"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="3"
+                                        d="M5 13l4 4L19 7"
+                                    ></path>
+                                </svg>
+
+                                ${cartQuantity} in Cart
+
+                            </div>
+                        `
+
+                        : '';
+
+
+                const buttonClass =
+                    cartQuantity > 0
+
+                        ? 'btn-action active-state'
+
+                        : 'btn-action';
+
+
+                const buttonText =
+                    cartQuantity > 0
+
+                        ? 'Update Order'
+
+                        : 'View Options';
+
+
+                const card = `
+
+                    <div
+                        class="product-card"
+                        onclick="openProductModal(${globalIndex})"
+                    >
+
+                        ${cartBadgeHTML}
+
+
+                        <div class="product-badge">
+
+                            ${escapeHTML(categoryLabel)}
+
+                        </div>
+
+
+                        <div class="product-image-wrapper">
+
+                            <img
+                                src="${escapeHTML(displayImage)}"
+                                alt="${escapeHTML(product.name)}"
+                                loading="lazy"
+                                onerror="
+                                    this.onerror=null;
+                                    this.src='https://placehold.co/400x300/f8fafc/0284c7?text=Product';
+                                "
+                            >
+
+                        </div>
+
+
+                        <div class="product-brand">
+
+                            ${escapeHTML(
+                                product.brand || ''
+                            )}
+
+                        </div>
+
+
+                        <h4 class="product-name">
+
+                            ${escapeHTML(
+                                product.name || 'Product'
+                            )}
+
+                        </h4>
+
+
+                        <div class="product-price-row">
+
+
+                            <div class="product-price">
+
+                                ${escapeHTML(
+                                    product.price || ''
+                                )}
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="${buttonClass}"
+                            >
+
+                                ${buttonText}
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+
+                grid.insertAdjacentHTML(
+                    'beforeend',
+                    card
+                );
+
+            }
+        );
+
+
+        renderPaginationControls();
+
+    }
+
+
+    // ---------------------------------------------------------
+    // PAGINATION
+    // ---------------------------------------------------------
+
+    function renderPaginationControls() {
+
+        paginationContainer.innerHTML = '';
+
+
+        if (totalPages <= 1) {
+            return;
         }
-    </script>
+
+
+        // Previous Button
+        const previousButton =
+            document.createElement('button');
+
+
+        previousButton.innerHTML = `
+
+            <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"
+                ></path>
+            </svg>
+
+        `;
+
+
+        previousButton.className =
+            'page-btn';
+
+
+        previousButton.disabled =
+            currentPage === 1;
+
+
+        previousButton.onclick = () => {
+
+            if (currentPage > 1) {
+
+                currentPage--;
+
+                renderProducts(
+                    currentPage
+                );
+
+                scrollToCatalog();
+
+            }
+
+        };
+
+
+        paginationContainer.appendChild(
+            previousButton
+        );
+
+
+        // Page Number Range
+        let startPage =
+            Math.max(
+                1,
+                currentPage - 2
+            );
+
+
+        let endPage =
+            Math.min(
+                totalPages,
+                currentPage + 2
+            );
+
+
+        if (currentPage <= 3) {
+
+            endPage =
+                Math.min(
+                    totalPages,
+                    5
+                );
+
+        }
+
+
+        if (
+            currentPage >=
+            totalPages - 2
+        ) {
+
+            startPage =
+                Math.max(
+                    1,
+                    totalPages - 4
+                );
+
+        }
+
+
+        // Page Buttons
+        for (
+            let pageNumber = startPage;
+            pageNumber <= endPage;
+            pageNumber++
+        ) {
+
+            const button =
+                document.createElement(
+                    'button'
+                );
+
+
+            button.innerText =
+                pageNumber;
+
+
+            button.className = `page-btn ${
+                pageNumber === currentPage
+                    ? 'active'
+                    : ''
+            }`;
+
+
+            button.onclick = () => {
+
+                currentPage =
+                    pageNumber;
+
+
+                renderProducts(
+                    currentPage
+                );
+
+
+                scrollToCatalog();
+
+            };
+
+
+            paginationContainer.appendChild(
+                button
+            );
+
+        }
+
+
+        // Next Button
+        const nextButton =
+            document.createElement('button');
+
+
+        nextButton.innerHTML = `
+
+            <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                ></path>
+            </svg>
+
+        `;
+
+
+        nextButton.className =
+            'page-btn';
+
+
+        nextButton.disabled =
+            currentPage === totalPages;
+
+
+        nextButton.onclick = () => {
+
+            if (
+                currentPage <
+                totalPages
+            ) {
+
+                currentPage++;
+
+                renderProducts(
+                    currentPage
+                );
+
+                scrollToCatalog();
+
+            }
+
+        };
+
+
+        paginationContainer.appendChild(
+            nextButton
+        );
+
+    }
+
+
+    function scrollToCatalog() {
+
+        const catalogSection =
+            document.getElementById(
+                'catalog'
+            );
+
+
+        if (!catalogSection) {
+            return;
+        }
+
+
+        const headerOffset = 100;
+
+
+        const elementPosition =
+            catalogSection
+                .getBoundingClientRect()
+                .top;
+
+
+        const offsetPosition =
+            elementPosition +
+            window.pageYOffset -
+            headerOffset;
+
+
+        window.scrollTo({
+
+            top: offsetPosition,
+
+            behavior: 'smooth'
+
+        });
+
+    }
+
+
+    // ---------------------------------------------------------
+    // PRODUCT OPTIONS MODAL
+    // ---------------------------------------------------------
+
+    function openProductModal(globalIndex) {
+
+        selectedProduct =
+            products[globalIndex];
+
+
+        if (!selectedProduct) {
+            return;
+        }
+
+
+        document.getElementById(
+            'tabularBrand'
+        ).innerText =
+
+            selectedProduct.brand ||
+            '';
+
+
+        document.getElementById(
+            'tabularTitle'
+        ).innerText =
+
+            selectedProduct.name ||
+            'Product';
+
+
+        document.getElementById(
+            'tabularDesc'
+        ).innerText =
+
+            selectedProduct.description ||
+
+            selectedProduct.name ||
+
+            '';
+
+
+        const tableBody =
+            document.getElementById(
+                'optionsTableBody'
+            );
+
+
+        tableBody.innerHTML = '';
+
+
+        const options =
+            getProductOptions(
+                selectedProduct
+            );
+
+
+        options.forEach(
+            (option, index) => {
+
+
+                // Check if this exact option
+                // already exists in cart
+
+                const existingCartItem =
+                    cart.find(
+
+                        cartItem =>
+
+                            cartItem.product.name ===
+                            selectedProduct.name
+
+                            &&
+
+                            cartItem.option.desc ===
+                            option.desc
+
+                    );
+
+
+                const quantityValue =
+                    existingCartItem
+
+                        ? existingCartItem.quantity
+
+                        : '';
+
+
+                const row = `
+
+                    <tr>
+
+
+                        <td>
+
+                            <input
+                                type="number"
+                                class="qty-input"
+                                data-opt-index="${index}"
+                                value="${quantityValue}"
+                                min="0"
+                                step="1"
+                            >
+
+                        </td>
+
+
+                        <td style="font-weight:500;">
+
+                            ${escapeHTML(
+                                option.desc ||
+                                selectedProduct.name
+                            )}
+
+                        </td>
+
+
+                        <td
+                            style="
+                                color:var(--brand-primary);
+                                font-weight:600;
+                            "
+                        >
+
+                            ${escapeHTML(
+                                option.price ||
+                                selectedProduct.price
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            ${escapeHTML(
+                                option.itemNum ||
+                                '-'
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            ${escapeHTML(
+                                option.packaging ||
+                                '-'
+                            )}
+
+                        </td>
+
+
+                    </tr>
+
+                `;
+
+
+                tableBody.insertAdjacentHTML(
+                    'beforeend',
+                    row
+                );
+
+            }
+        );
+
+
+        // OPTIONAL SPECIAL NOTE
+        //
+        // Add this HTML inside your product modal:
+        //
+        // <div id="productSpecialNote"></div>
+        //
+        // If it doesn't exist, nothing breaks.
+
+
+        const specialNote =
+            document.getElementById(
+                'productSpecialNote'
+            );
+
+
+        if (specialNote) {
+
+            if (
+                selectedProduct.specialNote
+            ) {
+
+                specialNote.innerText =
+                    selectedProduct.specialNote;
+
+                specialNote.style.display =
+                    'block';
+
+            } else {
+
+                specialNote.innerText =
+                    '';
+
+                specialNote.style.display =
+                    'none';
+
+            }
+
+        }
+
+
+        productModal.classList.add(
+            'active'
+        );
+
+
+        document.body.style.overflow =
+            'hidden';
+
+    }
+
+
+    function closeProductModal() {
+
+        productModal.classList.remove(
+            'active'
+        );
+
+
+        document.body.style.overflow =
+            'auto';
+
+    }
+
+
+    // ---------------------------------------------------------
+    // ADD / UPDATE PRODUCT OPTIONS IN CART
+    // ---------------------------------------------------------
+
+    function addItemToCart() {
+
+        if (!selectedProduct) {
+            return;
+        }
+
+
+        const quantityInputs =
+            document.querySelectorAll(
+                '.qty-input'
+            );
+
+
+        const options =
+            getProductOptions(
+                selectedProduct
+            );
+
+
+        quantityInputs.forEach(
+            input => {
+
+
+                const quantity =
+                    parseInt(
+                        input.value
+                    ) || 0;
+
+
+                const optionIndex =
+                    parseInt(
+
+                        input.getAttribute(
+                            'data-opt-index'
+                        )
+
+                    );
+
+
+                const option =
+                    options[
+                        optionIndex
+                    ];
+
+
+                if (!option) {
+                    return;
+                }
+
+
+                const cartIndex =
+                    cart.findIndex(
+
+                        cartItem =>
+
+                            cartItem.product.name ===
+                            selectedProduct.name
+
+                            &&
+
+                            cartItem.option.desc ===
+                            option.desc
+
+                    );
+
+
+                // Add or update
+                if (quantity > 0) {
+
+                    if (
+                        cartIndex > -1
+                    ) {
+
+                        cart[
+                            cartIndex
+                        ].quantity =
+                            quantity;
+
+                    } else {
+
+                        cart.push({
+
+                            product:
+                                selectedProduct,
+
+                            option:
+                                option,
+
+                            quantity:
+                                quantity
+
+                        });
+
+                    }
+
+                }
+
+
+                // Remove option if quantity = 0
+                else if (
+                    quantity === 0 &&
+                    cartIndex > -1
+                ) {
+
+                    cart.splice(
+                        cartIndex,
+                        1
+                    );
+
+                }
+
+            }
+        );
+
+
+        updateCartBadge();
+
+        renderProducts(
+            currentPage
+        );
+
+        closeProductModal();
+
+    }
+
+
+    // ---------------------------------------------------------
+    // REMOVE CART ITEM
+    // ---------------------------------------------------------
+
+    function removeFromCart(index) {
+
+        cart.splice(
+            index,
+            1
+        );
+
+
+        updateCartBadge();
+
+        renderCartItems();
+
+        renderProducts(
+            currentPage
+        );
+
+    }
+
+
+    // ---------------------------------------------------------
+    // UPDATE CART BADGE
+    // ---------------------------------------------------------
+
+    function updateCartBadge() {
+
+        const totalItems =
+            cart.reduce(
+
+                (sum, item) =>
+
+                    sum +
+                    item.quantity,
+
+                0
+
+            );
+
+
+        cartBadge.innerText =
+            totalItems;
+
+    }
+
+
+    // ---------------------------------------------------------
+    // OPEN / CLOSE CART
+    // ---------------------------------------------------------
+
+    function openCartModal() {
+
+        renderCartItems();
+
+
+        cartModal.classList.add(
+            'active'
+        );
+
+
+        document.body.style.overflow =
+            'hidden';
+
+    }
+
+
+    function closeCartModal() {
+
+        cartModal.classList.remove(
+            'active'
+        );
+
+
+        document.body.style.overflow =
+            'auto';
+
+    }
+
+
+    // ---------------------------------------------------------
+    // RENDER CART ITEMS
+    // ---------------------------------------------------------
+
+    function renderCartItems() {
+
+        cartItemsContainer.innerHTML =
+            '';
+
+
+        let totalCost = 0;
+
+
+        let orderSummaryText =
+
+            'ORDER SUMMARY:\n' +
+
+            '-----------------------\n';
+
+
+        // Empty Cart
+        if (
+            cart.length === 0
+        ) {
+
+            cartItemsContainer.innerHTML = `
+
+                <div
+                    style="
+                        display:flex;
+                        flex-direction:column;
+                        align-items:center;
+                        justify-content:center;
+                        height:100%;
+                        min-height:300px;
+                        color:var(--text-muted);
+                    "
+                >
+
+                    <svg
+                        width="48"
+                        height="48"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        style="
+                            margin-bottom:20px;
+                            opacity:0.5;
+                        "
+                    >
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="
+                                M3 3h2l.4 2
+                                M7 13h10l4-8H5.4
+                                M7 13L5.4 5
+                                M7 13l-2.293 2.293
+                                c-.63.63-.184 1.707.707 1.707H17
+                                m0 0a2 2 0 100 4
+                                2 2 0 000-4
+                                zm-8 2a2 2 0 11-4 0
+                                2 2 0 014 0z
+                            "
+                        ></path>
+
+                    </svg>
+
+
+                    <p>
+                        Your cart is empty.
+                    </p>
+
+
+                </div>
+
+            `;
+
+
+            const checkoutButton =
+                document.getElementById(
+                    'checkoutBtn'
+                );
+
+
+            if (checkoutButton) {
+
+                checkoutButton.disabled =
+                    true;
+
+            }
+
+
+            cartTotalPriceUI.innerText =
+                '$0.00';
+
+
+            hiddenOrderSummary.value =
+                '';
+
+
+            return;
+
+        }
+
+
+        // Enable checkout
+        const checkoutButton =
+            document.getElementById(
+                'checkoutBtn'
+            );
+
+
+        if (checkoutButton) {
+
+            checkoutButton.disabled =
+                false;
+
+        }
+
+
+        // Render Each Cart Item
+        cart.forEach(
+            (item, index) => {
+
+
+                const product =
+                    item.product;
+
+
+                const activePrice =
+
+                    item.option
+
+                        ? item.option.price
+
+                        : product.price;
+
+
+                const priceNumber =
+                    getPriceNumber(
+                        activePrice
+                    );
+
+
+                const lineTotal =
+
+                    priceNumber *
+
+                    item.quantity;
+
+
+                totalCost +=
+                    lineTotal;
+
+
+                const optionDescription =
+
+                    item.option &&
+
+                    item.option.desc !==
+                    product.name
+
+                        ? ` - ${
+                            item.option.desc
+                        }`
+
+                        : '';
+
+
+                // Build email order summary
+                orderSummaryText +=
+
+                    `${item.quantity}x - ` +
+
+                    `${product.name}` +
+
+                    `${optionDescription} ` +
+
+                    `(${product.brand || ''}) ` +
+
+                    `@ ${activePrice} each` +
+
+                    ` | Item #: ${
+                        item.option?.itemNum || '-'
+                    }` +
+
+                    ` | Packaging: ${
+                        item.option?.packaging || '-'
+                    }\n`;
+
+
+                const displayImage =
+
+                    product.imageUrl &&
+
+                    product.imageUrl.trim() !== ''
+
+                        ? product.imageUrl
+
+                        : `https://placehold.co/100x100/f8fafc/0284c7?text=${
+                            encodeURIComponent(
+                                product.brand ||
+                                'Product'
+                            )
+                        }`;
+
+
+                const cartItemHTML = `
+
+                    <div class="cart-item">
+
+
+                        <img
+                            src="${escapeHTML(
+                                displayImage
+                            )}"
+                            alt="${escapeHTML(
+                                product.name
+                            )}"
+                            onerror="
+                                this.onerror=null;
+                                this.src='https://placehold.co/100x100/f8fafc/0284c7?text=Product';
+                            "
+                        >
+
+
+                        <div class="cart-item-info">
+
+
+                            <div class="cart-item-title">
+
+                                ${escapeHTML(
+                                    product.name
+                                )}
+
+                                ${escapeHTML(
+                                    optionDescription
+                                )}
+
+                            </div>
+
+
+                            <div
+                                style="
+                                    font-size:0.85rem;
+                                    color:var(--text-muted);
+                                    font-weight:600;
+                                "
+                            >
+
+                                Qty:
+                                ${item.quantity}
+
+                                &nbsp;&bull;&nbsp;
+
+                                ${escapeHTML(
+                                    product.brand ||
+                                    ''
+                                )}
+
+                            </div>
+
+
+                            <div
+                                style="
+                                    font-size:0.8rem;
+                                    color:var(--text-muted);
+                                    margin-top:4px;
+                                "
+                            >
+
+                                Item #:
+                                ${escapeHTML(
+                                    item.option?.itemNum ||
+                                    '-'
+                                )}
+
+                                &nbsp;&bull;&nbsp;
+
+                                ${escapeHTML(
+                                    item.option?.packaging ||
+                                    '-'
+                                )}
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div
+                            style="
+                                text-align:right;
+                                min-width:80px;
+                            "
+                        >
+
+
+                            <div class="cart-item-price">
+
+                                $${lineTotal.toFixed(2)}
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="btn-danger"
+                                style="margin-top:8px;"
+                                onclick="removeFromCart(${index})"
+                            >
+
+                                Remove
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+
+                cartItemsContainer
+                    .insertAdjacentHTML(
+
+                        'beforeend',
+
+                        cartItemHTML
+
+                    );
+
+            }
+        );
+
+
+        // Final Order Summary
+        orderSummaryText +=
+
+            '-----------------------\n' +
+
+            `ESTIMATED TOTAL: $${
+
+                totalCost.toFixed(2)
+
+            }`;
+
+
+        hiddenOrderSummary.value =
+            orderSummaryText;
+
+
+        cartTotalPriceUI.innerText =
+
+            `$${totalCost.toFixed(2)}`;
+
+    }
+
+
+    // ---------------------------------------------------------
+    // CHECKOUT
+    // ---------------------------------------------------------
+
+    function prepareCheckout(event) {
+
+        if (
+            cart.length === 0
+        ) {
+
+            event.preventDefault();
+
+
+            alert(
+                'Your cart is empty!'
+            );
+
+
+            return false;
+
+        }
+
+
+        // Make sure latest order data
+        // is added to the hidden form field
+
+        renderCartItems();
+
+
+        // Clear cart after submission
+        setTimeout(
+            () => {
+
+                cart = [];
+
+
+                updateCartBadge();
+
+
+                renderProducts(
+                    currentPage
+                );
+
+
+                closeCartModal();
+
+            },
+
+            1000
+
+        );
+
+
+        return true;
+
+    }
+
+
+    // ---------------------------------------------------------
+    // CLOSE MODALS WHEN CLICKING BACKGROUND
+    // ---------------------------------------------------------
+
+    window.addEventListener(
+        'click',
+        function(event) {
+
+
+            if (
+                event.target ===
+                productModal
+            ) {
+
+                closeProductModal();
+
+            }
+
+
+            if (
+                event.target ===
+                cartModal
+            ) {
+
+                closeCartModal();
+
+            }
+
+        }
+    );
+
+
+    // ---------------------------------------------------------
+    // ESC KEY CLOSES MODALS
+    // ---------------------------------------------------------
+
+    document.addEventListener(
+        'keydown',
+        function(event) {
+
+            if (
+                event.key ===
+                'Escape'
+            ) {
+
+                if (
+                    productModal.classList.contains(
+                        'active'
+                    )
+                ) {
+
+                    closeProductModal();
+
+                }
+
+
+                if (
+                    cartModal.classList.contains(
+                        'active'
+                    )
+                ) {
+
+                    closeCartModal();
+
+                }
+
+            }
+
+        }
+    );
+
+
+    // ---------------------------------------------------------
+    // START APPLICATION
+    // ---------------------------------------------------------
+
+    loadProducts();
+
+</script>
+
+
+
+   
 </body>
 </html>
