@@ -1,0 +1,71 @@
+[
+  {
+    "id": "69",
+    "brand": "SS WHITE",
+    "name": "(FG#330) Pear Shape",
+    "description": "(FG#330) Pear Shape",
+    "price": "$21.15",
+    "cat": "Burs & Diamonds",
+    "imageUrl": "https://lhdistributors.com/uploads/featured69.jpg",
+    "options": [
+      {
+        "desc": "330 - FG SS WHITE",
+        "price": "$21.15",
+        "itemNum": "330 - FG",
+        "packaging": "10 / Pkg"
+      },
+      {
+        "desc": "FG 330",
+        "price": "$110.00",
+        "itemNum": "FG 330",
+        "packaging": "50/PK / Pkg"
+      }
+    ]
+  },
+  {
+    "id": "188",
+    "brand": "Safedent",
+    "name": "Disposable Impression Trays",
+    "description": "Disposable Impression Trays",
+    "price": "From $5.99",
+    "cat": "Impression Materials",
+    "imageUrl": "https://lhdistributors.com/uploads/featured188.jpg",
+    "options": [
+      {
+        "desc": "#1 Large Upper - Perforated",
+        "price": "$5.99",
+        "itemNum": "PT-01",
+        "packaging": "12 / Pkg"
+      },
+      {
+        "desc": "#2 Large Lower - Perforated",
+        "price": "$5.99",
+        "itemNum": "PT-02",
+        "packaging": "12 / Pkg"
+      },
+      {
+        "desc": "#3 Medium Upper - Perforated",
+        "price": "$5.99",
+        "itemNum": "PT-03",
+        "packaging": "12 / Pkg"
+      }
+    ]
+  },
+  {
+    "id": "100",
+    "brand": "Safedent",
+    "name": "Cotton Tipped Applicators",
+    "description": "Cotton Tipped Applicators",
+    "price": "$8.15",
+    "cat": "Disposable Products",
+    "imageUrl": "https://lhdistributors.com/uploads/featured100.jpg",
+    "options": [
+      {
+        "desc": "Cotton Tipped Applicators",
+        "price": "$8.15",
+        "itemNum": "-",
+        "packaging": "1 / Pkg"
+      }
+    ]
+  }
+]
