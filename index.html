@@ -181,7 +181,11 @@
         .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; color: var(--text-muted); z-index: 10; line-height: 1; transition: var(--transition); background: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); }
         .close-btn:hover { color: var(--danger); transform: rotate(90deg); }
         
-        .modal-pane { padding: 40px; overflow-y: auto; }
+       .modal-pane {
+    padding: 40px;
+    overflow-y: auto;
+    max-height: 90vh;
+}
         .pane-gray { background: #f8fafc; }
         
         /* NEW: Tabular Modal Styles */
@@ -429,6 +433,9 @@
             </div>
             
             <div class="modal-pane">
+                 <div class="tabular-img-wrapper">
+        <img id="tabularImage" src="" alt="Product Image">
+    </div>
                 <div class="tabular-header">
                     <div class="tabular-brand" id="tabularBrand">SS WHITE</div>
                     <div class="tabular-title" id="tabularTitle">(FG#330) Pear Shape</div>
@@ -529,8 +536,3809 @@
 	<script>
     // =========================================================
     // LH DISTRIBUTOR - PRODUCT, CART & CHECKOUT SYSTEM
-    // products.json must be in the same folder as index.html
+    //
+    // FIX NOTE:
+    // Product data is embedded directly below as EMBEDDED_PRODUCTS.
+    // The previous version used fetch('./products.json'), which
+    // FAILS with a CORS error when you open index.html directly by
+    // double-clicking it (file:// protocol) instead of running it
+    // through a web server. That is why you saw "Unable to Load
+    // Products". Embedding the data removes that dependency, so the
+    // page works whether you open it directly OR host it on a server.
     // =========================================================
+
+    const EMBEDDED_PRODUCTS = [
+    {
+        "brand": "SS WHITE",
+        "name": "(FG#330) Pear Shape",
+        "price": "$21.15",
+        "cat": "Burs & Diamonds",
+        "imageUrl": "downloads/featured69.jpg",
+        "options": [
+            {
+                "desc": "330 - FG SS WHITE",
+                "price": "$21.15",
+                "itemNum": "330 - FG",
+                "packaging": "10 / Pkg"
+            },
+            {
+                "desc": "FG 330",
+                "price": "$110.00",
+                "itemNum": "FG 330",
+                "packaging": "50/PK / Pkg"
+            }
+        ]
+    },
+{
+  "brand": "SS WHITE",
+  "name": "(FG#557) Straight Flat end",
+  "price": "$21.15",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured70.jpg",
+  "options": [
+    {
+      "desc": "557 Cross Cut - FG SS WHITE",
+      "price": "$21.15",
+      "itemNum": "FG #557",
+      "packaging": "10 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "SS WHITE",
+  "name": "RA Round Surgical Length Bur",
+  "price": "$18.25",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured73.jpg",
+  "options": [
+    {
+      "desc": "2 - RAOS",
+      "price": "$18.25",
+      "itemNum": "2 - RAOS",
+      "packaging": "5 / Pkg"
+    },
+    {
+      "desc": "4 - RAOS",
+      "price": "$18.25",
+      "itemNum": "4 - RAOS",
+      "packaging": "5 / Pkg"
+    },
+    {
+      "desc": "6 - RAOS",
+      "price": "$18.25",
+      "itemNum": "6 - RAOS",
+      "packaging": "5 / Pkg"
+    },
+    {
+      "desc": "8 - RAOS",
+      "price": "$18.25",
+      "itemNum": "8 - RAOS",
+      "packaging": "5 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Strauss Diamonds",
+  "name": "Round Football (379-023)",
+  "price": "$19.15",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured82.jpg",
+  "options": [
+    {
+      "desc": "379-023F",
+      "price": "$19.15",
+      "itemNum": "379-023F - FINE",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "379-023C",
+      "price": "$19.15",
+      "itemNum": "379-023 COARSE",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "379-023 SC",
+      "price": "$19.15",
+      "itemNum": "379-023 SUPER COARSE",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Strauss Diamonds",
+  "name": "Pointed Football Burs 368-023",
+  "price": "$19.15",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured83.jpg",
+  "options": [
+    {
+      "desc": "368-023F - FINE",
+      "price": "$19.15",
+      "itemNum": "368-023F",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "368-023M - MEDIUM",
+      "price": "$19.15",
+      "itemNum": "368-023M",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "368-023C COARSE",
+      "price": "$19.15",
+      "itemNum": "368-023C",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Strauss Diamonds",
+  "name": "Flat End Cone 856-014C",
+  "price": "$19.15",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured84.jpg",
+  "options": [
+    {
+      "desc": "848- 018C - Coarse",
+      "price": "$19.15",
+      "itemNum": "847-018C - Coarse",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "856- 014 C",
+      "price": "$19.15",
+      "itemNum": "856-014C",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "856-014SC",
+      "price": "$19.15",
+      "itemNum": "856-014SC",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "848-018M",
+      "price": "$19.15",
+      "itemNum": "848-018M",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Strauss Diamonds",
+  "name": "Flat End Taper 848-014C",
+  "price": "$19.15",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured85.jpg",
+  "options": [
+    {
+      "desc": "848-014C Coarse",
+      "price": "$19.15",
+      "itemNum": "848-014C",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "848-018M - Medium",
+      "price": "$19.15",
+      "itemNum": "848-018M - Medium",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "848-018 Coarse",
+      "price": "$19.15",
+      "itemNum": "848-018 C",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "848-016C",
+      "price": "$19.15",
+      "itemNum": "848-016C",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Strauss Diamonds",
+  "name": "Needle 859-012SF",
+  "price": "$19.15",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured86.jpg",
+  "options": [
+    {
+      "desc": "859-010F - Fine",
+      "price": "$19.15",
+      "itemNum": "859-010F - Fine",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "859-016F - Fine",
+      "price": "$19.15",
+      "itemNum": "859-016F - Fine",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "859-012 SF",
+      "price": "$19.15",
+      "itemNum": "859-012SF",
+      "packaging": "6/PK / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "UniPack",
+  "name": "Tongue Depressors",
+  "price": "$12.15",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured94.jpg",
+  "options": [
+    {
+      "desc": "6\" Disposable Wood",
+      "price": "$12.15",
+      "itemNum": "UDT-9007",
+      "packaging": "500 / Pkg"
+    }
+  ]
+},
+    {
+        "brand": "UniPack",
+        "name": "DISPOSABLE PATIENT BIBS",
+        "price": "From $29.99",
+        "cat": "Disposable Products",
+        "imageUrl": "downloads/featured96.jpg",
+        "options": [
+            {
+                "desc": "Patient Bibs - Blue",
+                "price": "$29.99",
+                "itemNum": "BIB-BLU",
+                "packaging": "500 / Case"
+            },
+            {
+                "desc": "Patient Bibs - Green",
+                "price": "$29.99",
+                "itemNum": "BIB-GRN",
+                "packaging": "500 / Case"
+            },
+            {
+                "desc": "Patient Bibs - Pink",
+                "price": "$29.99",
+                "itemNum": "BIB-PNK",
+                "packaging": "500 / Case"
+            },
+            {
+                "desc": "Patient Bibs - Lavender",
+                "price": "$29.99",
+                "itemNum": "BIB-LAV",
+                "packaging": "500 / Case"
+            }
+        ]
+    },
+{
+  "brand": "Safedent",
+  "name": "2x2 gauze",
+  "price": "$32.97",
+  "cat": "Disposable Products",
+  "imageUrl": "downloads/featured99.jpg",
+  "options": [
+    {
+      "desc": "2 x 2 Cotton Filled Gauze (200 x 25 sleeves/case)",
+      "price": "$32.97",
+      "itemNum": "C6011",
+      "packaging": "5000 / Pkg"
+    },
+    {
+      "desc": "4x4",
+      "price": "$38.99",
+      "itemNum": "C6012",
+      "packaging": "2000/pk / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Safedent",
+  "name": "Cotton Tipped Applicators",
+  "price": "$8.15",
+  "cat": "Disposable Products",
+  "imageUrl": "downloads/featured100.jpg",
+  "options": [
+    {
+      "desc": "3\" Long Wooden Shaft",
+      "price": "$8.15",
+      "itemNum": "UCA-9003",
+      "packaging": "100 / Pkg"
+    },
+    {
+      "desc": "6\" Long Wooden Shaft",
+      "price": "$11.99",
+      "itemNum": "AC908 #3",
+      "packaging": "100 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "UniPack",
+  "name": "COTTON ROLLS",
+  "price": "$29.99",
+  "cat": "Disposable Products",
+  "imageUrl": "downloads/featured101.jpg",
+  "options": [
+    {
+      "desc": "Cotton Roll 1 1/2 \"",
+      "price": "$29.99",
+      "itemNum": "UCR",
+      "packaging": "2000 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Safedent",
+  "name": "DISPOSABLE PLASTIC CUPS",
+  "price": "$29.35",
+  "cat": "Disposable Products",
+  "imageUrl": "downloads/featured102.jpg",
+  "options": [
+    {
+      "desc": "Blue",
+      "price": "$29.35",
+      "itemNum": "UBC-6201",
+      "packaging": "1000 / Pkg"
+    },
+    {
+      "desc": "Green",
+      "price": "$29.35",
+      "itemNum": "UBC-6205",
+      "packaging": "1000 / Pkg"
+    },
+    {
+      "desc": "Lavender",
+      "price": "$29.35",
+      "itemNum": "UBC-6204",
+      "packaging": "1000 / Pkg"
+    },
+    {
+      "desc": "Pink",
+      "price": "$29.35",
+      "itemNum": "UBC-6209",
+      "packaging": "1000 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Safe Dent",
+  "name": "PAPER TRAY COVERS",
+  "price": "$28.29",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured103.jpg",
+  "options": [
+    {
+      "desc": "Blue",
+      "price": "$28.29",
+      "itemNum": "UBC-80141",
+      "packaging": "500 / Pkg"
+    },
+    {
+      "desc": "Pink",
+      "price": "$28.29",
+      "itemNum": "UBC-80146",
+      "packaging": "500 / Pkg"
+    },
+    {
+      "desc": "Green",
+      "price": "$28.29",
+      "itemNum": "UBC-801",
+      "packaging": "500 / Pkg"
+    },
+    {
+      "desc": "Lavender",
+      "price": "$28.29",
+      "itemNum": "PT8115",
+      "packaging": "500 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "SS WHITE",
+  "name": "(FG 557) Straight Surgical Length",
+  "price": "$18.25",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured104.jpg",
+  "options": [
+    {
+      "desc": "557 Flat End (Cross Cut) - FGOS",
+      "price": "$18.25",
+      "itemNum": "Ac-908001",
+      "packaging": "5 / Pkg"
+    },
+    {
+      "desc": "557 Round End (Cross Cut) -RAOS",
+      "price": "$18.25",
+      "itemNum": "Ac-908001",
+      "packaging": "5 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "SS WHITE",
+  "name": "FG Round Oral Surgery",
+  "price": "$18.25",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured105.jpg",
+  "options": [
+    {
+      "desc": "FGOS#2",
+      "price": "$18.25",
+      "itemNum": "AC11001",
+      "packaging": "5 / Pkg"
+    },
+    {
+      "desc": "FGOS#4",
+      "price": "$18.25",
+      "itemNum": "AC11001",
+      "packaging": "5 / Pkg"
+    },
+    {
+      "desc": "FGOS#6",
+      "price": "$18.25",
+      "itemNum": "AC-11001",
+      "packaging": "5 / Pkg"
+    },
+    {
+      "desc": "FGOS#8",
+      "price": "$18.25",
+      "itemNum": "AC-11001",
+      "packaging": "5 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Plasdent",
+  "name": "Composite Dispensing Gun",
+  "price": "$13.99",
+  "cat": "Composites Filling Materials",
+  "imageUrl": "downloads/featured106.jpg",
+  "options": [
+    {
+      "desc": "Plastic Gun w/ Plastic Tip",
+      "price": "$13.99",
+      "itemNum": "906CDG",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "UniPack",
+  "name": "Evacuator HVE Tips",
+  "price": "$4.99",
+  "cat": "Evacuation",
+  "imageUrl": "downloads/featured109.jpg",
+  "options": [
+    {
+      "desc": "Evacuator HVE Tips",
+      "price": "$4.99",
+      "itemNum": "Ac 21001",
+      "packaging": "100/pk / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Safedent",
+  "name": "Saliva Ejectors",
+  "price": "$4.99",
+  "cat": "Evacuation",
+  "imageUrl": "downloads/featured111.jpg",
+  "options": [
+    {
+      "desc": "Saliva Ejectors white with white tip.",
+      "price": "$4.99",
+      "itemNum": "A9011-WW",
+      "packaging": "100 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Safe Dent",
+  "name": "SURGICAL ASPIRATOR TIPS",
+  "price": "$7.99",
+  "cat": "Evacuation",
+  "imageUrl": "downloads/featured112.jpg",
+  "options": [
+    {
+      "desc": "1/4 \" Green",
+      "price": "$7.99",
+      "itemNum": "UST-9073",
+      "packaging": "25 / Pkg"
+    },
+    {
+      "desc": "1/8 \" White",
+      "price": "$7.99",
+      "itemNum": "UST-9074",
+      "packaging": "25 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "UniPack",
+  "name": "CAVEX CREAM FAST SET ALGINATE",
+  "price": "$12.99",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured121.jpg",
+  "options": [
+    {
+      "desc": "Fast Set",
+      "price": "$12.99",
+      "itemNum": "AA-605",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "UniPack",
+  "name": "Endo Irrigation Combo Kit",
+  "price": "$27.29",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured131.jpg",
+  "options": [
+    {
+      "desc": "27 ga - Yellow",
+      "price": "$27.29",
+      "itemNum": "AC908111",
+      "packaging": "100 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Plasdent",
+  "name": "Ortho Boxes - Retainer Box",
+  "price": "$10.99",
+  "cat": "Disposable Products",
+  "imageUrl": "downloads/featured162.jpg",
+  "options": [
+    {
+      "desc": "Assorted Colors",
+      "price": "$10.99",
+      "itemNum": "Plasdent",
+      "packaging": "12 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "UniPack",
+  "name": "Pre-Bent Needle Tips",
+  "price": "$9.05",
+  "cat": "Composites Filling Materials",
+  "imageUrl": "downloads/featured167.jpg",
+  "options": [
+    {
+      "desc": "229 20 Ga., flow, black",
+      "price": "$9.05",
+      "itemNum": "229",
+      "packaging": "100 / Pkg"
+    },
+    {
+      "desc": "231 25 Ga., etch, blue",
+      "price": "$9.05",
+      "itemNum": "231",
+      "packaging": "100 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Mydent",
+  "name": "Micro Applicator Tips",
+  "price": "$5.26",
+  "cat": "Composites Filling Materials",
+  "imageUrl": "downloads/featured168.jpg",
+  "options": [
+    {
+      "desc": "Fine - Yellow/Purple",
+      "price": "$5.26",
+      "itemNum": "AC-01",
+      "packaging": "100 / Pkg"
+    },
+    {
+      "desc": "Super Fine - White",
+      "price": "$5.26",
+      "itemNum": "AC-01",
+      "packaging": "100 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "House Brand",
+  "name": "Mixing Pads",
+  "price": "$1.29",
+  "cat": "Impression Materials",
+  "imageUrl": "downloads/featured176.png",
+  "options": [
+    {
+      "desc": "1x1",
+      "price": "$1.29",
+      "itemNum": "DYN-01",
+      "packaging": "100 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Plasdent",
+  "name": "CURVED TIP UTILITY SYRINGE",
+  "price": "$24.99",
+  "cat": "Impression Materials",
+  "imageUrl": "downloads/featured182.jpg",
+  "options": [
+    {
+      "desc": "12CC Curved syringe tip",
+      "price": "$24.99",
+      "itemNum": "AC-908111",
+      "packaging": "50 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "UniPack",
+  "name": "LUER LOCK IRRIGATION SYRINGE",
+  "price": "$10.99",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured184.jpg",
+  "options": [
+    {
+      "desc": "3cc",
+      "price": "$10.99",
+      "itemNum": "URS-55003",
+      "packaging": "100 / Pkg"
+    },
+    {
+      "desc": "6cc",
+      "price": "$13.99",
+      "itemNum": "URS-55006",
+      "packaging": "100 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "UniPack",
+  "name": "Easy-E-Trap Canisters",
+  "price": "$69.99",
+  "cat": "Evacuation",
+  "imageUrl": "downloads/featured185.jpg",
+  "options": [
+    {
+      "desc": "Canister For Model #2300",
+      "price": "$69.99",
+      "itemNum": "UBC-82300",
+      "packaging": "8 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "House Brand",
+  "name": "Intra Oral Mixing Tips",
+  "price": "$9.99",
+  "cat": "Acrylic and Reline Materials",
+  "imageUrl": "downloads/featured186.jpg",
+  "options": [
+    {
+      "desc": "Intra Oral Tips, Yellow",
+      "price": "$9.99",
+      "itemNum": "UMT-9021",
+      "packaging": "100 / Pkg"
+    }
+  ]
+},
+    {
+        "brand": "Safedent",
+        "name": "Disposable Impression Trays",
+        "price": "From $5.99",
+        "cat": "Impression Materials",
+        "imageUrl": "downloads/featured188.jpg",
+        "options": [
+            {
+                "desc": "Size 1 - Large Upper",
+                "price": "$5.99",
+                "itemNum": "TR-1",
+                "packaging": "12 / Bag"
+            },
+            {
+                "desc": "Size 2 - Large Lower",
+                "price": "$5.99",
+                "itemNum": "TR-2",
+                "packaging": "12 / Bag"
+            },
+            {
+                "desc": "Size 3 - Medium Upper",
+                "price": "$5.99",
+                "itemNum": "TR-3",
+                "packaging": "12 / Bag"
+            },
+            {
+                "desc": "Size 4 - Medium Lower",
+                "price": "$5.99",
+                "itemNum": "TR-4",
+                "packaging": "12 / Bag"
+            },
+            {
+                "desc": "Size 5 - Small Upper",
+                "price": "$5.99",
+                "itemNum": "TR-5",
+                "packaging": "12 / Bag"
+            },
+            {
+                "desc": "Size 6 - Small Lower",
+                "price": "$5.99",
+                "itemNum": "TR-6",
+                "packaging": "12 / Bag"
+            }
+        ]
+    },
+ {
+  "brand": "UniPack",
+  "name": "ISOLATION GOWN",
+  "price": "$15.99",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured192.jpg",
+  "options": [
+    {
+      "desc": "Regular - PINK Please call (530) 859-6003 for Supply update",
+      "price": "$15.99",
+      "itemNum": "UGI-6719",
+      "packaging": "0 / Pkg"
+    },
+    {
+      "desc": "Regular - Blue Please call (530) 859-6003 for Supply update",
+      "price": "$15.99",
+      "itemNum": "UGI-6711",
+      "packaging": "0 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "House Brand",
+  "name": "Protective Eyewear - Clear",
+  "price": "$3.99",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured194.jpg",
+  "options": [
+    {
+      "desc": "These economical eyewear offer excellent protection in the operatory or in the lab. The one piece lens is made of a high impact, scratch resistant clear polycarbonate material. They provide non-glare and optically clear protection.",
+      "price": "$3.99",
+      "itemNum": "GL-2021",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+    {
+        "brand": "Safedent",
+        "name": "STERILIZATION POUCHES",
+        "price": "From $6.75",
+        "cat": "Infection Control",
+        "imageUrl": "downloads/featured199.jpg",
+        "options": [
+            {
+                "desc": "Pouches 2.25\" x 4\"",
+                "price": "$6.75",
+                "itemNum": "PCH-24",
+                "packaging": "200 / Box"
+            },
+            {
+                "desc": "Pouches 2.75\" x 9\"",
+                "price": "$8.50",
+                "itemNum": "PCH-29",
+                "packaging": "200 / Box"
+            },
+            {
+                "desc": "Pouches 3.5\" x 9\"",
+                "price": "$9.50",
+                "itemNum": "PCH-39",
+                "packaging": "200 / Box"
+            },
+            {
+                "desc": "Pouches 5.25\" x 10\"",
+                "price": "$14.00",
+                "itemNum": "PCH-510",
+                "packaging": "200 / Box"
+            }
+        ]
+    },
+{
+  "brand": "Plasdent",
+  "name": "CHAIR & HEADREST COVERS",
+  "price": "$37.92",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured200.jpg",
+  "options": [
+    {
+      "desc": "Half Chair Cover 32x32",
+      "price": "$37.92",
+      "itemNum": "Plasdent Corp. - PS3825",
+      "packaging": "200 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Safe Dent",
+  "name": "Barrier Film",
+  "price": "$15.99",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured201.jpg",
+  "options": [
+    {
+      "desc": "Blue",
+      "price": "$15.99",
+      "itemNum": "BF-008",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Look",
+  "name": "Suture - 3/0, 27 - Chromic - C-6",
+  "price": "$48.5",
+  "cat": "Surgical Products",
+  "imageUrl": "downloads/featured207.jpg",
+  "options": [
+    {
+      "desc": "3/0, 27 inch Chromic Gut absorbable suture with reverse-cutting C-6 needle (3/8 circle), box of 12 suture sets",
+      "price": "$48.5",
+      "itemNum": "FD - 001",
+      "packaging": "1 / Pkg"
+    },
+    {
+      "desc": "4/0, 27 inch Chromic Gut absorbable suture with reverse-cutting C-6 needle (3/8 circle), box of 12 suture sets",
+      "price": "$48.5",
+      "itemNum": "FD-OO1",
+      "packaging": "1 / Pkg"
+    },
+    {
+      "desc": "Silk Black Braided 4/0 C-6 18 \"",
+      "price": "$29.99",
+      "itemNum": "FD -002",
+      "packaging": "1 / Pkg"
+    },
+    {
+      "desc": "Silk Black Braided 3/0 C-6 18 \"",
+      "price": "$29.99",
+      "itemNum": "FD-002",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "Strauss Diamonds",
+  "name": "Flame 863-012 SF",
+  "price": "$19.15",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured212.jpg",
+  "options": [
+    {
+      "desc": "863-012F - Fine (Red Band)",
+      "price": "$19.15",
+      "itemNum": "Flame",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "863-012SF - Super Fine (Yellow Band)",
+      "price": "$19.15",
+      "itemNum": "Flame",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Need Any Particular Size. Please contact us at lhdistributors88@gmail.com",
+      "price": "$0",
+      "itemNum": "0",
+      "packaging": "0 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "UniPack",
+  "name": "DENTURE BOX",
+  "price": "$10.99",
+  "cat": "Disposable Products",
+  "imageUrl": "downloads/featured222.jpg",
+  "options": [
+    {
+      "desc": "Multi Color Denture Box (12pc/pack)",
+      "price": "$10.99",
+      "itemNum": "UDB-7406",
+      "packaging": "12 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "UniPack",
+  "name": "All saliva ejectors Universal fit",
+  "price": "$12.99",
+  "cat": "Evacuation",
+  "imageUrl": "downloads/featured233.jpg",
+  "options": [
+    {
+      "desc": "All saliva ejectors – Universal fit ( 72 Pcs/Bag)",
+      "price": "$12.99",
+      "itemNum": "UBC-85508S",
+      "packaging": "72 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "House Brand",
+  "name": "Scalpel, Stainless Steel Blade, Size 15, 10/bx, 10 bx/cs",
+  "price": "$12.99",
+  "cat": "Surgical Products",
+  "imageUrl": "downloads/featured237.jpg",
+  "options": [
+    {
+      "desc": "Scalpel, Stainless Steel Blade, Size 15, 10/bx, 10 bx/cs",
+      "price": "$12.99",
+      "itemNum": "EXE #15",
+      "packaging": "10 / Pkg"
+    },
+    {
+      "desc": "Scalpel Size 15C",
+      "price": "$12.99",
+      "itemNum": "EXE #15C",
+      "packaging": "10 / Pkg"
+    },
+    {
+      "desc": "Scapel Size 12",
+      "price": "$12.99",
+      "itemNum": "EXE #12",
+      "packaging": "10 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Not Specified",
+  "name": "Reflective Dry Tips®",
+  "price": "$15.99",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured241.jpg",
+  "options": [
+    {
+      "desc": "Dry Tips Reflective large (Large) 50/box",
+      "price": "$15.99",
+      "itemNum": "NDC -0101",
+      "packaging": "50 / Pkg"
+    },
+    {
+      "desc": "Dry Tips Reflective large (Small) 50/box",
+      "price": "$15.99",
+      "itemNum": "NDC-0101",
+      "packaging": "50 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Plasdent",
+  "name": "Optical PC Mouse",
+  "price": "$15.99",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured242.jpg",
+  "options": [
+    {
+      "desc": "Optical PC Mouse Barrier",
+      "price": "$15.99",
+      "itemNum": "CM-500",
+      "packaging": "500 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Plasdent",
+  "name": "Keyboard Cover",
+  "price": "$17.99",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured243.jpg",
+  "options": [
+    {
+      "desc": "Keyboard Cover 250/box.",
+      "price": "$17.99",
+      "itemNum": "S121",
+      "packaging": "250 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Not Specified",
+  "name": "Sani-Treet Plus® Enzyme Industries",
+  "price": "$81.25",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured244.jpg",
+  "options": [
+    {
+      "desc": "Sani-Treet Plus peppermint scent 1 gallon bottle",
+      "price": "$81.25",
+      "itemNum": "NDC -0101",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "UniPack",
+  "name": "DENTURE BOX",
+  "price": "$9.99",
+  "cat": "Disposable Products",
+  "imageUrl": "downloads/featured245.jpg",
+  "options": [
+    {
+      "desc": "12/pkt",
+      "price": "$9.99",
+      "itemNum": "UDB-7406",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Mydent",
+  "name": "Prophy Paste",
+  "price": "$29.85",
+  "cat": "Prophy Products",
+  "imageUrl": "downloads/featured254.jpg",
+  "options": [
+    {
+      "desc": "Fine Bubblegum",
+      "price": "$29.85",
+      "itemNum": "PP-1800",
+      "packaging": "200 / Pkg"
+    },
+    {
+      "desc": "Assorted Flavor",
+      "price": "$29.85",
+      "itemNum": "PP-1800",
+      "packaging": "200 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "UniPack",
+  "name": "Disposable Bib Holders",
+  "price": "$12.99",
+  "cat": "Disposable Products",
+  "imageUrl": "downloads/featured269.jpg",
+  "options": [
+    {
+      "desc": "Stretch to fit, self-adhesive ends. 250 per box.",
+      "price": "$12.99",
+      "itemNum": "PD-8500",
+      "packaging": "250 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Not Specified",
+  "name": "Round End Taper",
+  "price": "$19.15",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured271.jpg",
+  "options": [
+    {
+      "desc": "856-014C - Coarse",
+      "price": "$19.15",
+      "itemNum": "AC-90811",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "856-014SC - Super Coarse",
+      "price": "$19.15",
+      "itemNum": "AC-90811",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "850-016M - Medium",
+      "price": "$19.15",
+      "itemNum": "AC-90811",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "850-018C - Coarse",
+      "price": "$19.15",
+      "itemNum": "AC-90811",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "850-018C - Coarse",
+      "price": "$19.15",
+      "itemNum": "AC-90811",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Not Specified",
+  "name": "Amalgon Disposable System 1gal",
+  "price": "$199.29",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured273.jpg",
+  "options": [
+    {
+      "desc": "Amalgon Disposable System 1gal",
+      "price": "$199.29",
+      "itemNum": "AC-00121",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Not Specified",
+  "name": "Sani-Treet Plus® Enzyme Industries",
+  "price": "$81.25",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured285.jpg",
+  "options": [
+    {
+      "desc": "Sani-Treet Plus peppermint scent 1 gallon bottle",
+      "price": "$81.25",
+      "itemNum": "NDC -0101",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Crosstex",
+  "name": "CROSSTEX DENTAL DAMS",
+  "price": "$34.29",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured290.jpg",
+  "options": [
+    {
+      "desc": "Dental Dam, Medium, Purple, 6\" x 6\", Peppermint, Latex Free (LF), 15 sheets/bx",
+      "price": "$34.29",
+      "itemNum": "CRO 19500",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Not Specified",
+  "name": "Articulating Paper By Crosstex",
+  "price": "$13.99",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured294.jpg",
+  "options": [
+    {
+      "desc": "12 Sheets X12 Booklets Blue Thick",
+      "price": "$13.99",
+      "itemNum": "NDC",
+      "packaging": "144 / Pkg"
+    },
+    {
+      "desc": "12 Sheets X12 Booklets Blue Thin",
+      "price": "$13.99",
+      "itemNum": "NDC",
+      "packaging": "144 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Not Specified",
+  "name": "Dry Tips - Microbrush",
+  "price": "$12.99",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured295.jpg",
+  "options": [
+    {
+      "desc": "Dry Tips (Large) Non Reflective",
+      "price": "$12.99",
+      "itemNum": "NDC 1010",
+      "packaging": "50 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Myco Medical",
+  "name": "Surgical Blades Stainless Steel",
+  "price": "$14.99",
+  "cat": "Surgical Products",
+  "imageUrl": "downloads/featured296.jpg",
+  "options": [
+    {
+      "desc": "#15 Sterile Stainless Steel Surgical Scalpel Blade, Box of 100",
+      "price": "$14.99",
+      "itemNum": "NDC",
+      "packaging": "100 / Pkg"
+    },
+    {
+      "desc": "#15C Sterile Stainless Steel Surgical Scalpel Blade, Box of 100",
+      "price": "$14.99",
+      "itemNum": "NDC",
+      "packaging": "100/PK / Pkg"
+    },
+    {
+      "desc": "#12 Sterile Stainless Steel Surgical Scalpel Blade, Box of 100",
+      "price": "$14.99",
+      "itemNum": "NDC",
+      "packaging": "100/PK / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "Not Specified",
+  "name": "CompCore AF Mixing Tips 50/pkt",
+  "price": "$15.99",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured297.jpg",
+  "options": [
+    {
+      "desc": "CompCore AF Mixing Tips",
+      "price": "$15.99",
+      "itemNum": "MT -0101",
+      "packaging": "48 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "UniPack",
+  "name": "Easy-E-Trap Canisters    Model #2300",
+  "price": "$69.99",
+  "cat": "Evacuation",
+  "imageUrl": "downloads/featured302.jpg",
+  "options": [
+    {
+      "desc": "Canister For Model #2300",
+      "price": "$69.99",
+      "itemNum": "UBC-82300",
+      "packaging": "8 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Vista Dental Products",
+  "name": "Vista  EDTA Solution 17% 16oz (480ml)/Bt",
+  "price": "$54.99",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured316.jpg",
+  "options": [
+    {
+      "desc": "Vista EDTA Solution 17% 16oz (480ml)/Bt",
+      "price": "$54.99",
+      "itemNum": "AC#32",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},{
+  "brand": "SS WHITE",
+  "name": "FG 557 Straight Surgical Length",
+  "price": "$18.25",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured350.jpg",
+  "options": [
+    {
+      "desc": "557 Flat End (Cross Cut) - FGOS",
+      "price": "$18.25",
+      "itemNum": "AC 011011",
+      "packaging": "5 / Pkg"
+    }
+  ]
+},
+    {
+        "brand": "Vista Dental",
+        "name": "Quick-Stat FS Gel 30 mL Bulk Syringe Kit Ea",
+        "price": "$38.59",
+        "cat": "Hemostasis and Retraction",
+        "imageUrl": "downloads/featured403.jpg"
+    },
+{
+  "brand": "DSC",
+  "name": "Matrix Retainer Tofflemire Universal (Made in the USA)",
+  "price": "$14.99",
+  "cat": "Matrix Materials",
+  "imageUrl": "downloads/featured418.jpg",
+  "options": [
+    {
+      "desc": "Matrix Retainer Tofflemire Stainless Steel Universal Each",
+      "price": "$14.99",
+      "itemNum": "MR-AS-1",
+      "packaging": "1 / Pkg"
+    },
+    {
+      "desc": "Contra Angle Retainer Onky",
+      "price": "$14.99",
+      "itemNum": "MR-CA-1",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "Dentsply Sirona",
+  "name": "IRM Caps Temporary Filling Material 0.34 Gm Capsules 50/Bx",
+  "price": "$169.29",
+  "cat": "Composites Filling Materials",
+  "imageUrl": "downloads/featured432.jpg",
+  "options": [
+    {
+      "desc": "IRM Caps Temporary Filling Material 0.34 Gm Capsules 50/Box",
+      "price": "$169.29",
+      "itemNum": "DE-610200",
+      "packaging": "50 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Not Specified",
+  "name": "Miltex  Instrument Cleaning Brush Steel Bristles 3/pk",
+  "price": "$8.99",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured476.jpg",
+  "options": [
+    {
+      "desc": "Instrument Cleaning Brush with Stainless Steel Bristles. Package of 3 Brushes.",
+      "price": "$8.99",
+      "itemNum": "949-3-1001 FD",
+      "packaging": "3 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Not Specified",
+  "name": "Gingi-Pak MAX Cord / EPINEPHRINE",
+  "price": "$15.35",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured551.jpg",
+  "options": [
+    {
+      "desc": "Gingi-Pak MAX Cord #1 (Thin)",
+      "price": "$15.35",
+      "itemNum": "10105M",
+      "packaging": "1 / Pkg"
+    },
+    {
+      "desc": "Gingi-Pak MAX Cord #2 (Medium)",
+      "price": "$15.35",
+      "itemNum": "10110M",
+      "packaging": "1 / Pkg"
+    },
+    {
+      "desc": "Gingi-Pak MAX Cord #3 (Thick)",
+      "price": "$15.35",
+      "itemNum": "10115M",
+      "packaging": "1 / Pkg"
+    },
+    {
+      "desc": "#00",
+      "price": "$15.35",
+      "itemNum": "1010",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "DCI",
+  "name": "Push-On Saliva Ejector Tips Latex Free Gray",
+  "price": "$18.29",
+  "cat": "Evacuation",
+  "imageUrl": "downloads/featured627.jpg",
+  "options": [
+    {
+      "desc": "Push-On Saliva Ejector Tips Latex Free Gray Autoclavable.",
+      "price": "$18.29",
+      "itemNum": "p-908007",
+      "packaging": "5/pc / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "KaVo Kerr",
+  "name": "Tubli-Seal EWT Root Canal Permanent Sealer Standard Package",
+  "price": "$59.99",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured628.jpg",
+  "options": [
+    {
+      "desc": "Tubli-Seal EWT Root Canal Permanent Sealer Standard Package Radiopaque Each",
+      "price": "$59.99",
+      "itemNum": "Kerr- 25903",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},{
+  "brand": "Crosstex",
+  "name": "Crosstex Horseshoe",
+  "price": "$15.99",
+  "cat": "Articulating",
+  "imageUrl": "downloads/featured631.jpg",
+  "options": [
+    {
+      "desc": "Horseshoe .0028\" (71 microns) Red/Blue Articulating Paper, 6 books of 12 sheets each (72 sheets/box).",
+      "price": "$15.99",
+      "itemNum": "Crosstex",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Plasdent",
+  "name": "Plasdent Instrument Sterilization Container",
+  "price": "$6.99",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured917.jpg",
+  "options": [
+    {
+      "desc": "Instrument Steri Container - Blue, 8\" x 1-3/4\" x 1-34\", with Snap Shut Hinged Lid, Plastic, Autoclavable up to 250F. Single Container.",
+      "price": "$6.99",
+      "itemNum": "203SC-2",
+      "packaging": "1 / Pkg"
+    },
+    {
+      "desc": "Plasdent Instrument Steri Container",
+      "price": "$6.99",
+      "itemNum": "203 SCS Pastel",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Not Specified",
+  "name": "Amalgon Disposable System 1gal",
+  "price": "$199.29",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured988.jpg",
+  "options": [
+    {
+      "desc": "Amalgon Disposable System 1gal",
+      "price": "$199.29",
+      "itemNum": "176-2016",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "Mydent",
+  "name": "Defend Topical Anesthetic Gel - Strawberry, 1 oz. Jar. Benzocaine",
+  "price": "$6.25",
+  "cat": "Anesthetics",
+  "imageUrl": "downloads/featured989.jpg",
+  "options": [
+    {
+      "desc": "Topical Anesthetic Gel - Strawberry, 1 oz. Jar. Benzocaine 20%. Fast acting with no systemic absorption. No bitter aftertaste.",
+      "price": "$6.25",
+      "itemNum": "TA-5000",
+      "packaging": "1 / Pkg"
+    },
+    {
+      "desc": "Topical Anesthetic Gel Cherry",
+      "price": "$6.25",
+      "itemNum": "TA-5000",
+      "packaging": "1 / Pkg"
+    },
+    {
+      "desc": "Topical Anesthetic Gel Rasberry",
+      "price": "$6.25",
+      "itemNum": "TA-5000",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Dentsply",
+  "name": "IRM Caps ZOE Intermediate Restorative Material, 50 - 0.34 Gm",
+  "price": "$169.29",
+  "cat": "Composites Filling Materials",
+  "imageUrl": "downloads/featured1026.jpg",
+  "options": [
+    {
+      "desc": "IRM Caps - ZOE Intermediate Restorative Material, 50 - 0.34 Gm. Capsules, Ivory shade.",
+      "price": "$169.29",
+      "itemNum": "610200",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Not Specified",
+  "name": "House Brand 3\\\" x 3\\\" Poly Coated Mixing Pad, Single Pad",
+  "price": "$5.15",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured1055.jpg",
+  "options": [
+    {
+      "desc": "3\" x 3\" Poly Coated Mixing Pad, Single Pad.",
+      "price": "$5.15",
+      "itemNum": "3D AC32",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Pulpdent",
+  "name": "Etch-Rite Jumbo Syringe Refill - 38% Phosphoric Acid Etching Gel: 2",
+  "price": "$59.29",
+  "cat": "Composites Filling Materials",
+  "imageUrl": "downloads/featured1075.jpg",
+  "options": [
+    {
+      "desc": "Etch-Rite Jumbo Syringe - 38% Phosphoric Acid Etching Gel: 2 - 25 mL Syringes. Kit",
+      "price": "$59.29",
+      "itemNum": "ET-50",
+      "packaging": "2/box / Pkg"
+    }
+  ]
+},
+{
+  "brand": "UniPack",
+  "name": "DISPOSABLE EVACUATION TRAPS & SCREENS",
+  "price": "$45.25",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured1199.jpg",
+  "options": [
+    {
+      "desc": "Model #5500",
+      "price": "$45.25",
+      "itemNum": "UBC-85500",
+      "packaging": "144 / Pkg"
+    },
+    {
+      "desc": "Model #5501",
+      "price": "$45.25",
+      "itemNum": "UBC-85501",
+      "packaging": "144 / Pkg"
+    },
+    {
+      "desc": "Model #5502",
+      "price": "$45.25",
+      "itemNum": "UBC-85502",
+      "packaging": "144 / Pkg"
+    },
+    {
+      "desc": "Model #5503",
+      "price": "$45.25",
+      "itemNum": "UBC-85503",
+      "packaging": "144 / Pkg"
+    },
+    {
+      "desc": "Model #5505",
+      "price": "$45.25",
+      "itemNum": "UBC-85505",
+      "packaging": "144 / Pkg"
+    },
+    {
+      "desc": "Model #5508",
+      "price": "$45.25",
+      "itemNum": "UBC-85508S",
+      "packaging": "72 / Pkg"
+    },
+    {
+      "desc": "Model #5509",
+      "price": "$45.25",
+      "itemNum": "UBC-85509",
+      "packaging": "144 / Pkg"
+    },
+    {
+      "desc": "Model #5512",
+      "price": "$45.25",
+      "itemNum": "UBC-85512",
+      "packaging": "144 / Pkg"
+    },
+    {
+      "desc": "Model #6100",
+      "price": "$45.25",
+      "itemNum": "UBC-86100C",
+      "packaging": "144 / Pkg"
+    },
+    {
+      "desc": "Model #6100",
+      "price": "$45.25",
+      "itemNum": "UBC-86100C",
+      "packaging": "144 / Pkg"
+    },
+    {
+      "desc": "Model #6200",
+      "price": "$45.25",
+      "itemNum": "UBC-86200C",
+      "packaging": "144 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Premier",
+  "name": "Enamel Pro Fluoride Varnish Bubblegum 0.4mL 35/Box",
+  "price": "$83.86",
+  "cat": "Fluorides & Varnish",
+  "imageUrl": "downloads/featured1336.jpeg",
+  "options": [
+    {
+      "desc": "Enamel Pro Varnish is a fluoride-containing preparation for the treatment of dentinal hypersensitivity and for the reduction of post-operative sensitivity. Enamel Pro Varnish offers a nice esthetic appearance.",
+      "price": "$83.86",
+      "itemNum": "9007541",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "UniPack",
+  "name": "BLU-TRAY PERFORATED IMPRESSION TRAYS",
+  "price": "$4.99",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured1337.jpg",
+  "options": [
+    {
+      "desc": "#1, Large – Upper",
+      "price": "$4.99",
+      "itemNum": "UTA-7211",
+      "packaging": "12 / Pkg"
+    },
+    {
+      "desc": "#2, Large – Lower",
+      "price": "$4.99",
+      "itemNum": "UTA-7212",
+      "packaging": "12 / Pkg"
+    },
+    {
+      "desc": "#3, Medium – Upper",
+      "price": "$4.99",
+      "itemNum": "UTA-7213",
+      "packaging": "12 / Pkg"
+    },
+    {
+      "desc": "#4, Medium – Lower",
+      "price": "$4.99",
+      "itemNum": "UTA-7214",
+      "packaging": "12 / Pkg"
+    },
+    {
+      "desc": "#5, Small – Upper",
+      "price": "$4.99",
+      "itemNum": "UTA-7215",
+      "packaging": "12 / Pkg"
+    },
+    {
+      "desc": "#6, Small – Lower",
+      "price": "$4.99",
+      "itemNum": "UTA-7216",
+      "packaging": "12 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Not Specified",
+  "name": "CompCore AF Mixing Tips",
+  "price": "$13.99",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured1349.jpg",
+  "options": [
+    {
+      "desc": "CompCore AF Mixing Tips",
+      "price": "$13.99",
+      "itemNum": "AC90801",
+      "packaging": "48 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "US ELITE",
+  "name": "CW-TYPE ASPIRATING SYRINGE",
+  "price": "$13.99",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured1361.jpg",
+  "options": [
+    {
+      "desc": "Chrome metal construction Durable design withstands repeated autoclaving and sterilization",
+      "price": "$13.99",
+      "itemNum": "US Elite",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "Miltex",
+  "name": "2-1/8",
+  "price": "$12.5",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured1416.jpg",
+  "options": [
+    {
+      "desc": "2-1/8\" MESH BUR & DIAMOND HOLDER",
+      "price": "$12.5",
+      "itemNum": "65-28",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Plasdent",
+  "name": "BUR TUB",
+  "price": "$13.99",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured1417.jpg",
+  "options": [
+    {
+      "desc": "BUR TRAY",
+      "price": "$13.99",
+      "itemNum": "PLASDENT",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "House Brand",
+  "name": "Unnamed Product",
+  "price": "$15.99",
+  "cat": "Cements & Liners",
+  "imageUrl": "downloads/featured1420.jpg",
+  "options": [
+    {
+      "desc": "TEMPORARY CEMENT MIXING TIPS",
+      "price": "$15.99",
+      "itemNum": "VP-8140",
+      "packaging": "50 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "3M Oral Care",
+  "name": "Clinpro Sealant - 1.2 ml Syringe Refill with 10 Syringe Tips. Low Viscosity",
+  "price": "$28.5",
+  "cat": "Cements & Liners",
+  "imageUrl": "downloads/featured1458.jpg",
+  "options": [
+    {
+      "desc": "Clinpro Sealant - 1.2 ml Syringe Refill with 10 Syringe Tips. Low Viscosity, Light-Cure, Fluoride Releasing Pit and Fissure Sealant with Color-Change Technology.",
+      "price": "$28.5",
+      "itemNum": "12627",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "House Brand",
+  "name": "Crown & Bridge T-Mix Tips",
+  "price": "$15.99",
+  "cat": "Crown & Bridge",
+  "imageUrl": "downloads/featured1467.jpg",
+  "options": [
+    {
+      "desc": "10:1 & 4:1 ratio",
+      "price": "$15.99",
+      "itemNum": "VP-8108T",
+      "packaging": "48 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Strauss Diamonds",
+  "name": "MULTI USE FLAT END CONE BURS",
+  "price": "$19.15",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured1476.jpg",
+  "options": [
+    {
+      "desc": "848- 016C - Coarse",
+      "price": "$19.15",
+      "itemNum": "848- 016 C",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "848-016 M- Medium",
+      "price": "$19.15",
+      "itemNum": "848-016 M",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "848 - 016 SC - Super Coarse",
+      "price": "$19.15",
+      "itemNum": "848 - 016 SC",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Strauss Diamonds",
+  "name": "MULTI USE NEEDLE BURS",
+  "price": "$19.15",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured1478.jpg",
+  "options": [
+    {
+      "desc": "859-010F - Fine",
+      "price": "$19.15",
+      "itemNum": "859-010 F",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "859-016F - Fine",
+      "price": "$19.15",
+      "itemNum": "859-016 F",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "863-012F FINE",
+      "price": "$19.15",
+      "itemNum": "863-012F",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "863- 012 SF SUPER FINE",
+      "price": "$19.15",
+      "itemNum": "863- 012 SF",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Strauss Diamonds",
+  "name": "MULTI USE ROUND END TAPER BURS",
+  "price": "$19.15",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured1479.jpg",
+  "options": [
+    {
+      "desc": "856-014C - Coarse",
+      "price": "$19.15",
+      "itemNum": "856-014 C",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "856-014SC - Super Coarse",
+      "price": "$19.15",
+      "itemNum": "856-014 SC",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "850-018C - Coarse",
+      "price": "$19.15",
+      "itemNum": "850-018 C",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "House Brand",
+  "name": "28MM GATES GLIDDEN DRILLS",
+  "price": "$10.99",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured1516.jpg",
+  "options": [
+    {
+      "desc": "#2/28MM GATES DRILL",
+      "price": "$10.99",
+      "itemNum": "#2",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "#3/28MM GATES DRILL",
+      "price": "$10.99",
+      "itemNum": "#3",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "#4/28MM GATES DRILL",
+      "price": "$10.99",
+      "itemNum": "#4",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "House Brand",
+  "name": "32MM GATES GLIDDEN DRILLS",
+  "price": "$12.99",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured1517.jpg",
+  "options": [
+    {
+      "desc": "#2/32MM GATES DRILL",
+      "price": "$12.99",
+      "itemNum": "#2/32MM",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "#3/32MM GATES DRILL",
+      "price": "$12.99",
+      "itemNum": "#3/32MM",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "#4/32MM GATES DRILL",
+      "price": "$12.99",
+      "itemNum": "#4/32MM",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Pulpdent",
+  "name": "Multi-Cal Kit: 4 - 1.2 mL Syringes and 8 Applicator Tips. Calcium Hydroxide",
+  "price": "$69.29",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured1526.jpg",
+  "options": [
+    {
+      "desc": "Multi-Cal Kit: 3 - 1.2 mL Syringes and 8 Applicator Tips. Calcium Hydroxide Paste. Smooth, creamy calcium hydroxide preparation recommended for all clinical applications where calcium hydroxide is indicated.",
+      "price": "$69.29",
+      "itemNum": "MULTI",
+      "packaging": "4/box / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Plasdent",
+  "name": "Air/Water Syringe Cover 10",
+  "price": "$12.71",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured1535.jpeg",
+  "options": [
+    {
+      "desc": "Air/Water Syringe Sleeves 3\"x10\" 500/Box Plasdent Item #PS320A",
+      "price": "$12.71",
+      "itemNum": "PS320A",
+      "packaging": "500 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Not Specified",
+  "name": "SALIVA EJECTORS",
+  "price": "$4.99",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured1538.jpg",
+  "options": [
+    {
+      "desc": "Saliva Ejectors white with white tip. Easily bendable, keep their shape, efficient suction. Package of 100",
+      "price": "$4.99",
+      "itemNum": "A9011-WW",
+      "packaging": "100 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Not Specified",
+  "name": "J. Morita Multi Spray for Handpiece Maintenance 420ml/Can",
+  "price": "$29",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured1540.jpg",
+  "options": [
+    {
+      "desc": "Morita Multi Spray for Handpiece Maintenance 420ml/Can with environmentally-friendly propellant. Highly recommended for Morita TwinPower Turbine handpieces.",
+      "price": "$29",
+      "itemNum": "24-5010201",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Not Specified",
+  "name": "Plasdent Standard Keyboard Cover with cuff 22\" x 14\" 250/Bx. Plastic sheet",
+  "price": "$19.68",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured1584.jpg",
+  "options": [
+    {
+      "desc": "Standard Keyboard Cover with cuff 22\" x 14\" 250/Bx. Plastic sheet designed to lay over the keyboard and tuck underneath. Perfect for keyboards with cords in the back.",
+      "price": "$19.68",
+      "itemNum": "PS400",
+      "packaging": "250 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Mydent",
+  "name": "Defend 1 5/8",
+  "price": "$11.99",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured1585.jpg",
+  "options": [
+    {
+      "desc": "1 5/8\" x 8\" Digital X-Ray Sensor Sleeves. Fits Trophy, Gendex and Diagnodent Systems. Box of 500.",
+      "price": "$11.99",
+      "itemNum": "BF-8000",
+      "packaging": "500 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Not Specified",
+  "name": "Safe-Dent 15\" x 26\" X-Ray Head Sleeve, 250/Box. Clear Plastic protective",
+  "price": "$32.29",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured1590.jpg",
+  "options": [
+    {
+      "desc": "15\" x 26\" X-Ray Head Sleeve, 250/Box. Clear Plastic protective covering, disposable",
+      "price": "$32.29",
+      "itemNum": "P5018",
+      "packaging": "250 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Strauss Diamonds",
+  "name": "Flame",
+  "price": "$16.59",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured1605.jpg",
+  "options": [
+    {
+      "desc": "863-012F",
+      "price": "$16.59",
+      "itemNum": "863-012F",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "863-012SF",
+      "price": "$16.59",
+      "itemNum": "863-012SF",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Not Specified",
+  "name": "Safe Dent Blue Fluid Resistant Ear-Loop 3 ply face mask with 98% filtration",
+  "price": "$6.99",
+  "cat": "Uncategorized",
+  "imageUrl": "downloads/featured1606.jpg",
+  "options": [
+    {
+      "desc": "Blue Fluid Resistant Ear-Loop 3 ply face mask with 98% filtration at 2 microns, box of 50 masks.",
+      "price": "$6.99",
+      "itemNum": "M3010-BL",
+      "packaging": "50 / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "House Brand",
+  "name": "STAINLESS STEEL BRISTLE BRUSH",
+  "price": "$12.99",
+  "cat": "Instruments",
+  "imageUrl": "downloads/featured1625.jpg",
+  "options": [
+    {
+      "desc": "STAINLESS STEEL BRISTLE BRUSH (3/pkg)",
+      "price": "$12.99",
+      "itemNum": "3-1001",
+      "packaging": "3 / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "Blazer  Torch",
+  "name": "Blazer Triple Refined Butane 9.12oz",
+  "price": "$12.99",
+  "cat": "Acrylic and Reline Materials",
+  "imageUrl": "downloads/featured1645.jpeg",
+  "options": [
+    {
+      "desc": "Blazer Triple Refined Butane 9.12oz",
+      "price": "$12.99",
+      "itemNum": "RF300",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "SS WHITE",
+  "name": "Inverted Cone (FG#38)",
+  "price": "$21.15",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured1667.jpg",
+  "options": [
+    {
+      "desc": "FG 38",
+      "price": "$21.15",
+      "itemNum": "37 - FG",
+      "packaging": "10 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "SS WHITE",
+  "name": "Pear (FG#330)",
+  "price": "$21.15",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured1668.jpg",
+  "options": [
+    {
+      "desc": "330 - FG",
+      "price": "$21.15",
+      "itemNum": "330 - FG",
+      "packaging": "10 / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "SS WHITE",
+  "name": "Round",
+  "price": "$21.15",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured1669.jpg",
+  "options": [
+    {
+      "desc": "2 - FG",
+      "price": "$21.15",
+      "itemNum": "2 - FG",
+      "packaging": "10 / Pkg"
+    },
+    {
+      "desc": "4 - FG",
+      "price": "$21.15",
+      "itemNum": "4 - FG",
+      "packaging": "10 / Pkg"
+    },
+    {
+      "desc": "6 - FG",
+      "price": "$21.15",
+      "itemNum": "6 - FG",
+      "packaging": "10 / Pkg"
+    },
+    {
+      "desc": "8 - FG",
+      "price": "$21.15",
+      "itemNum": "8 - FG",
+      "packaging": "10 / Pkg"
+    },
+    {
+      "desc": "2 - RA",
+      "price": "$21.15",
+      "itemNum": "2 - RA",
+      "packaging": "10 / Pkg"
+    },
+    {
+      "desc": "4 - RA",
+      "price": "$21.15",
+      "itemNum": "4 - RA",
+      "packaging": "10 / Pkg"
+    },
+    {
+      "desc": "6 - RA",
+      "price": "$21.15",
+      "itemNum": "6 - RA",
+      "packaging": "10 / Pkg"
+    },
+    {
+      "desc": "8 - RA",
+      "price": "$21.15",
+      "itemNum": "8 - RA",
+      "packaging": "10 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "SS WHITE",
+  "name": "557 Cross Cut - FGOS",
+  "price": "$18.25",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured1671.jpg",
+  "options": [
+    {
+      "desc": "557 Cross Cut - FGOS",
+      "price": "$18.25",
+      "itemNum": "557 Cross Cut - FGOS",
+      "packaging": "5 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "SS WHITE",
+  "name": "Round Surgical",
+  "price": "$18.25",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured1672.jpg",
+  "options": [
+    {
+      "desc": "2 - FGOS",
+      "price": "$18.25",
+      "itemNum": "2 - FGOS",
+      "packaging": "5 / Pkg"
+    },
+    {
+      "desc": "4 - FGOS",
+      "price": "$18.25",
+      "itemNum": "4 - FGOS",
+      "packaging": "5 / Pkg"
+    },
+    {
+      "desc": "6 - FGOS",
+      "price": "$18.25",
+      "itemNum": "6 - FGOS",
+      "packaging": "5 / Pkg"
+    },
+    {
+      "desc": "8 - FGOS",
+      "price": "$18.25",
+      "itemNum": "8 - FGOS",
+      "packaging": "5 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Strauss Diamonds",
+  "name": "Flat End Cone Diamond Burs",
+  "price": "$19.15",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured1675.jpg",
+  "options": [
+    {
+      "desc": "848- 018C - Coarse",
+      "price": "$19.15",
+      "itemNum": "848- 018C - Coarse",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Strauss Diamonds",
+  "name": "Round End Taper Diamond Bur",
+  "price": "$19.15",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured1677.jpg",
+  "options": [
+    {
+      "desc": "856-014C - Coarse",
+      "price": "$19.15",
+      "itemNum": "856-014SC - Super Coarse",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "856-014SC - Super Coarse",
+      "price": "$19.15",
+      "itemNum": "856-014SC - Super Coarse",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "850-016M - Medium",
+      "price": "$19.15",
+      "itemNum": "850-016M - Medium",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "850-018C - Coarse",
+      "price": "$19.15",
+      "itemNum": "850-018C - Coarse",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Strauss Diamonds",
+  "name": "Flame Diamond Bur",
+  "price": "$19.15",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured1678.jpg",
+  "options": [
+    {
+      "desc": "863-012F - Fine",
+      "price": "$19.15",
+      "itemNum": "863-012F - Fine",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "863-012SF-Super Fine",
+      "price": "$19.15",
+      "itemNum": "863-012SF-Super Fine",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "House Brand",
+  "name": "High Performance Mixing Tips - LONG",
+  "price": "$15.99",
+  "cat": "Core Build-Up Materials",
+  "imageUrl": "downloads/featured1690.jpg",
+  "options": [
+    {
+      "desc": "Teal Green - 6.5 mm",
+      "price": "$15.99",
+      "itemNum": "LH908001G",
+      "packaging": "50 / Pkg"
+    },
+    {
+      "desc": "Yellow - 4.2 mm",
+      "price": "$15.99",
+      "itemNum": "LH908001Y",
+      "packaging": "50 / Pkg"
+    },
+    {
+      "desc": "Blue",
+      "price": "$15.99",
+      "itemNum": "LH908001B",
+      "packaging": "50 / Pkg"
+    },
+    {
+      "desc": "Blue /Orange",
+      "price": "$15.99",
+      "itemNum": "LH908001B/O",
+      "packaging": "50 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Coltene",
+  "name": "Hygenic Endo-Ice",
+  "price": "$23.75",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured1726.jpg",
+  "options": [
+    {
+      "desc": "Hygenic Endo-Ice",
+      "price": "$23.75",
+      "itemNum": "05032",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "3D",
+  "name": "Absorbent Paper Point",
+  "price": "$13.99",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured1748.jpg",
+  "options": [
+    {
+      "desc": "Medium",
+      "price": "$13.99",
+      "itemNum": "#PPBM (Medium)",
+      "packaging": "200 / Pkg"
+    },
+    {
+      "desc": "Assorted Size #15 - 40 ,",
+      "price": "$13.99",
+      "itemNum": "#PPB1540T4",
+      "packaging": "60/PK / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Plasti Products",
+  "name": "5 Qt. Container Clear",
+  "price": "$8.89",
+  "cat": "Anesthetics",
+  "imageUrl": "downloads/featured1749.jpg",
+  "options": [
+    {
+      "desc": "The 5 qt. Sharps Container is designed to be used in the Plasti-Products",
+      "price": "$8.89",
+      "itemNum": "142020",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Crosstex",
+  "name": "Crosstex 6",
+  "price": "$35.29",
+  "cat": "Rubber Dam and Accessories",
+  "imageUrl": "downloads/featured1750.jpg",
+  "options": [
+    {
+      "desc": "6\" x 6\" Medium, Purple, Peppermint Flavored, Non-Latex Dental Dam. Box of 15 sheets.",
+      "price": "$35.29",
+      "itemNum": "19500",
+      "packaging": "15 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "House Brand",
+  "name": "Intra-Oral Tips, Yellow 100/Bag.",
+  "price": "$9.99",
+  "cat": "Core Build-Up Materials",
+  "imageUrl": "downloads/featured1755.jpg",
+  "options": [
+    {
+      "desc": "Intra-Oral Tips, Yellow 100/Bag. Fits 4.2 mm mixing tips.",
+      "price": "$9.99",
+      "itemNum": "LH520",
+      "packaging": "100 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Gingi-Pak",
+  "name": "Gingi-Pak MAX Z-Twist Weave - SIZE # 00 ,1,2,3",
+  "price": "$15.99",
+  "cat": "Hemostasis and Retraction",
+  "imageUrl": "downloads/featured1763.jpg",
+  "options": [
+    {
+      "desc": "Gingi-Pak MAX Z-Twist Weave - #00 Thin with Epinephrine, 100% Cotton, 108\" per Bottle.",
+      "price": "$15.99",
+      "itemNum": "#00",
+      "packaging": "1 / Pkg"
+    },
+    {
+      "desc": "Gingi-Pak MAX Z-Twist Weave - #1 Thin with Epinephrine, 100% Cotton, 108\" per Bottle.",
+      "price": "$15.99",
+      "itemNum": "#1",
+      "packaging": "1 / Pkg"
+    },
+    {
+      "desc": "Gingi-Pak MAX Z-Twist Weave - #2 Thin with Epinephrine, 100% Cotton, 108\" per Bottle.",
+      "price": "$15.99",
+      "itemNum": "#2",
+      "packaging": "1 / Pkg"
+    },
+    {
+      "desc": "Gingi-Pak MAX Z-Twist Weave - #3 Thin with Epinephrine, 100% Cotton, 108\" per Bottle.",
+      "price": "$15.99",
+      "itemNum": "#3",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "House Brand",
+  "name": "Disposable Air-Water Syringe Tips, Clear with assorted color",
+  "price": "$14.99",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured1768.jpg",
+  "options": [
+    {
+      "desc": "Disposable Air-Water Syringe Tips, Clear with assorted color cores",
+      "price": "$14.99",
+      "itemNum": "L908002",
+      "packaging": "250 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "UniPack",
+  "name": "Easy-E-Trap Canisters",
+  "price": "$54.95",
+  "cat": "Evacuation",
+  "imageUrl": "downloads/featured1778.jpg",
+  "options": [
+    {
+      "desc": "Canister For Model #2300",
+      "price": "$54.95",
+      "itemNum": "UBC-82300",
+      "packaging": "8 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Safe Dent",
+  "name": "4\" x 6\" Blue Barrier Film",
+  "price": "$15.99",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured1781.jpg",
+  "options": [
+    {
+      "desc": "4\" x 6\" Barrier Film, Blue, Roll of 1200 Sheets.",
+      "price": "$15.99",
+      "itemNum": "BP906166B",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Safe Dent",
+  "name": "K-Files",
+  "price": "$6.99",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured1783.jpg",
+  "options": [
+    {
+      "desc": "Stainless Steel K Files Size # 6, Length 25mm",
+      "price": "$6.99",
+      "itemNum": "KF",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Size # 8, Length 25 mm",
+      "price": "$6.99",
+      "itemNum": "KF",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Size # 8, Length 31 mm",
+      "price": "$6.99",
+      "itemNum": "KF",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Size # 10 Length 25 mm",
+      "price": "$6.99",
+      "itemNum": "KF",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Size # 10, Length 31 mm",
+      "price": "$6.99",
+      "itemNum": "KF",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Size # 15, Length 25 mm",
+      "price": "$6.99",
+      "itemNum": "KF",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Size # 15,Length 31mm",
+      "price": "$6.99",
+      "itemNum": "KF",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Assorted Size #15 - 40 ,Length 31mm",
+      "price": "$6.99",
+      "itemNum": "KF",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Size # 20, Length 25 mm",
+      "price": "$6.99",
+      "itemNum": "KF",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Size #20, Length 31 mm",
+      "price": "$6.99",
+      "itemNum": "KF",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Size #25, Length 25 mm",
+      "price": "$6.99",
+      "itemNum": "KF",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Size #25, Length 31 mm",
+      "price": "$6.99",
+      "itemNum": "KFF",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Size #30, Length 25 mm",
+      "price": "$6.99",
+      "itemNum": "KFF",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Size #35, Length 25 mm",
+      "price": "$6.99",
+      "itemNum": "KFF",
+      "packaging": "6 / Pkg"
+    },
+    {
+      "desc": "Assorted Size # 45 -80, Length 25 mm",
+      "price": "$6.99",
+      "itemNum": "KFF",
+      "packaging": "6 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "House Brand",
+  "name": "Prophy Angles",
+  "price": "$42.99",
+  "cat": "Prophy Products",
+  "imageUrl": "downloads/featured1784.jpg",
+  "options": [
+    {
+      "desc": "FIRM CUP",
+      "price": "$42.99",
+      "itemNum": "LHPF",
+      "packaging": "144pc/box / Pkg"
+    },
+    {
+      "desc": "SOFT CUP",
+      "price": "$42.99",
+      "itemNum": "LHPS",
+      "packaging": "144pc/box / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Plasdent",
+  "name": "Disposable Bite Trays - Mesh Fabric",
+  "price": "$13.99",
+  "cat": "Impression Materials",
+  "imageUrl": "downloads/featured1789.jpg",
+  "options": [
+    {
+      "desc": "Anterior Adult",
+      "price": "$13.99",
+      "itemNum": "BT-1001",
+      "packaging": "35 / Pkg"
+    },
+    {
+      "desc": "Posterior - Blue",
+      "price": "$13.99",
+      "itemNum": "BT-1002",
+      "packaging": "50 / Pkg"
+    },
+    {
+      "desc": "Quadrant",
+      "price": "$13.99",
+      "itemNum": "BT-1004",
+      "packaging": "35 / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "Plasdent",
+  "name": "Temporary Crown & Bridge Dispensing Gun",
+  "price": "$53.67",
+  "cat": "Impression Materials",
+  "imageUrl": "downloads/featured1792.jpg",
+  "options": [
+    {
+      "desc": "Temporary Crown & Bridge Material Gun",
+      "price": "$53.67",
+      "itemNum": "lH908001",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Plasdent",
+  "name": "Impression Gun - High Performance",
+  "price": "$53.67",
+  "cat": "Impression Materials",
+  "imageUrl": "downloads/featured1793.jpg",
+  "options": [
+    {
+      "desc": "Impression Gun - High Performance",
+      "price": "$53.67",
+      "itemNum": "LH9080012",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Plasdent",
+  "name": "Cheek Retractors",
+  "price": "$9.89",
+  "cat": "Disposable Products",
+  "imageUrl": "downloads/featured1797.jpg",
+  "options": [
+    {
+      "desc": "Cheek Retractors",
+      "price": "$9.89",
+      "itemNum": "LH9080013",
+      "packaging": "2 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Plasdent",
+  "name": "Dappen Dishes - Disposable",
+  "price": "$14.15",
+  "cat": "Composites Filling Materials",
+  "imageUrl": "downloads/featured1799.jpg",
+  "options": [
+    {
+      "desc": "Assorted (250pcs/color)",
+      "price": "$14.15",
+      "itemNum": "lh90800176",
+      "packaging": "250 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Plasdent",
+  "name": "Silicone Mouth Props - Small , Medium , Large",
+  "price": "$15.99",
+  "cat": "Composites Filling Materials",
+  "imageUrl": "downloads/featured1818.jpg",
+  "options": [
+    {
+      "desc": "Mouth Props - Medium (Child), Orange 2/Pk",
+      "price": "$15.99",
+      "itemNum": "SC-9050-7X",
+      "packaging": "2 / Pkg"
+    },
+    {
+      "desc": "Mouth Props - (Large) Grey 2/Pk",
+      "price": "$16.99",
+      "itemNum": "9050 L",
+      "packaging": "2 / Pkg"
+    },
+    {
+      "desc": "Mouth Props - (Small) 2/Pk",
+      "price": "$12.99",
+      "itemNum": "9050 S",
+      "packaging": "2 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "US ELITE",
+  "name": "Bicuspids #2A Premolars Winged Large Neck Bicuspid, Single",
+  "price": "$9.99",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured1820.jpg",
+  "options": [
+    {
+      "desc": "Clamp Bicuspids #2A Premolars Winged Large Neck Bicuspid, Single clamp.",
+      "price": "$9.99",
+      "itemNum": "20411",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "US ELITE",
+  "name": "Clamp #8A Molar Winged, Molar Root Upper And Lower, Single clamp",
+  "price": "$9.99",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured1821.jpg",
+  "options": [
+    {
+      "desc": "Clamp #8A Molar Winged, Molar Root Upper And Lower, Single clamp.",
+      "price": "$9.99",
+      "itemNum": "20241",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "US ELITE",
+  "name": "Clamp #9 for Labial Caries on Anterior Teeth, Winged Smooth",
+  "price": "$9.99",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured1822.jpg",
+  "options": [
+    {
+      "desc": "Clamp #9 for Labial Caries on Anterior Teeth, Winged Smooth. Stainless steel rubber dam clamp.",
+      "price": "$9.99",
+      "itemNum": "20491",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "US ELITE",
+  "name": "Clamp #56 Winged Metal Rubber Dam Clamp, Single",
+  "price": "$9.99",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured1824.jpg",
+  "options": [
+    {
+      "desc": "#56 Winged Metal Rubber Dam Clamp, Single",
+      "price": "$9.99",
+      "itemNum": "20341",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "House Brand",
+  "name": "27 Gauge XL Long Dental Needles, for Nerve Blocks",
+  "price": "$9.99",
+  "cat": "Anesthetics",
+  "imageUrl": "downloads/featured1825.jpg",
+  "options": [
+    {
+      "desc": "27 Gauge. XL Dental Needles, for Nerve Blocks",
+      "price": "$9.99",
+      "itemNum": "AN100",
+      "packaging": "100 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "House Brand",
+  "name": "30 Gauge Long Disposable Dental Needle",
+  "price": "$7.99",
+  "cat": "Anesthetics",
+  "imageUrl": "downloads/featured1826.jpg",
+  "options": [
+    {
+      "desc": "Disposable Dental Needle, Blue Plastic Hub, 30 Gauge, Short. Box of 100 Needles",
+      "price": "$7.99",
+      "itemNum": "AN102",
+      "packaging": "100 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "House Brand",
+  "name": "Adult Tofflemire Matrix Band 13 0.002 in 144/Pk",
+  "price": "$12.99",
+  "cat": "Alloy And Accessories",
+  "imageUrl": "downloads/featured1838.jpg",
+  "options": [
+    {
+      "desc": "Adult Tofflemire Matrix Band Size #1 (Made in the U.S.A)",
+      "price": "$12.99",
+      "itemNum": "AC908 #1",
+      "packaging": "144 / Pkg"
+    },
+    {
+      "desc": "Child Tofflemire Matrix Band #13 (Made in the U.S.A)",
+      "price": "$12.99",
+      "itemNum": "AC908 #13",
+      "packaging": "144/PK / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Plasdent",
+  "name": "EXTND SILICONE MOUTH PROPS",
+  "price": "$19.99",
+  "cat": "Surgical Products",
+  "imageUrl": "downloads/featured1847.jpg",
+  "options": [
+    {
+      "desc": "Large",
+      "price": "$19.99",
+      "itemNum": "SC-9040-TX",
+      "packaging": "2 / Pkg"
+    },
+    {
+      "desc": "Medium",
+      "price": "$19.99",
+      "itemNum": "SC-9050-4T",
+      "packaging": "2 / Pkg"
+    },
+    {
+      "desc": "Small",
+      "price": "$13.99",
+      "itemNum": "SC-9060-3N",
+      "packaging": "2 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "House Brand",
+  "name": "Tips are high performance for Temporary Cement",
+  "price": "$12.99",
+  "cat": "Acrylic and Reline Materials",
+  "imageUrl": "downloads/featured1849.jpg",
+  "options": [
+    {
+      "desc": "Tips are high performance for Temporary Cement",
+      "price": "$12.99",
+      "itemNum": "TMT",
+      "packaging": "50 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Plasdent",
+  "name": "Plasdent Biohazard Can Liner Red",
+  "price": "$30.99",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured1852.jpg",
+  "options": [
+    {
+      "desc": "Biohazard Can Liner Red 24\"X 30\" 100pc/bag",
+      "price": "$30.99",
+      "itemNum": "NDC",
+      "packaging": "50/pk / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Dentsply Sirona",
+  "name": "Dycal",
+  "price": "$69.99",
+  "cat": "Cements & Liners",
+  "imageUrl": "downloads/featured1858.jpg",
+  "options": [
+    {
+      "desc": "Dycal Radiopaque Calcium Hydroxide",
+      "price": "$69.99",
+      "itemNum": "623802",
+      "packaging": "1pk / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "Plasti Products",
+  "name": "Locking Wall Cabinet (for 5 qt Container)",
+  "price": "$45.29",
+  "cat": "Anesthetics",
+  "imageUrl": "downloads/featured1869.jpg",
+  "options": [
+    {
+      "desc": "Locking Wall Cabinet (for 5 qt Container)",
+      "price": "$45.29",
+      "itemNum": "143002",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Richmond Dental and Medical",
+  "name": "Path-O-Guard Ear-Loop Face Mask Lavender 50/Bx.",
+  "price": "$6.99",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured1870.jpg",
+  "options": [
+    {
+      "desc": "Path-O-Guard Ear-Loop Face Mask Lavender 50/Bx. ASTM Level 3",
+      "price": "$6.99",
+      "itemNum": "400589",
+      "packaging": "50 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Solmetex",
+  "name": "Solmetex Amalgam Separator",
+  "price": "$688.95",
+  "cat": "Alloy And Accessories",
+  "imageUrl": "downloads/featured1904.jpg",
+  "options": [
+    {
+      "desc": "NXT Hg5 standard unit",
+      "price": "$688.95",
+      "itemNum": "620-0001",
+      "packaging": "1 / Pkg"
+    },
+    {
+      "desc": "NXT Hg5 mini unit",
+      "price": "$688.95",
+      "itemNum": "620-0003",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Coltene",
+  "name": "ParaPost Posts Stainless Steel Refill",
+  "price": "$90",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured1910.jpg",
+  "options": [
+    {
+      "desc": "ParaPost Posts Stainless Steel Refill Size # 3",
+      "price": "$90",
+      "itemNum": "P443",
+      "packaging": "10 / Pkg"
+    },
+    {
+      "desc": "ParaPost Posts Stainless Steel Refill Size # 4",
+      "price": "$90",
+      "itemNum": "P444",
+      "packaging": "10 / Pkg"
+    },
+    {
+      "desc": "ParaPost Posts Stainless Steel Refill Size # 4.5",
+      "price": "$90",
+      "itemNum": "P444.5",
+      "packaging": "10 / Pkg"
+    },
+    {
+      "desc": "ParaPost Posts Stainless Steel Refill Size # 5",
+      "price": "$90",
+      "itemNum": "P445",
+      "packaging": "10 / Pkg"
+    },
+    {
+      "desc": "ParaPost Posts Stainless Steel Refill Size # 5.5",
+      "price": "$90",
+      "itemNum": "P445.5",
+      "packaging": "10 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Coltene",
+  "name": "ParaPost XP Posts Stainless Steel Introductory Kit P-780 Each",
+  "price": "$299.25",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured1911.jpg",
+  "options": [
+    {
+      "desc": "ParaPost XP Posts Stainless Steel Introductory Kit P-780 Each",
+      "price": "$299.25",
+      "itemNum": "P780",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Coltene",
+  "name": "ParaPost Drills Two-Fluted -",
+  "price": "$0",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured1916.jpg",
+  "options": [
+    {
+      "desc": "Size 3",
+      "price": "$0",
+      "itemNum": "P42-3",
+      "packaging": "3 / Pkg"
+    },
+    {
+      "desc": "Size 4",
+      "price": "$0",
+      "itemNum": "P42-4",
+      "packaging": "3 / Pkg"
+    },
+    {
+      "desc": "Size 4.5",
+      "price": "$0",
+      "itemNum": "P42-4.5",
+      "packaging": "3 / Pkg"
+    },
+    {
+      "desc": "Size 5",
+      "price": "$0",
+      "itemNum": "P42-5",
+      "packaging": "3 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "3M",
+  "name": "Clinpro Sealant Syringe Tip Refill 1.2mL",
+  "price": "$28.5",
+  "cat": "Composites Filling Materials",
+  "imageUrl": "downloads/featured1917.jpeg",
+  "options": [
+    {
+      "desc": "Clinpro Sealant offers smart color-change technology that goes on pink for easy-to-see application, and cures to a natural white. The low viscosity allows it to flow easily into pits and fissures.",
+      "price": "$28.5",
+      "itemNum": "12627",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Dentsply Professional",
+  "name": "Cavitron Slimline SLI inserts",
+  "price": "$190",
+  "cat": "Equipment",
+  "imageUrl": "downloads/featured1918.jpg",
+  "options": [
+    {
+      "desc": "SLI-10S Straight insert with metal grip",
+      "price": "$190",
+      "itemNum": "79611",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Plasdent",
+  "name": "Plasdent 15\" x 26\" X-Ray head covers, 500/box.",
+  "price": "$39.99",
+  "cat": "X-Ray Products",
+  "imageUrl": "downloads/featured1922.jpg",
+  "options": [
+    {
+      "desc": "X-ray sleeves, 15\" x 26\", plastic, clear, box of 250 sleeves",
+      "price": "$39.99",
+      "itemNum": "PS1105",
+      "packaging": "500 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "LH",
+  "name": "Fluid Resistant Procedure Mask  Level 3",
+  "price": "$6.99",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured1923.jpg",
+  "options": [
+    {
+      "desc": "ASTM level 3 (Fluid resistant)",
+      "price": "$6.99",
+      "itemNum": "LHM-E1301",
+      "packaging": "50 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Plasdent",
+  "name": "Ease Cartridge Transfer Connectors 5/Package",
+  "price": "$14.99",
+  "cat": "Impression Materials",
+  "imageUrl": "downloads/featured1926.jpg",
+  "options": [
+    {
+      "desc": "Cartridge Transfer Connectors 1:1 High Performance Cartridges 5/Package",
+      "price": "$14.99",
+      "itemNum": "CC-IMP",
+      "packaging": "5 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Plasdent",
+  "name": "Bite Block Cover 1.5 in x 3 in 500/Bx",
+  "price": "$11.99",
+  "cat": "X-Ray Products",
+  "imageUrl": "downloads/featured1927.jpg",
+  "options": [
+    {
+      "desc": "Bite Block Cover 1.5 in x 3 in",
+      "price": "$11.99",
+      "itemNum": "PS-5501",
+      "packaging": "500 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Solmetex",
+  "name": "Solmetex NXT Hg5 Collection Container With Recycle Kit",
+  "price": "$380",
+  "cat": "Alloy And Accessories",
+  "imageUrl": "downloads/featured1928.jpg",
+  "options": [
+    {
+      "desc": "1 NXT Hg5 Collection Container, packaging for recycling/shipping & online certificates for recycling/compliance.",
+      "price": "$380",
+      "itemNum": "NXT-HG5002CR",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "DCI",
+  "name": "DCI Saliva Ejector Autoclavable Rubber Tip - Gray 5/pk",
+  "price": "$14.99",
+  "cat": "Evacuation",
+  "imageUrl": "downloads/featured1930.jpg",
+  "options": [
+    {
+      "desc": "Saliva Ejector Autoclavable Rubber Tip - Gray 5/Pk. Only for Quick-Change Saliva Ejector Vacuum Valve.",
+      "price": "$14.99",
+      "itemNum": "5754",
+      "packaging": "5/pk / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "DCI",
+  "name": "Quick-Clean Syringe Repair Kit w/ 2 buttons. Kit includes: PN 3085 Syringe",
+  "price": "$0",
+  "cat": "DCI International",
+  "imageUrl": "downloads/featured1933.jpg",
+  "options": [
+    {
+      "desc": "Syringe Repair Kit w/ 2 buttons. Kit includes: PN 3085 Syringe Button w/ Spring - 2, PN 2201 Tip O-Ring - 1, PN 2202 Adapter O-Ring - 1, PN 9677 Adapter Spring - 1.",
+      "price": "$0",
+      "itemNum": "3076",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "DCI",
+  "name": "DCI Precision Comfort Premium Autoclavable Extended Vacuum Valves w/Quick",
+  "price": "$0",
+  "cat": "DCI International",
+  "imageUrl": "downloads/featured1938.png",
+  "options": [
+    {
+      "desc": "DCI Precision Comfort Premium Autoclavable Extended Vacuum Valves w/Quick",
+      "price": "$0",
+      "itemNum": "5112",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "DCI",
+  "name": "DCI Fitting, 1/4\" Poly Q.D. w/o Shut-off, Male. For use with air only. Single",
+  "price": "$0",
+  "cat": "DCI International",
+  "imageUrl": "downloads/featured1940.jpg",
+  "options": [
+    {
+      "desc": "DCI Fitting, 1/4\" Poly Q.D. w/o Shut-off, Male. For use with air only. Single",
+      "price": "$0",
+      "itemNum": "PN 0015",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "DCI",
+  "name": "Precision Comfort Premium Autoclavable Saliva Ejector with Quick-Disconnect",
+  "price": "$0",
+  "cat": "DCI International",
+  "imageUrl": "downloads/featured1941.jpg",
+  "options": [
+    {
+      "desc": "Premium Autoclavable Saliva Ejector with Quick-Disconnect.",
+      "price": "$0",
+      "itemNum": "5222",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "DCI",
+  "name": "DCI Replacement Lever - for use with saliva ejector, economy autoclavable",
+  "price": "$0",
+  "cat": "DCI International",
+  "imageUrl": "downloads/featured1942.jpg",
+  "options": [
+    {
+      "desc": "Replacement Lever - for use with saliva ejector, economy autoclavable plastic lever.",
+      "price": "$0",
+      "itemNum": "5670",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "DCI",
+  "name": "DCI Replacement Lever for High Volume Evacuation Valve. Economy autoclavable",
+  "price": "$0",
+  "cat": "DCI International",
+  "imageUrl": "downloads/featured1943.jpg",
+  "options": [
+    {
+      "desc": "Replacement Lever for High Volume Evacuation Valve. Economy autoclavable extended vacuum lever.",
+      "price": "$0",
+      "itemNum": "5171",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+    {
+        "brand": "DCI",
+        "name": "DCI Gasket Kit for Midmark M11 and M11D. Includes: 1 Door Gasket, 1 Dam Gasket",
+        "price": "$0",
+        "cat": "DCI International",
+        "imageUrl": "downloads/featured1945.jpg"
+    },
+ {
+  "brand": "DCI",
+  "name": "DCI Molded Asepsis Holder, Lt. White, Normally Closed, Designed for 1/2",
+  "price": "$0",
+  "cat": "DCI International",
+  "imageUrl": "downloads/featured1950.jpg",
+  "options": [
+    {
+      "desc": "DCI Molded Asepsis Holder, Lt. White, Normally Closed, Designed for 1/2\" bar-mounting, 1/Pk. Compare to Pelton & Crane 19514.",
+      "price": "$0",
+      "itemNum": "4869",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Plasdent",
+  "name": "Screen-4-Vac Disposable Evacuation Traps",
+  "price": "$29.18",
+  "cat": "Evacuation",
+  "imageUrl": "downloads/featured1955.jpg",
+  "options": [
+    {
+      "desc": "Screen-4-Vac Disposable Evacuation Traps, Fits Sirona-C2, C3, C4, C6, C8; Pelton & Crane S1, S2, (#5510) Diameter: 3\", Color: Clear, Box of 144 traps.",
+      "price": "$29.18",
+      "itemNum": "5505",
+      "packaging": "144 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "UniPack",
+  "name": "Dispos-A-Trap #5501 evacuation trap",
+  "price": "$29.15",
+  "cat": "Evacuation",
+  "imageUrl": "downloads/featured1956.jpg",
+  "options": [
+    {
+      "desc": "Dispos-A-Trap #5501 evacuation trap for a single evacuation unit, 2.125\" diameter, fits Adec models with plastic canisters,",
+      "price": "$29.15",
+      "itemNum": "5501",
+      "packaging": "144 / Pkg"
+    }
+  ]
+},
+{
+  "brand": "US ELITE",
+  "name": "Rubber Dam Clamp",
+  "price": "$39.99",
+  "cat": "Instruments",
+  "imageUrl": "downloads/featured2018.pdf",
+  "options": [
+    {
+      "desc": "Rubber Dam Clamp",
+      "price": "$39.99",
+      "itemNum": "US",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "3D",
+  "name": "Temporary Crown & Bridge Material",
+  "price": "$75.29",
+  "cat": "Crown & Bridge",
+  "imageUrl": "downloads/featured2052.png",
+  "options": [
+    {
+      "desc": "Shade A2 Box contains: 76gm 10:1 Cartridge 5 Mixing Tips",
+      "price": "$75.29",
+      "itemNum": "#TCB-A2",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "3D",
+  "name": "3D - Bite Registration Material",
+  "price": "$33.29",
+  "cat": "Impression Materials",
+  "imageUrl": "downloads/featured2053.jpg",
+  "options": [
+    {
+      "desc": "Bite Registration",
+      "price": "$33.29",
+      "itemNum": "NDC",
+      "packaging": "2/PK / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Premier",
+  "name": "CompCore AF Automix Core Buildup Refill Package Shade A3 50 Gm Each",
+  "price": "$165.29",
+  "cat": "Core Build-Up Materials",
+  "imageUrl": "downloads/featured2057.jpg",
+  "options": [
+    {
+      "desc": "CompCore AF Automix Core Buildup Refill Package Shade A3 50 Gm Each",
+      "price": "$165.29",
+      "itemNum": "3001433",
+      "packaging": "1 / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Microcopy",
+  "name": "NeoDrys",
+  "price": "$15.29",
+  "cat": "Disposable Products",
+  "imageUrl": "downloads/featured2058.jpg",
+  "options": [
+    {
+      "desc": "NeoDrys Saliva Absorbents - Small (Yellow)",
+      "price": "$15.29",
+      "itemNum": "DYS",
+      "packaging": "50/pk / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Sunstar Americas, Inc",
+  "name": "Eez-Touch Disposable Tapered Prophy Angle Brush Latex-Free 50/Bx",
+  "price": "$39.29",
+  "cat": "Prophy Products",
+  "imageUrl": "downloads/featured2059.jpg",
+  "options": [
+    {
+      "desc": "Eez-Touch Disposable Tapered Prophy Angle Brush Latex-Free 50/Box",
+      "price": "$39.29",
+      "itemNum": "1203P",
+      "packaging": "50/pk / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Plasdent",
+  "name": "Mixing Spatulas",
+  "price": "$5.99",
+  "cat": "Cements & Liners",
+  "imageUrl": "downloads/featured2060.jpg",
+  "options": [
+    {
+      "desc": "Disposable Mixing Spatulas - White 100/Pk. Thin, Rigid, Plastic",
+      "price": "$5.99",
+      "itemNum": "903MS",
+      "packaging": "100/PK / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "House Brand",
+  "name": "House Brand Nitrile glove: 100/Bx. Non-Sterile, Powder-Free",
+  "price": "$5.99",
+  "cat": "Gloves",
+  "imageUrl": "downloads/featured2061.jpg",
+  "options": [
+    {
+      "desc": "Medium",
+      "price": "$5.99",
+      "itemNum": "LH2",
+      "packaging": "100/pk / Pkg"
+    },
+    {
+      "desc": "Small",
+      "price": "$5.99",
+      "itemNum": "LH3",
+      "packaging": "100/pk / Pkg"
+    },
+    {
+      "desc": "Large",
+      "price": "$5.99",
+      "itemNum": "LH1",
+      "packaging": "100/pk / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "DentAmerica",
+  "name": "DentAmerica Mylar Strips, Dupont clear mylar strip",
+  "price": "$14.99",
+  "cat": "Matrix Materials",
+  "imageUrl": "downloads/featured2066.webp",
+  "options": [
+    {
+      "desc": "Dupont clear mylar strip",
+      "price": "$14.99",
+      "itemNum": "AC001",
+      "packaging": "100/pk / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "DCI",
+  "name": "Quick-Clean Valve Core Syringe",
+  "price": "$0",
+  "cat": "DCI International",
+  "imageUrl": "downloads/featured2075.webp",
+  "options": [
+    {
+      "desc": "Quick-Clean Valve Core Syringe Each",
+      "price": "$0",
+      "itemNum": "DCI 3470",
+      "packaging": "1/pk / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Safedent",
+  "name": "Safe-Dent Gauze Non-Woven 4\" x 4\"",
+  "price": "$38.99",
+  "cat": "Disposable Products",
+  "imageUrl": "downloads/featured2077.jpg",
+  "options": [
+    {
+      "desc": "Safe-Dent Gauze Non-Woven 4\" x 4\"",
+      "price": "$38.99",
+      "itemNum": "C6012",
+      "packaging": "2000/pk / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "Blazer  Torch",
+  "name": "HOT SHOT MT 3000",
+  "price": "$32.99",
+  "cat": "Acrylic and Reline Materials",
+  "imageUrl": "downloads/featured2083.jpg",
+  "options": [
+    {
+      "desc": "The lightweight Hot Shot MT-3000 torch is the perfect tool for those quick touch up jobs. The powerful 2500\u00b0F blue torch.",
+      "price": "$32.99",
+      "itemNum": "MT-3000",
+      "packaging": "1/pk / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "Premium Plus",
+  "name": "Mouth Mirror #5 (Made in USA)",
+  "price": "$26.95",
+  "cat": "Instruments",
+  "imageUrl": "downloads/featured2086.jpg",
+  "options": [
+    {
+      "desc": "Premium Plus #5 Magnifying mouth mirrors, cone socket, stainless steel",
+      "price": "$26.95",
+      "itemNum": "AC 9011",
+      "packaging": "12/PK / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Septodont",
+  "name": "Septoject XL Dental Needles, 27ga for Nerve Blocks",
+  "price": "$22.19",
+  "cat": "Anesthetics",
+  "imageUrl": "downloads/featured2087.jpg",
+  "options": [
+    {
+      "desc": "Septoject XL Dental Needles, 27ga for Nerve Blocks",
+      "price": "$22.19",
+      "itemNum": "01-N1550",
+      "packaging": "100/pk / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Premier",
+  "name": "CompCore AF Core Buildup 50 Gm Shade A3 Refill Package",
+  "price": "$186.19",
+  "cat": "Core Build-Up Materials",
+  "imageUrl": "downloads/featured2090.avif",
+  "options": [
+    {
+      "desc": "CompCore AF Core Buildup 50 Gm Shade A3 Refill Package",
+      "price": "$186.19",
+      "itemNum": "3001433",
+      "packaging": "1/pk / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "House Brand",
+  "name": "Expro Size 23 Double End Round Shepherd Hook / Michigan / Williams",
+  "price": "$0",
+  "cat": "Instruments",
+  "imageUrl": "downloads/featured2091.jpg",
+  "options": [
+    {
+      "desc": "Size 23 Double End Round Shepherd Hook / Michigan / Williams Stainless Steel Each",
+      "price": "$0",
+      "itemNum": "ac001-208",
+      "packaging": "1/pk / Pkg"
+    }
+  ]
+},{
+  "brand": "House Brand",
+  "name": "Brown color tip",
+  "price": "$15.99",
+  "cat": "Impression Materials",
+  "imageUrl": "downloads/featured2092.jpg",
+  "options": [
+    {
+      "desc": "Brown color tip for temp bond",
+      "price": "$15.99",
+      "itemNum": "8140T",
+      "packaging": "48/pk / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "SS WHITE",
+  "name": "859-012SF",
+  "price": "$19.15",
+  "cat": "Burs & Diamonds",
+  "imageUrl": "downloads/featured2093.jpg",
+  "options": [
+    {
+      "desc": "Super Fine 859-012SF Needle 5/Package",
+      "price": "$19.15",
+      "itemNum": "859-012 SF",
+      "packaging": "6/pk / Pkg"
+    }
+  ]
+},
+{
+  "brand": "3M",
+  "name": "3M Sof-Lex Finishing & Polishing Strips Coarse / Medium 150/Bx",
+  "price": "$55.59",
+  "cat": "Composites Filling Materials",
+  "imageUrl": "downloads/featured2094.jpg",
+  "options": [
+    {
+      "desc": "3M Sof-Lex Finishing & Polishing Strips Coarse / Medium Clear Refill For Composite / Ceramic / Glass Ionomer Aluminum Oxide 150/Box",
+      "price": "$55.59",
+      "itemNum": "3M - 1954",
+      "packaging": "150/Bx / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Safedent",
+  "name": "Safe-Dent Fluoride Trays - Large Hinged Dual Arch 100/Pk",
+  "price": "$19.5",
+  "cat": "Fluorides & Varnish",
+  "imageUrl": "downloads/featured2102.jpg",
+  "options": [
+    {
+      "desc": "Fluoride Trays - Large Hinged Dual Arch 100/Pk",
+      "price": "$19.5",
+      "itemNum": "A90143-L",
+      "packaging": "100/pk / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Safedent",
+  "name": "Safe-Dent Fluoride Trays - Small Hinged Dual Arch 100/Pk. Green Foam",
+  "price": "$19.5",
+  "cat": "Fluorides & Varnish",
+  "imageUrl": "downloads/featured2103.jpg",
+  "options": [
+    {
+      "desc": "Safe-Dent Fluoride Trays - Small Hinged Dual Arch 100/Pk. Green Foam, Easy Lock.",
+      "price": "$19.5",
+      "itemNum": "A90141-S",
+      "packaging": "100/pk / Pkg"
+    }
+  ]
+},
+    {
+  "brand": "SS WHITE",
+  "name": "Jazz Polishers C1S Cup 20/Pack Single-use",
+  "price": "$60.29",
+  "cat": "Composites Filling Materials",
+  "imageUrl": "downloads/featured2104.jpg",
+  "options": [
+    {
+      "desc": "Jazz Polishers C1S Cup 20/Pack Single-use",
+      "price": "$60.29",
+      "itemNum": "89037",
+      "packaging": "20/PK / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "SS WHITE",
+  "name": "Jazz Polishers C1S Flame 20/Roll",
+  "price": "$60.29",
+  "cat": "Composites Filling Materials",
+  "imageUrl": "downloads/featured2105.png",
+  "options": [
+    {
+      "desc": "Jazz Polishers C1S Flame 20/Roll. Sterile, Single-use",
+      "price": "$60.29",
+      "itemNum": "AC9089",
+      "packaging": "20/PK / Pkg"
+    }
+  ]
+},
+{
+  "brand": "Key stone",
+  "name": "Optimize Autoclave Cleaner  32 oz.",
+  "price": "$25.84",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured2132.jpg",
+  "options": [
+    {
+      "desc": "Autoclave Cleaner for Steam Autoclaves",
+      "price": "$25.84",
+      "itemNum": "00146",
+      "packaging": "1/pk / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Dukal",
+  "name": "4\" x 4\" Non-Sterile Non-Woven Top Sponge",
+  "price": "$0",
+  "cat": "Disposable Products",
+  "imageUrl": "downloads/featured2133.jpg",
+  "options": [
+    {
+      "desc": "4\" x 4\" Non-Sterile Non-Woven Top Sponge",
+      "price": "$0",
+      "itemNum": "5340",
+      "packaging": "2000/pk / Pkg"
+    }
+  ]
+},
+{
+  "brand": "UniPack",
+  "name": "Flex Mask Level 1 Ear-Loop Blue 50/BX",
+  "price": "$6.99",
+  "cat": "Infection Control",
+  "imageUrl": "downloads/featured2134.pdf",
+  "options": [
+    {
+      "desc": "Blue Ultra soft inner layer",
+      "price": "$6.99",
+      "itemNum": "ULM-6181",
+      "packaging": "50/pk / Pkg"
+    },
+    {
+      "desc": "Pink Ultra soft inner layer.",
+      "price": "$6.99",
+      "itemNum": "ULM-6189",
+      "packaging": "50/pk / Pkg"
+    },
+    {
+      "desc": "Lavender Ultra soft inner layer",
+      "price": "$6.99",
+      "itemNum": "ULM-6184",
+      "packaging": "50/pk / Pkg"
+    },
+    {
+      "desc": "White Ultra soft inner layer",
+      "price": "$6.99",
+      "itemNum": "ULM-6182",
+      "packaging": "50/pk / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "DSC",
+  "name": "DSC Universal Matrix Retainer, Stainless Steel, Tofflemire-type",
+  "price": "$22.58",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured2137.jpg",
+  "options": [
+    {
+      "desc": "DSC Universal Matrix Retainer, Stainless Steel, Tofflemire-type",
+      "price": "$22.58",
+      "itemNum": "MR-AS-1",
+      "packaging": "1/pk / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Premier",
+  "name": "RC-Prep for Chemo-Mechanical Preparation of Root Canals, 18 Gm. Jar. #9007131",
+  "price": "$40.1",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured2138.jpg",
+  "options": [
+    {
+      "desc": "RC-Prep for Chemo-Mechanical Preparation of Root Canals, 18 Gm. Jar. #9007131",
+      "price": "$40.1",
+      "itemNum": "9007131",
+      "packaging": "1/pk / Pkg"
+    }
+  ]
+},{
+  "brand": "KavoKerr",
+  "name": "Optibond",
+  "price": "$85",
+  "cat": "Composites Filling Materials",
+  "imageUrl": "downloads/featured2139.jpg",
+  "options": [
+    {
+      "desc": "OptiBond Universal Adhesive, Light-cure, 5 mL Bottle",
+      "price": "$85",
+      "itemNum": "36519",
+      "packaging": "1/pk / Pkg"
+    }
+  ]
+},
+{
+  "brand": "UniPack",
+  "name": "Endo Irrigation Kit 27ga. 3cc, Yellow. Contains 100 X 3 cc luer",
+  "price": "$29.99",
+  "cat": "Endodontic Products",
+  "imageUrl": "downloads/featured2140.jpg",
+  "options": [
+    {
+      "desc": "Endo Irrigation Kit 27ga. 3cc, Yellow. Contains 100 X 3 cc luer",
+      "price": "$29.99",
+      "itemNum": "lh001",
+      "packaging": "100/pk / Pkg"
+    }
+  ]
+},
+  {
+  "brand": "KaVo Kerr",
+  "name": "Kerr Temp-Bond NE automix syringe",
+  "price": "$89.99",
+  "cat": "Cements & Liners",
+  "imageUrl": "downloads/featured2141.jpg",
+  "options": [
+    {
+      "desc": "2 syringes (11.7g each) and 20 mixing tips. Compare to 33217",
+      "price": "$89.99",
+      "itemNum": "33865",
+      "packaging": "2/PK / Pkg"
+    }
+  ]
+},
+ {
+  "brand": "Voco",
+  "name": "Ionoseal Glass Ionomer Composite Liner, 25 ml 3/Pk. Light-curing",
+  "price": "$195",
+  "cat": "Cements & Liners",
+  "imageUrl": "downloads/featured2142.avif",
+  "options": [
+    {
+      "desc": "Ionoseal Glass Ionomer Composite Liner, 25 ml 3/Pk. Light-curing, Ready to use",
+      "price": "$195",
+      "itemNum": "1326",
+      "packaging": "3/PK / Pkg"
+    }
+  ]
+},
+   {
+  "brand": "Premier",
+  "name": "Traxodent Hemodent Paste Retraction System, Starter Kit: 7 - 0.7g Syringes",
+  "price": "$97.95",
+  "cat": "Hemostasis and Retraction",
+  "imageUrl": "downloads/featured2143.jpeg",
+  "options": [
+    {
+      "desc": "Traxodent Hemodent Paste Retraction System, Starter Kit: 7 - 0.7g Syringes",
+      "price": "$97.95",
+      "itemNum": "9007093",
+      "packaging": "7 - 0.7g Syringes & 15 Tips / Pkg"
+    }
+  ]
+},
+];
 
 
     // ---------------------------------------------------------
@@ -684,7 +4492,7 @@
 
 
     // =========================================================
-    // LOAD PRODUCTS.JSON
+    // LOAD PRODUCTS (from embedded data — no fetch, no CORS issue)
     // =========================================================
 
 
@@ -745,47 +4553,63 @@
         try {
 
 
-            // IMPORTANT:
-            //
-            // products.json is in the SAME folder
-            // as index.html
-            //
-            // Therefore we use:
-            //
-            // ./products.json
+            // -------------------------------------------------
+            // Use the embedded data first (always works, no
+            // network / CORS issues). If for some reason that's
+            // missing or empty, fall back to trying to fetch
+            // products.json (useful when hosted on a real server
+            // and you'd rather edit an external file).
+            // -------------------------------------------------
 
 
-            const response = await fetch(
-
-                './products.json',
-
-                {
-
-                    cache: 'no-store'
-
-                }
-
-            );
+            let data = EMBEDDED_PRODUCTS;
 
 
+            if (
 
-            if (!response.ok) {
+                !Array.isArray(data)
 
-                throw new Error(
+                ||
 
-                    'Could not load products.json. HTTP Status: '
+                data.length === 0
 
-                    +
+            ) {
 
-                    response.status
+
+                const response = await fetch(
+
+                    './products.json',
+
+                    {
+
+                        cache: 'no-store'
+
+                    }
 
                 );
 
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+
+                        'Could not load products.json. HTTP Status: '
+
+                        +
+
+                        response.status
+
+                    );
+
+                }
+
+
+
+                data = await response.json();
+
+
             }
-
-
-
-            const data = await response.json();
 
 
 
@@ -849,7 +4673,7 @@
 
                 throw new Error(
 
-                    'Invalid products.json structure.'
+                    'Invalid products data structure.'
 
                 );
 
@@ -922,7 +4746,7 @@
 
                             There are currently no products
 
-                            inside products.json.
+                            configured.
 
                         </p>
 
@@ -1018,13 +4842,9 @@
 
                     <p>
 
-                        The website could not load
+                        Something went wrong while loading the
 
-                        <strong>
-
-                            products.json
-
-                        </strong>.
+                        catalog.
 
                     </p>
 
@@ -1422,6 +5242,20 @@
                                 )}"
 
                                 loading="lazy"
+
+                                onerror="this.onerror=null;this.src='https://placehold.co/400x300/f8fafc/0284c7?text=${
+
+                                    encodeURIComponent(
+
+                                        product.brand
+
+                                        ||
+
+                                        'Product'
+
+                                    )
+
+                                }';"
 
                             >
 
@@ -2013,7 +5847,23 @@
             return;
 
         }
+const tabularImageEl = document.getElementById('tabularImage');
 
+    if (tabularImageEl) {
+
+        const modalImage =
+            selectedProduct.imageUrl && String(selectedProduct.imageUrl).trim() !== ''
+                ? selectedProduct.imageUrl
+                : `https://placehold.co/400x300/f8fafc/0284c7?text=${encodeURIComponent(selectedProduct.brand || 'Product')}`;
+
+        tabularImageEl.src = modalImage;
+        tabularImageEl.alt = selectedProduct.name || 'Product';
+
+        tabularImageEl.onerror = function () {
+            this.onerror = null;
+            this.src = `https://placehold.co/400x300/f8fafc/0284c7?text=${encodeURIComponent(selectedProduct.brand || 'Product')}`;
+        };
+    }
 
 
         // ---------------------------------------------
